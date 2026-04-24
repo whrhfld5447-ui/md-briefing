@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD 모닝 브리핑 — TRADCLUB</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1c2e;
+  --navy-mid: #1a2f47;
+  --blue: #2563eb;
+  --blue-light: #dbeafe;
+  --gold: #b8924a;
+  --gold-light: #fdf3e3;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --gray: #f8f7f5;
+  --border: #e5e2dc;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--gray);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* TOP BAR */
+.topbar {
+  background: var(--navy);
+  color: white;
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: white;
+}
+
+.topbar-brand span {
+  color: var(--gold);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  color: white;
+  padding: 2.5rem 2rem 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.hero-date {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 38px;
+  line-height: 1.1;
+  color: white;
+}
+
+.hero-title em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.hero-sub {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+
+.hero-meta {
+  text-align: right;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+}
+
+/* MAIN LAYOUT */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.grid-top {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* CARD */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* WEATHER */
+.weather-temp-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.weather-temp {
+  font-family: 'DM Serif Display', serif;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--navy);
+}
+
+.weather-range {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.weather-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.weather-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--gray);
+}
+
+.tag.blue { background: var(--blue-light); color: var(--blue); border-color: #bfdbfe; }
+.tag.red { background: var(--red-light); color: var(--red); border-color: #fca5a5; }
+.tag.green { background: var(--green-light); color: var(--green); border-color: #86efac; }
+.tag.gold { background: var(--gold-light); color: var(--gold); border-color: #fcd34d; }
+
+.insight-box {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+
+.insight-box strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* TREND KEYWORDS */
+.keyword-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.keyword {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.keyword .rank {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.keyword.rising {
+  background: var(--blue-light);
+  border-color: #bfdbfe;
+  color: var(--blue);
+}
+
+.keyword.hot {
+  background: var(--red-light);
+  border-color: #fca5a5;
+  color: var(--red);
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.stat-row:last-child { border-bottom: none; }
+.stat-label { color: var(--muted); }
+.stat-val { font-weight: 500; color: var(--text); }
+.stat-val.up { color: var(--red); }
+.stat-val.down { color: var(--blue); }
+
+/* COMPETITOR */
+.comp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.comp-row:last-child { border-bottom: none; }
+
+.comp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comp-info { flex: 1; }
+.comp-name { font-size: 14px; color: var(--text); }
+.comp-brand { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+/* SNS */
+.sns-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sns-row:last-child { border-bottom: none; }
+
+.sns-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--border);
+  min-width: 24px;
+  line-height: 1;
+}
+
+.sns-content { flex: 1; }
+.sns-title { font-size: 14px; color: var(--text); }
+.sns-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.platform-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.ig { background: #fce7f3; color: #be185d; }
+.yt { background: var(--red-light); color: var(--red); }
+
+/* FOOTER */
+.footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 2rem 3rem;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .grid-top { grid-template-columns: 1fr; }
+  .grid-bottom { grid-template-columns: 1fr; }
+  .hero-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-meta { text-align: left; }
+  .hero-title { font-size: 28px; }
+  .main { padding: 1rem; }
+}
+
+/* FADE IN */
+.card {
+  animation: fadeUp 0.4s ease both;
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">TRAD<span>CLUB</span> · MD</div>
+  <div class="topbar-right">
+    <span class="live-dot"></span>
+    <span id="live-time">--:--</span>
+    <span>남성복 기획팀</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-date" id="hero-date">2026년 4월 24일 금요일</div>
+      <div class="hero-title">Good morning,<br><em>오늘의 브리핑</em>입니다.</div>
+      <div class="hero-sub">남성복 MD를 위한 데일리 마켓 리포트</div>
+    </div>
+    <div class="hero-meta">
+      업데이트 <strong style="color:white;">오전 9:00</strong><br>
+      서울 · 날씨 맑음<br>
+      경쟁사 4개 모니터링 중
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="grid-top">
+
+    <!-- 날씨 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-label">오늘의 날씨 · 서울</span>
+        <span class="tag">봄 시즌</span>
+      </div>
+      <div class="card-body">
+        <div class="weather-temp-row">
+          <div class="weather-temp">18°</div>
+          <div class="weather-range">최저 11° / 최고 21°</div>
+        </div>
+        <div class="weather-desc">맑음 · 강수확률 10% · 바람 약함</div>
+        <div class="weather-tags">
+          <span class="tag blue">얇은 아우터</span>
+          <span class="tag blue">경량 재킷</span>
+          <span class="tag blue">면 셔츠</span>
+          <span class="tag gold">봄 코트</span>
+        </div>
+        <div class="insight-box">
+          <strong>MD 인사이트</strong> — 시즌 전환기 진입. 봄 아우터 & 경량 재킷 수요 상승 예상. 5월 기획 앞당길 것.
+        </div>
+      </div>
+    </div>
+
+    <!-- 무신사 트렌드 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-label">무신사 트렌드</span>
+        <span class="tag green">실시간</span>
+      </div>
+      <div class="card-body">
+        <div class="keyword-grid">
+          <span class="keyword hot"><span class="rank">↑</span> 테일러드 수트</span>
+          <span class="keyword rising"><span class="rank">↑</span> 크링클 소재</span>
+          <span class="keyword rising">린넨 셔츠</span>
+          <span class="keyword">와이드 팬츠</span>
+          <span class="keyword">봄 아우터</span>
+          <span class="keyword">오피스 캐주얼</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">크링클 소재 검색량</span>
+          <span class="stat-val up">+34% ↑</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">테일러드 수트 검색량</span>
+          <span class="stat-val up">+21% ↑</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">패딩 / 헤비 아우터</span>
+          <span class="stat-val down">-18% ↓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 경쟁사 신상 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-label">경쟁사 신상 입고</span>
+        <span class="tag red">오늘</span>
+      </div>
+      <div class="card-body">
+        <div class="comp-row">
+          <div class="comp-dot" style="background:#2563eb;"></div>
+          <div class="comp-info">
+            <div class="comp-name">스트레치 수트 (차콜/네이비)</div>
+            <div class="comp-brand">무신사 스탠다드</div>
+          </div>
+          <span class="tag blue">신규</span>
+        </div>
+        <div class="comp-row">
+          <div class="comp-dot" style="background:#dc2626;"></div>
+          <div class="comp-info">
+            <div class="comp-name">링클프리 드레스 셔츠 3종</div>
+            <div class="comp-brand">유니클로</div>
+          </div>
+          <span class="tag red">인기</span>
+        </div>
+        <div class="comp-row">
+          <div class="comp-dot" style="background:#16a34a;"></div>
+          <div class="comp-info">
+            <div class="comp-name">테일러드 하프코트 리오더</div>
+            <div class="comp-brand">STCO</div>
+          </div>
+          <span class="tag blue">신규</span>
+        </div>
+        <div class="comp-row">
+          <div class="comp-dot" style="background:#b8924a;"></div>
+          <div class="comp-info">
+            <div class="comp-name">와이드 치노 팬츠 (베이지)</div>
+            <div class="comp-brand">커스텀멜로우</div>
+          </div>
+          <span class="tag red">인기</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="grid-bottom">
+
+    <!-- 인스타 릴스 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-label">인스타그램 릴스 트렌드</span>
+        <span class="tag" style="background:#fce7f3;color:#be185d;border-color:#fbcfe8;">Instagram</span>
+      </div>
+      <div class="card-body">
+        <div class="sns-row">
+          <div class="sns-num">01</div>
+          <div class="sns-content">
+            <div class="sns-title">출근룩 하울 — 수트 + 로퍼 조합</div>
+            <div class="sns-sub">#직장인패션 · 조회 68만 · 저장 4.2만</div>
+          </div>
+          <span class="platform-badge ig">릴스</span>
+        </div>
+        <div class="sns-row">
+          <div class="sns-num">02</div>
+          <div class="sns-content">
+            <div class="sns-title">오피스 코디 챌린지</div>
+            <div class="sns-sub">#오피스룩챌린지 · 3.2만 게시물</div>
+          </div>
+          <span class="platform-badge ig">릴스</span>
+        </div>
+        <div class="sns-row">
+          <div class="sns-num">03</div>
+          <div class="sns-content">
+            <div class="sns-title">봄 린넨 셔츠 코디 5가지</div>
+            <div class="sns-sub">저장 집중 · 구매 전환율 높음</div>
+          </div>
+          <span class="platform-badge ig">릴스</span>
+        </div>
+        <div class="sns-row">
+          <div class="sns-num">04</div>
+          <div class="sns-content">
+            <div class="sns-title">직장인 봄 자켓 추천</div>
+            <div class="sns-sub">30대 타겟 반응 집중</div>
+          </div>
+          <span class="platform-badge ig">릴스</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 유튜브 쇼츠 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-label">유튜브 쇼츠 트렌드</span>
+        <span class="tag red">YouTube</span>
+      </div>
+      <div class="card-body">
+        <div class="sns-row">
+          <div class="sns-num">01</div>
+          <div class="sns-content">
+            <div class="sns-title">봄 남자 출근룩 추천 TOP5</div>
+            <div class="sns-sub">조회 28만 · 댓글 1,200+ · 급상승</div>
+          </div>
+          <span class="platform-badge yt">쇼츠</span>
+        </div>
+        <div class="sns-row">
+          <div class="sns-num">02</div>
+          <div class="sns-content">
+            <div class="sns-title">비즈니스 캐주얼 vs 포멀 비교</div>
+            <div class="sns-sub">조회 19만 · 구독 전환 높음</div>
+          </div>
+          <span class="platform-badge yt">쇼츠</span>
+        </div>
+        <div class="sns-row">
+          <div class="sns-num">03</div>
+          <div class="sns-content">
+            <div class="sns-title">수트 한 벌로 5가지 코디</div>
+            <div class="sns-sub">조회 14만 · 30대 남성 반응 집중</div>
+          </div>
+          <span class="platform-badge yt">쇼츠</span>
+        </div>
+        <div class="sns-row">
+          <div class="sns-num">04</div>
+          <div class="sns-content">
+            <div class="sns-title">직장인 필수 아우터 봄버전</div>
+            <div class="sns-sub">조회 9만 · 링크 클릭 상승</div>
+          </div>
+          <span class="platform-badge yt">쇼츠</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 · 매일 오전 9:00 업데이트
+</div>
+
+<script>
+function updateTime() {
+  const now = new Date();
+  const days = ['일','월','화','수','목','금','토'];
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('live-time').textContent = h + ':' + m;
+  const dateStr = now.getFullYear() + '년 ' + (now.getMonth()+1) + '월 ' + now.getDate() + '일 ' + days[now.getDay()] + '요일';
+  document.getElementById('hero-date').textContent = dateStr;
+}
+updateTime();
+setInterval(updateTime, 60000);
+</script>
+</body>
+</html>
