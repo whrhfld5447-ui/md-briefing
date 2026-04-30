@@ -56,12 +56,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
 .w-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .insight { background: var(--navy); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.5; margin-top: 12px; }
 .insight strong { color: var(--gold); }
-.alert-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #c2410c; margin-top: 10px; }
+.alert-box { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #15803d; margin-top: 10px; }
 
 .week-label { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin: 16px 0 8px; }
 .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
 .day-card { background: var(--gray); border: 1px solid var(--border); border-radius: 8px; padding: 8px 4px; text-align: center; }
 .day-card.today { background: var(--navy); border-color: var(--navy); }
+.day-card.holiday { border-color: #fca5a5; }
+.day-card.holiday .dn { color: var(--red); }
 .day-card.today .dn, .day-card.today .dd, .day-card.today .dt { color: white !important; }
 .day-card.today .dt b { color: #fbbf24 !important; }
 .dn { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
@@ -138,14 +140,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-date">2026년 4월 28일 화요일</div>
+      <div class="hero-date">2026년 4월 30일 목요일 · 4월 마지막 날</div>
       <div class="hero-title">Good morning,<br><em>오늘의 브리핑</em>입니다.</div>
       <div class="hero-sub">남성복 MD를 위한 데일리 마켓 리포트</div>
     </div>
     <div class="hero-meta">
-      업데이트 <strong style="color:white;">2026.04.28 오전 9:00</strong><br>
-      서울 · 흐림 · 오전 비<br>
-      경쟁사 4개 모니터링 중
+      업데이트 <strong style="color:white;">2026.04.30 오전 9:00</strong><br>
+      서울 · 맑음 · 건조 주의보<br>
+      내일부터 황금연휴 시작
     </div>
   </div>
 </div>
@@ -157,45 +159,45 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
     <div class="card">
       <div class="card-header">
         <span class="card-label">날씨 · 서울 2주 예보</span>
-        <span class="tag orange">⚠ 오전 비 · 5~20mm</span>
+        <span class="tag green">☀️ 서울 맑음</span>
       </div>
       <div class="card-body">
         <div class="w-today">
-          <div class="w-temp">16°</div>
-          <div class="w-range">최저 10° / 최고 18°</div>
+          <div class="w-temp">23°</div>
+          <div class="w-range">최저 9° / 최고 23°</div>
         </div>
-        <div class="w-desc">오늘 · 대체로 흐림 · 오전 중 비 · 오후부터 차차 구름많음 · 강수확률 70%</div>
+        <div class="w-desc">오늘 · 서울 대체로 맑음 · 일교차 14° · 건조특보 발효 중 · 남부지방 늦은 오후 비</div>
         <div class="w-tags">
-          <span class="tag orange">우산 필수</span>
-          <span class="tag blue">방수 소재</span>
           <span class="tag blue">경량 재킷</span>
-          <span class="tag gold">레이어링</span>
+          <span class="tag blue">면 셔츠</span>
+          <span class="tag gold">봄 코트</span>
+          <span class="tag orange">건조 주의</span>
         </div>
-        <div class="alert-box">⚠ 기상청 발표: 오전 중 수도권 곳에 따라 비 (5~20mm). 오후부터 점차 개임. 출근길 우산 필수.</div>
+        <div class="alert-box">✅ 서울은 오늘 맑고 낮 최고 23° — 야외 활동하기 좋은 날씨. 일교차가 14° 이상으로 아침·저녁 레이어링 필수. 내일(5/1)부터 황금연휴 시작.</div>
         <div class="insight">
-          <strong>MD 인사이트</strong> — 비 오는 출근길 → 방수 소재 / 크링클 텍스처 아우터 단기 수요 체크. 오후 개임 예보로 가볍게 걸칠 수 있는 경량 재킷 레이어드 코디 콘텐츠 기획 적기. 내일부터 기온 회복세.
+          <strong>MD 인사이트</strong> — 황금연휴(5/1~5) 직전 마지막 평일. 연휴 나들이 코디 수요 선제 대응 필요. 일교차 큰 봄 날씨 → 경량 아우터 + 셔츠 레이어드 코디 콘텐츠 업로드 타이밍.
         </div>
 
-        <div class="week-label">이번 주 (4/28 ~ 5/3)</div>
+        <div class="week-label">이번 주 (4/30 ~ 5/6) · 🎌 황금연휴</div>
         <div class="week-grid">
-          <div class="day-card today"><div class="dn">화</div><div class="dd">4/28</div><div class="di">🌧️</div><div class="dt"><b>18°</b> 10°</div></div>
-          <div class="day-card"><div class="dn">수</div><div class="dd">4/29</div><div class="di">🌤️</div><div class="dt"><b>20°</b> 10°</div></div>
-          <div class="day-card"><div class="dn">목</div><div class="dd">4/30</div><div class="di">☀️</div><div class="dt"><b>22°</b> 11°</div></div>
-          <div class="day-card"><div class="dn">금</div><div class="dd">5/1</div><div class="di">☀️</div><div class="dt"><b>23°</b> 12°</div></div>
-          <div class="day-card"><div class="dn">토</div><div class="dd">5/2</div><div class="di">🌤️</div><div class="dt"><b>22°</b> 13°</div></div>
-          <div class="day-card"><div class="dn">일</div><div class="dd">5/3</div><div class="di">🌧️</div><div class="dt"><b>18°</b> 12°</div></div>
-          <div class="day-card"><div class="dn">월</div><div class="dd">5/4</div><div class="di">🌤️</div><div class="dt"><b>21°</b> 12°</div></div>
-        </div>
-
-        <div class="week-label">다음 주 (5/5 ~ 5/11)</div>
-        <div class="week-grid">
-          <div class="day-card"><div class="dn">화</div><div class="dd">5/5</div><div class="di">☀️</div><div class="dt"><b>24°</b> 13°</div></div>
+          <div class="day-card today"><div class="dn">목</div><div class="dd">4/30</div><div class="di">☀️</div><div class="dt"><b>23°</b> 9°</div></div>
+          <div class="day-card holiday"><div class="dn" style="color:#dc2626;">금</div><div class="dd">5/1</div><div class="di">🌤️</div><div class="dt"><b>22°</b> 11°</div></div>
+          <div class="day-card holiday"><div class="dn" style="color:#dc2626;">토</div><div class="dd">5/2</div><div class="di">☀️</div><div class="dt"><b>23°</b> 12°</div></div>
+          <div class="day-card holiday"><div class="dn" style="color:#dc2626;">일</div><div class="dd">5/3</div><div class="di">🌧️</div><div class="dt"><b>19°</b> 12°</div></div>
+          <div class="day-card holiday"><div class="dn" style="color:#dc2626;">월</div><div class="dd">5/4</div><div class="di">🌤️</div><div class="dt"><b>21°</b> 11°</div></div>
+          <div class="day-card holiday"><div class="dn" style="color:#dc2626;">화</div><div class="dd">5/5</div><div class="di">☀️</div><div class="dt"><b>24°</b> 13°</div></div>
           <div class="day-card"><div class="dn">수</div><div class="dd">5/6</div><div class="di">☀️</div><div class="dt"><b>25°</b> 14°</div></div>
+        </div>
+
+        <div class="week-label">다음 주 (5/7 ~ 5/13)</div>
+        <div class="week-grid">
           <div class="day-card"><div class="dn">목</div><div class="dd">5/7</div><div class="di">🌤️</div><div class="dt"><b>23°</b> 13°</div></div>
           <div class="day-card"><div class="dn">금</div><div class="dd">5/8</div><div class="di">☁️</div><div class="dt"><b>21°</b> 12°</div></div>
           <div class="day-card"><div class="dn">토</div><div class="dd">5/9</div><div class="di">🌧️</div><div class="dt"><b>19°</b> 11°</div></div>
           <div class="day-card"><div class="dn">일</div><div class="dd">5/10</div><div class="di">🌤️</div><div class="dt"><b>22°</b> 12°</div></div>
           <div class="day-card"><div class="dn">월</div><div class="dd">5/11</div><div class="di">☀️</div><div class="dt"><b>24°</b> 13°</div></div>
+          <div class="day-card"><div class="dn">화</div><div class="dd">5/12</div><div class="di">☀️</div><div class="dt"><b>25°</b> 14°</div></div>
+          <div class="day-card"><div class="dn">수</div><div class="dd">5/13</div><div class="di">🌤️</div><div class="dt"><b>23°</b> 13°</div></div>
         </div>
       </div>
     </div>
@@ -214,12 +216,12 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
           <span class="kw hot">↑ 컴포트 클래식</span>
           <span class="kw rising">린넨 소재</span>
           <span class="kw rising">크링클 텍스처</span>
-          <span class="kw new">워크 & 포멀</span>
+          <span class="kw new">연휴 나들이룩</span>
           <span class="kw">오피스 캐주얼</span>
         </div>
         <div class="stat-row"><span class="stat-label">포엣 코어 (린넨/코튼 소재)</span><span class="up">급상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">컴포트 클래식 (스트레치 수트/여유핏 셔츠)</span><span class="up">+31% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">클라우드 댄서 (화이트 계열)</span><span class="up">+18% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">컴포트 클래식 (스트레치 수트/여유핏)</span><span class="up">+31% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">연휴 캐주얼 / 나들이 코디</span><span class="up">+40% ↑</span></div>
         <div class="stat-row"><span class="stat-label">헤비 패딩 / 겨울 아우터</span><span class="down">-24% ↓</span></div>
       </div>
     </div>
@@ -235,12 +237,12 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
           <span class="kw hot">↑ 테일러드 재킷</span>
           <span class="kw rising">봄 수트</span>
           <span class="kw rising">하프 코트</span>
-          <span class="kw new">젠더리스 아이템</span>
+          <span class="kw new">연휴 데일리룩</span>
           <span class="kw">화이트 셔츠</span>
         </div>
         <div class="stat-row"><span class="stat-label">테일러드 재킷 검색량</span><span class="up">+28% ↑</span></div>
         <div class="stat-row"><span class="stat-label">하프 코트 (중간 기장)</span><span class="up">+22% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">젠더리스 상품 관심도</span><span class="up">+15% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">연휴 데일리 / 캐주얼</span><span class="up">+35% ↑</span></div>
         <div class="stat-row"><span class="stat-label">겨울 니트 / 울 소재</span><span class="down">-20% ↓</span></div>
       </div>
     </div>
@@ -365,17 +367,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
       <div class="card-body">
         <div class="sns-row">
           <div class="sns-num">01</div>
-          <div class="sns-info"><div class="sns-title">포엣 코어 출근룩 — 린넨 셔츠 + 슬랙스</div><div class="sns-sub">#포엣코어 #오피스룩 · 조회 72만</div></div>
+          <div class="sns-info"><div class="sns-title">황금연휴 남자 데일리룩 추천</div><div class="sns-sub">#연휴코디 #봄나들이 · 급상승 중</div></div>
           <span class="pb ig">릴스</span>
         </div>
         <div class="sns-row">
           <div class="sns-num">02</div>
-          <div class="sns-info"><div class="sns-title">비 오는 날 출근룩 — 방수 재킷 코디</div><div class="sns-sub">#우중코디 #직장인패션 · 반응↑</div></div>
+          <div class="sns-info"><div class="sns-title">포엣 코어 출근룩 — 린넨 셔츠 + 슬랙스</div><div class="sns-sub">#포엣코어 #오피스룩 · 조회 72만</div></div>
           <span class="pb ig">릴스</span>
         </div>
         <div class="sns-row">
           <div class="sns-num">03</div>
-          <div class="sns-info"><div class="sns-title">봄 남자 출근룩 TOP5 (2026 SS)</div><div class="sns-sub">조회 31만 · 댓글 1,500+</div></div>
+          <div class="sns-info"><div class="sns-title">봄 남자 나들이 코디 TOP5</div><div class="sns-sub">조회 41만 · 연휴 앞두고 급상승</div></div>
           <span class="pb yt">쇼츠</span>
         </div>
         <div class="sns-row">
@@ -390,7 +392,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
 </div>
 
 <div class="footer">
-  본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 · 2026년 4월 28일 오전 9:00 업데이트 · 날씨 출처: 기상청
+  본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 · 2026년 4월 30일 오전 9:00 업데이트 · 날씨 출처: 기상청
 </div>
 
 <script>
