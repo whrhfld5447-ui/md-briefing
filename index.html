@@ -59,6 +59,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
 .alert-box { border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 10px; }
 .alert-green { background: #f0fdf4; border: 1px solid #86efac; color: #15803d; }
 .alert-orange { background: #fff7ed; border: 1px solid #fed7aa; color: #c2410c; }
+.alert-blue { background: var(--blue-light); border: 1px solid #bfdbfe; color: #1e40af; }
 
 .week-label { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin: 16px 0 8px; }
 .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
@@ -140,14 +141,14 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-date">2026년 5월 6일 수요일 · 연휴 복귀 첫날</div>
+      <div class="hero-date">2026년 5월 13일 수요일</div>
       <div class="hero-title">Good morning,<br><em>오늘의 브리핑</em>입니다.</div>
       <div class="hero-sub">남성복 MD를 위한 데일리 마켓 리포트</div>
     </div>
     <div class="hero-meta">
-      업데이트 <strong style="color:white;">2026.05.06 오전 9:00</strong><br>
-      서울 · 맑음 · 일교차 15° 주의<br>
-      내일 수도권 비 예보
+      업데이트 <strong style="color:white;">2026.05.13 오전 9:00</strong><br>
+      서울 · 구름조금 · 오전 짙은 안개<br>
+      이번 주 내내 맑음 · 기온 상승세
     </div>
   </div>
 </div>
@@ -159,46 +160,46 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
     <div class="card">
       <div class="card-header">
         <span class="card-label">날씨 · 서울 2주 예보</span>
-        <span class="tag orange">⚠ 일교차 15° · 옷차림 주의</span>
+        <span class="tag orange">⚠ 오전 짙은 안개 주의</span>
       </div>
       <div class="card-body">
         <div class="w-today">
           <div class="w-temp">25°</div>
-          <div class="w-range">최저 10° / 최고 25°</div>
+          <div class="w-range">최저 15° / 최고 25°</div>
         </div>
-        <div class="w-desc">오늘 · 전국 대체로 맑음 · 일교차 15° 안팎 · 아침 쌀쌀 / 낮 따뜻 · 밤부터 구름많아짐</div>
+        <div class="w-desc">오늘 · 구름조금 · 오전 짙은 안개 · 오후 맑음 · 강수확률 10%</div>
         <div class="w-tags">
-          <span class="tag blue">경량 재킷 (아침·저녁)</span>
-          <span class="tag blue">면 셔츠 (낮)</span>
+          <span class="tag blue">면 셔츠</span>
+          <span class="tag blue">경량 재킷 (아침)</span>
           <span class="tag gold">린넨 소재</span>
-          <span class="tag orange">내일 우산 준비</span>
+          <span class="tag green">이번 주 내내 맑음</span>
         </div>
-        <div class="alert-box alert-orange">⚠ 내일(7일) 수도권 오후~밤 사이 비 예보 (5mm 안팎). 오늘 저녁 귀가 시 우산 챙길 것 권장.</div>
-        <div class="alert-box alert-green" style="margin-top:8px;">✅ 오늘은 연휴 복귀 첫날 — 낮 최고 25°로 초여름 느낌. 린넨·면 소재 수요 본격 상승 예상.</div>
+        <div class="alert-box alert-orange">⚠ 기상청 발표: 오늘 오전까지 전국 대부분 짙은 안개 — 출근길 교통안전 유의.</div>
+        <div class="alert-box alert-green" style="margin-top:8px;">✅ 내일(14일) 최고 27°, 모레(15일) 최고 28° 예보. 이번 주 기온 상승세 뚜렷 — 초여름 소재 수요 본격화 타이밍.</div>
         <div class="insight">
-          <strong>MD 인사이트</strong> — 낮 25° 진입으로 소비자 체감 여름 시작. 린넨·크링클 소재 경량 아우터 수요 급상승 예상. 연휴 후 복귀 첫날 SNS 출근룩 콘텐츠 업로드 최적 타이밍 — 오늘 오전 포스팅 권장.
+          <strong>MD 인사이트</strong> — 이번 주 서울 최고기온 25~28° 이상 예보로 소비자 체감 초여름 진입. 린넨·에어리즘 계열 초여름 오피스 상의 기획 및 콘텐츠 선제 대응 필요. 경량 재킷 수요는 아침·저녁 레이어링 용도로 유지.
         </div>
 
-        <div class="week-label">이번 주 (5/6 ~ 5/11)</div>
+        <div class="week-label">이번 주 (5/13 ~ 5/19)</div>
         <div class="week-grid">
-          <div class="day-card today"><div class="dn">수</div><div class="dd">5/6</div><div class="di">☀️</div><div class="dt"><b>25°</b> 10°</div></div>
-          <div class="day-card"><div class="dn">목</div><div class="dd">5/7</div><div class="di">🌧️</div><div class="dt"><b>21°</b> 12°</div></div>
-          <div class="day-card"><div class="dn">금</div><div class="dd">5/8</div><div class="di">🌤️</div><div class="dt"><b>23°</b> 13°</div></div>
-          <div class="day-card"><div class="dn">토</div><div class="dd">5/9</div><div class="di">🌧️</div><div class="dt"><b>19°</b> 11°</div></div>
-          <div class="day-card"><div class="dn">일</div><div class="dd">5/10</div><div class="di">🌤️</div><div class="dt"><b>22°</b> 12°</div></div>
-          <div class="day-card"><div class="dn">월</div><div class="dd">5/11</div><div class="di">☀️</div><div class="dt"><b>24°</b> 13°</div></div>
-          <div class="day-card"><div class="dn">화</div><div class="dd">5/12</div><div class="di">☀️</div><div class="dt"><b>26°</b> 14°</div></div>
-        </div>
-
-        <div class="week-label">다음 주 (5/13 ~ 5/19)</div>
-        <div class="week-grid">
-          <div class="day-card"><div class="dn">수</div><div class="dd">5/13</div><div class="di">🌤️</div><div class="dt"><b>24°</b> 14°</div></div>
-          <div class="day-card"><div class="dn">목</div><div class="dd">5/14</div><div class="di">☀️</div><div class="dt"><b>27°</b> 15°</div></div>
+          <div class="day-card today"><div class="dn">수</div><div class="dd">5/13</div><div class="di">🌤️</div><div class="dt"><b>25°</b> 15°</div></div>
+          <div class="day-card"><div class="dn">목</div><div class="dd">5/14</div><div class="di">☀️</div><div class="dt"><b>27°</b> 16°</div></div>
           <div class="day-card"><div class="dn">금</div><div class="dd">5/15</div><div class="di">☀️</div><div class="dt"><b>28°</b> 16°</div></div>
-          <div class="day-card"><div class="dn">토</div><div class="dd">5/16</div><div class="di">🌤️</div><div class="dt"><b>26°</b> 15°</div></div>
-          <div class="day-card"><div class="dn">일</div><div class="dd">5/17</div><div class="di">☁️</div><div class="dt"><b>23°</b> 14°</div></div>
-          <div class="day-card"><div class="dn">월</div><div class="dd">5/18</div><div class="di">🌧️</div><div class="dt"><b>21°</b> 13°</div></div>
-          <div class="day-card"><div class="dn">화</div><div class="dd">5/19</div><div class="di">🌤️</div><div class="dt"><b>24°</b> 14°</div></div>
+          <div class="day-card"><div class="dn">토</div><div class="dd">5/16</div><div class="di">☀️</div><div class="dt"><b>28°</b> 17°</div></div>
+          <div class="day-card"><div class="dn">일</div><div class="dd">5/17</div><div class="di">🌤️</div><div class="dt"><b>26°</b> 16°</div></div>
+          <div class="day-card"><div class="dn">월</div><div class="dd">5/18</div><div class="di">☁️</div><div class="dt"><b>24°</b> 15°</div></div>
+          <div class="day-card"><div class="dn">화</div><div class="dd">5/19</div><div class="di">🌧️</div><div class="dt"><b>22°</b> 14°</div></div>
+        </div>
+
+        <div class="week-label">다음 주 (5/20 ~ 5/26)</div>
+        <div class="week-grid">
+          <div class="day-card"><div class="dn">수</div><div class="dd">5/20</div><div class="di">🌤️</div><div class="dt"><b>25°</b> 15°</div></div>
+          <div class="day-card"><div class="dn">목</div><div class="dd">5/21</div><div class="di">☀️</div><div class="dt"><b>27°</b> 16°</div></div>
+          <div class="day-card"><div class="dn">금</div><div class="dd">5/22</div><div class="di">☀️</div><div class="dt"><b>28°</b> 17°</div></div>
+          <div class="day-card"><div class="dn">토</div><div class="dd">5/23</div><div class="di">🌤️</div><div class="dt"><b>27°</b> 17°</div></div>
+          <div class="day-card"><div class="dn">일</div><div class="dd">5/24</div><div class="di">☁️</div><div class="dt"><b>25°</b> 16°</div></div>
+          <div class="day-card"><div class="dn">월</div><div class="dd">5/25</div><div class="di">🌧️</div><div class="dt"><b>22°</b> 15°</div></div>
+          <div class="day-card"><div class="dn">화</div><div class="dd">5/26</div><div class="di">🌤️</div><div class="dt"><b>26°</b> 15°</div></div>
         </div>
       </div>
     </div>
@@ -213,17 +214,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
       </div>
       <div class="card-body">
         <div class="kw-grid">
-          <span class="kw hot">↑ 포엣 코어</span>
           <span class="kw hot">↑ 린넨 소재</span>
-          <span class="kw rising">컴포트 클래식</span>
-          <span class="kw rising">크링클 텍스처</span>
-          <span class="kw new">↑ 초여름 오피스룩</span>
-          <span class="kw">화이트 셔츠</span>
+          <span class="kw hot">↑ 초여름 오피스룩</span>
+          <span class="kw rising">포엣 코어</span>
+          <span class="kw rising">반소매 셔츠</span>
+          <span class="kw new">↑ 여름 수트</span>
+          <span class="kw">크링클 텍스처</span>
         </div>
-        <div class="stat-row"><span class="stat-label">린넨 소재 검색량</span><span class="up">+52% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">포엣 코어 (자연 소재)</span><span class="up">급상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">컴포트 클래식 (스트레치 수트)</span><span class="up">+31% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">헤비 패딩 / 겨울 아우터</span><span class="down">-38% ↓</span></div>
+        <div class="stat-row"><span class="stat-label">린넨 소재 검색량</span><span class="up">+61% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">여름 수트 / 쿨 수트</span><span class="up">+44% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">반소매 셔츠</span><span class="up">+38% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">봄 아우터 / 경량 재킷</span><span class="down">-15% ↓</span></div>
       </div>
     </div>
 
@@ -234,17 +235,17 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
       </div>
       <div class="card-body">
         <div class="kw-grid">
-          <span class="kw hot">↑ 테일러드 재킷</span>
-          <span class="kw hot">↑ 오피스 캐주얼</span>
-          <span class="kw rising">봄·여름 수트</span>
-          <span class="kw rising">하프 코트</span>
-          <span class="kw new">↑ 초여름 셔츠</span>
-          <span class="kw">슬랙스</span>
+          <span class="kw hot">↑ 여름 오피스 캐주얼</span>
+          <span class="kw hot">↑ 쿨 소재 수트</span>
+          <span class="kw rising">테일러드 재킷</span>
+          <span class="kw rising">워싱 슬랙스</span>
+          <span class="kw new">↑ 반소매 셔츠</span>
+          <span class="kw">화이트 계열</span>
         </div>
-        <div class="stat-row"><span class="stat-label">테일러드 재킷 검색량</span><span class="up">+33% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">초여름 셔츠 / 반소매</span><span class="up">+41% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">하프 코트 (중간 기장)</span><span class="up">+22% ↑</span></div>
-        <div class="stat-row"><span class="stat-label">겨울 니트 / 울 소재</span><span class="down">-35% ↓</span></div>
+        <div class="stat-row"><span class="stat-label">쿨 소재 수트 검색량</span><span class="up">+49% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">반소매 드레스 셔츠</span><span class="up">+42% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">워싱 / 데님 슬랙스</span><span class="up">+27% ↑</span></div>
+        <div class="stat-row"><span class="stat-label">겨울 니트 / 울 소재</span><span class="down">-45% ↓</span></div>
       </div>
     </div>
   </div>
@@ -314,13 +315,13 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
             </div>
           </div>
           <div class="cat-item">
-            <div class="cat-title">코트</div>
+            <div class="cat-title">여름 수트 / 쿨 소재</div>
             <div class="cat-links">
-              <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EC%BD%94%ED%8A%B8&gender=men&sortCode=sale_count" target="_blank">
-                <span class="ll"><span class="lb mb">무신사</span> 코트 TOP10</span><span class="arr">→</span>
+              <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EC%97%AC%EB%A6%84%EC%88%98%ED%8A%B8&gender=men&sortCode=sale_count" target="_blank">
+                <span class="ll"><span class="lb mb">무신사</span> 여름수트 TOP10</span><span class="arr">→</span>
               </a>
-              <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EC%BD%94%ED%8A%B8&genderCode=MEN&sort=POPULAR" target="_blank">
-                <span class="ll"><span class="lb cb">29CM</span> 코트 TOP10</span><span class="arr">→</span>
+              <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EC%BF%A8%EC%88%98%ED%8A%B8&genderCode=MEN&sort=POPULAR" target="_blank">
+                <span class="ll"><span class="lb cb">29CM</span> 쿨수트 TOP10</span><span class="arr">→</span>
               </a>
             </div>
           </div>
@@ -339,22 +340,22 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
       <div class="card-body">
         <div class="comp-row">
           <div class="dot" style="background:#2563eb;"></div>
-          <div class="comp-info"><div class="comp-name">린넨 블렌드 재킷 (베이지/카키)</div><div class="comp-brand">무신사 스탠다드</div></div>
+          <div class="comp-info"><div class="comp-name">쿨텍 여름 수트 2종 (네이비/그레이)</div><div class="comp-brand">무신사 스탠다드</div></div>
           <span class="tag blue">신규</span>
         </div>
         <div class="comp-row">
           <div class="dot" style="background:#dc2626;"></div>
-          <div class="comp-info"><div class="comp-name">에어리즘 드레스 셔츠 (반소매)</div><div class="comp-brand">유니클로</div></div>
+          <div class="comp-info"><div class="comp-name">에어리즘 반소매 드레스 셔츠</div><div class="comp-brand">유니클로</div></div>
           <span class="tag red">인기</span>
         </div>
         <div class="comp-row">
           <div class="dot" style="background:#16a34a;"></div>
-          <div class="comp-info"><div class="comp-name">포엣 코어 크링클 셔츠</div><div class="comp-brand">커스텀멜로우</div></div>
+          <div class="comp-info"><div class="comp-name">린넨 블렌드 재킷 + 슬랙스 세트</div><div class="comp-brand">커스텀멜로우</div></div>
           <span class="tag blue">신규</span>
         </div>
         <div class="comp-row">
           <div class="dot" style="background:#b8924a;"></div>
-          <div class="comp-info"><div class="comp-name">워싱 슬랙스 (그레이/네이비)</div><div class="comp-brand">STCO</div></div>
+          <div class="comp-info"><div class="comp-name">워싱 치노 팬츠 (카키/베이지)</div><div class="comp-brand">STCO</div></div>
           <span class="tag red">인기</span>
         </div>
       </div>
@@ -368,22 +369,22 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
       <div class="card-body">
         <div class="sns-row">
           <div class="sns-num">01</div>
-          <div class="sns-info"><div class="sns-title">연휴 끝 출근룩 — 린넨 셔츠 + 슬랙스</div><div class="sns-sub">#연휴후출근 #오피스룩 · 오늘 급상승</div></div>
+          <div class="sns-info"><div class="sns-title">25도 출근룩 — 린넨 셔츠 + 슬랙스</div><div class="sns-sub">#초여름오피스 #직장인패션 · 조회 89만</div></div>
           <span class="pb ig">릴스</span>
         </div>
         <div class="sns-row">
           <div class="sns-num">02</div>
-          <div class="sns-info"><div class="sns-title">초여름 남자 출근룩 코디 5가지</div><div class="sns-sub">#초여름오피스 · 조회 55만</div></div>
+          <div class="sns-info"><div class="sns-title">여름 수트 코디 — 쿨 소재 추천</div><div class="sns-sub">#여름수트 #오피스룩 · 조회 61만</div></div>
           <span class="pb ig">릴스</span>
         </div>
         <div class="sns-row">
           <div class="sns-num">03</div>
-          <div class="sns-info"><div class="sns-title">낮 25도 출근룩 어떻게 입지? (2026)</div><div class="sns-sub">조회 38만 · 댓글 2,100+</div></div>
+          <div class="sns-info"><div class="sns-title">더운 날 남자 출근룩 어떻게 입지?</div><div class="sns-sub">조회 45만 · 댓글 2,800+ · 급상승</div></div>
           <span class="pb yt">쇼츠</span>
         </div>
         <div class="sns-row">
           <div class="sns-num">04</div>
-          <div class="sns-info"><div class="sns-title">포엣 코어 오피스룩 — 린넨 재킷 코디</div><div class="sns-sub">조회 27만 · 구매 링크 클릭↑</div></div>
+          <div class="sns-info"><div class="sns-title">초여름 비즈니스 캐주얼 TOP5</div><div class="sns-sub">조회 33만 · 구매 링크 클릭↑</div></div>
           <span class="pb yt">쇼츠</span>
         </div>
       </div>
@@ -393,7 +394,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(-
 </div>
 
 <div class="footer">
-  본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 · 2026년 5월 6일 오전 9:00 업데이트 · 날씨 출처: 기상청
+  본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 · 2026년 5월 13일 오전 9:00 업데이트 · 날씨 출처: 기상청
 </div>
 
 <script>
