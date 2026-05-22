@@ -6,1358 +6,598 @@
 <title>MD 모닝 브리핑 — TRADCLUB</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0f1c2e; --blue: #2563eb; --blue-light: #dbeafe;
-  --gold: #b8924a; --gold-light: #fdf3e3;
-  --red: #dc2626; --red-light: #fee2e2;
-  --green: #16a34a; --green-light: #dcfce7;
-  --gray: #f8f7f5; --border: #e5e2dc;
-  --text: #1a1a1a; --muted: #6b7280; --white: #ffffff;
-  --pink: #be185d; --pink-light: #fce7f3;
-  --purple: #7c3aed; --purple-light: #ede9fe;
-  --orange: #c2410c; --orange-light: #fff7ed;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'DM Sans', sans-serif; background: var(--gray); color: var(--text); }
-
-.topbar { background: var(--navy); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-.topbar-brand { font-family: 'DM Serif Display', serif; font-size: 18px; color: white; }
-.topbar-brand span { color: var(--gold); }
-.topbar-right { display: flex; align-items: center; gap: 16px; font-size: 13px; color: rgba(255,255,255,0.6); }
-.live-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-.nav-tabs { background: white; border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; overflow-x: auto; }
-.nav-tab { padding: 12px 20px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
-.nav-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
-
-.panel { display: none; }
-.panel.active { display: block; }
-
-.hero { background: var(--navy); padding: 2rem 2rem 1.5rem; }
-.hero-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-.hero-date { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-.hero-title { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1.1; color: white; }
-.hero-title em { color: var(--gold); font-style: normal; }
-.hero-sub { margin-top: 6px; font-size: 13px; color: rgba(255,255,255,0.5); }
-.hero-meta { text-align: right; font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; }
-
-.main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 2rem; }
-.gap { margin-bottom: 16px; }
-
-.card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.card-header { padding: 0.9rem 1.25rem 0.7rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
-.card-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.card-body { padding: 1.25rem; }
-
-.tag { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); background: var(--gray); white-space: nowrap; }
-.tag.blue { background: var(--blue-light); color: var(--blue); border-color: #bfdbfe; }
-.tag.red { background: var(--red-light); color: var(--red); border-color: #fca5a5; }
-.tag.green { background: var(--green-light); color: var(--green); border-color: #86efac; }
-.tag.gold { background: var(--gold-light); color: var(--gold); border-color: #fcd34d; }
-.tag.pink { background: var(--pink-light); color: var(--pink); border-color: #fbcfe8; }
-.tag.orange { background: var(--orange-light); color: var(--orange); border-color: #fed7aa; }
-.tag.purple { background: var(--purple-light); color: var(--purple); border-color: #c4b5fd; }
-
-.w-today { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
-.w-temp { font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1; color: var(--navy); }
-.w-range { font-size: 14px; color: var(--muted); }
-.w-desc { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
-.w-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.insight { background: var(--navy); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.5; margin-top: 10px; }
-.insight strong { color: var(--gold); }
-.alert-box { border-radius: 8px; padding: 9px 14px; font-size: 13px; margin-top: 8px; }
-.alert-green { background: #f0fdf4; border: 1px solid #86efac; color: #15803d; }
-.alert-orange { background: var(--orange-light); border: 1px solid #fed7aa; color: var(--orange); }
-.alert-red { background: var(--red-light); border: 1px solid #fca5a5; color: var(--red); }
-.alert-blue { background: var(--blue-light); border: 1px solid #bfdbfe; color: #1e40af; }
-
-.week-label { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin: 14px 0 7px; }
-.week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-.day-card { background: var(--gray); border: 1px solid var(--border); border-radius: 8px; padding: 7px 3px; text-align: center; }
-.day-card.today { background: var(--navy); border-color: var(--navy); }
-.day-card.today .dn, .day-card.today .dd, .day-card.today .dt { color: white !important; }
-.day-card.today .dt b { color: #fbbf24 !important; }
-.day-card.rain { border-color: #bfdbfe; }
-.day-card.heavy { border-color: #fca5a5; background: #fff5f5; }
-.dn { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
-.dd { font-size: 11px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-.di { font-size: 16px; margin: 2px 0; }
-.dt { font-size: 11px; color: var(--muted); }
-.dt b { font-weight: 500; color: var(--text); }
-
-.kw-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
-.kw { font-size: 12px; padding: 4px 11px; border-radius: 20px; border: 1px solid var(--border); background: var(--gray); }
-.kw.hot { background: var(--red-light); border-color: #fca5a5; color: var(--red); }
-.kw.rising { background: var(--blue-light); border-color: #bfdbfe; color: var(--blue); }
-.kw.new { background: var(--green-light); border-color: #86efac; color: var(--green); }
-.stat-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-.stat-row:last-child { border-bottom: none; }
-.stat-label { color: var(--muted); font-size: 12px; }
-.up { color: var(--red); font-weight: 500; }
-.down { color: var(--blue); font-weight: 500; }
-
-.brand-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-.brand-tab { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); cursor: pointer; background: var(--gray); color: var(--muted); transition: all 0.15s; }
-.brand-tab.active { background: var(--navy); color: white; border-color: var(--navy); }
-.brand-panel { display: none; }
-.brand-panel.active { display: block; }
-.brand-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-.brand-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); }
-.brand-meta { flex: 1; min-width: 150px; }
-.brand-pos { font-size: 12px; color: var(--muted); }
-.brand-target { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.analysis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
-.analysis-card { border-radius: 10px; padding: 12px 14px; border: 1px solid var(--border); }
-.analysis-card.product { background: #f0f9ff; border-color: #bae6fd; }
-.analysis-card.marketing { background: #fdf4ff; border-color: #e9d5ff; }
-.analysis-card.md { background: var(--orange-light); border-color: #fed7aa; }
-.analysis-title { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-.analysis-card.product .analysis-title { color: #0369a1; }
-.analysis-card.marketing .analysis-title { color: var(--purple); }
-.analysis-card.md .analysis-title { color: var(--orange); }
-.analysis-item { font-size: 12px; color: var(--text); padding: 4px 0; border-bottom: 1px solid rgba(0,0,0,0.05); line-height: 1.4; }
-.analysis-item:last-child { border-bottom: none; }
-.analysis-item strong { font-weight: 500; }
-.hot-items-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; margin-top: 14px; }
-.hot-item-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
-.hot-item-row:last-child { border-bottom: none; }
-.hot-rank { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--border); min-width: 20px; }
-.hot-item-info { flex: 1; }
-.hot-item-name { font-size: 13px; color: var(--text); }
-.hot-item-detail { font-size: 11px; color: var(--muted); margin-top: 1px; }
-
-.insight-summary { background: linear-gradient(135deg, #0f1c2e 0%, #1a3050 100%); border-radius: 12px; padding: 1.25rem; margin-top: 16px; }
-.insight-summary-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-.insight-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.insight-col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
-.insight-point { font-size: 12px; color: rgba(255,255,255,0.85); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); line-height: 1.4; }
-.insight-point:last-child { border-bottom: none; }
-.insight-point strong { color: #fbbf24; font-weight: 500; }
-
-.history-week { margin-bottom: 20px; }
-.history-week-title { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid var(--navy); }
-.history-entry { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.history-entry:last-child { border-bottom: none; }
-.history-date { font-size: 12px; font-weight: 500; color: var(--muted); min-width: 80px; }
-.history-content { flex: 1; }
-.history-weather { font-size: 13px; color: var(--text); margin-bottom: 4px; }
-.history-keywords { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
-.history-kw { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--gray); border: 1px solid var(--border); color: var(--muted); }
-.history-kw.up { background: var(--red-light); border-color: #fca5a5; color: var(--red); }
-.history-note { font-size: 12px; color: var(--muted); line-height: 1.4; }
-
-.sns-row { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
-.sns-row:last-child { border-bottom: none; }
-.sns-num { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--border); min-width: 22px; }
-.sns-info { flex: 1; }
-.sns-title { font-size: 13px; }
-.sns-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.pb { font-size: 11px; padding: 3px 8px; border-radius: 10px; font-weight: 500; flex-shrink: 0; }
-.ig { background: var(--pink-light); color: var(--pink); }
-.yt { background: var(--red-light); color: var(--red); }
-
-.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.cat-item { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.cat-title { font-size: 13px; font-weight: 500; padding: 9px 14px 7px; background: var(--gray); border-bottom: 1px solid var(--border); }
-.cat-links { padding: 7px; display: flex; flex-direction: column; gap: 5px; }
-.cat-link { display: flex; align-items: center; justify-content: space-between; padding: 7px 11px; border-radius: 7px; font-size: 12px; text-decoration: none; border: 1px solid var(--border); background: white; transition: background 0.15s; }
-.cat-link:hover { background: var(--gray); }
-.ll { color: var(--text); display: flex; align-items: center; gap: 7px; }
-.lb { font-size: 11px; padding: 2px 7px; border-radius: 10px; }
-.mb { background: #e8f0fe; color: #1a56db; }
-.cb { background: var(--pink-light); color: var(--pink); }
-.arr { font-size: 12px; color: var(--muted); }
-
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.footer { max-width: 1100px; margin: 16px auto 0; padding: 1rem 2rem 2rem; font-size: 12px; color: var(--muted); text-align: center; border-top: 1px solid var(--border); }
-
-@media (max-width: 768px) {
-  .grid-2 { grid-template-columns: 1fr; }
-  .cat-grid { grid-template-columns: 1fr 1fr; }
-  .analysis-grid { grid-template-columns: 1fr; }
-  .insight-cols { grid-template-columns: 1fr; }
-  .hero-inner { flex-direction: column; align-items: flex-start; }
-  .hero-title { font-size: 26px; }
-  .main { padding: 1rem; }
-  .hero-meta { text-align: left; }
-}
-@media (max-width: 480px) { .cat-grid { grid-template-columns: 1fr; } }
+:root{--navy:#0f1c2e;--blue:#2563eb;--bl:#dbeafe;--gold:#b8924a;--gl:#fdf3e3;--red:#dc2626;--rl:#fee2e2;--green:#16a34a;--grl:#dcfce7;--gray:#f8f7f5;--border:#e5e2dc;--text:#1a1a1a;--muted:#6b7280;--white:#fff;--pink:#be185d;--pkl:#fce7f3;--pur:#7c3aed;--pul:#ede9fe;--org:#c2410c;--orl:#fff7ed;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--gray);color:var(--text);}
+.topbar{background:var(--navy);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-brand{font-family:'DM Serif Display',serif;font-size:18px;color:white;}
+.topbar-brand span{color:var(--gold);}
+.tr{display:flex;align-items:center;gap:16px;font-size:13px;color:rgba(255,255,255,.6);}
+.ld{width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.nav-tabs{background:white;border-bottom:1px solid var(--border);padding:0 2rem;display:flex;overflow-x:auto;}
+.nav-tab{padding:12px 20px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;}
+.nav-tab.active{color:var(--navy);border-bottom-color:var(--navy);}
+.nav-tab.gt{color:var(--gold);}
+.nav-tab.gt.active{border-bottom-color:var(--gold);color:var(--gold);}
+.panel{display:none;}.panel.active{display:block;}
+.hero{background:var(--navy);padding:2rem 2rem 1.5rem;}
+.hi{max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.hdate{font-size:12px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.htitle{font-family:'DM Serif Display',serif;font-size:32px;line-height:1.1;color:white;}
+.htitle em{color:var(--gold);font-style:normal;}
+.hsub{margin-top:6px;font-size:13px;color:rgba(255,255,255,.5);}
+.hmeta{text-align:right;font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;}
+.main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 2rem;}
+.gap{margin-bottom:16px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ch{padding:.9rem 1.25rem .7rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.cl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.cb{padding:1.25rem;}
+.tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--gray);white-space:nowrap;}
+.tag.red{background:var(--rl);color:var(--red);border-color:#fca5a5;}
+.tag.green{background:var(--grl);color:var(--green);border-color:#86efac;}
+.tag.gold{background:var(--gl);color:var(--gold);border-color:#fcd34d;}
+.tag.org{background:var(--orl);color:var(--org);border-color:#fed7aa;}
+.tag.blue{background:var(--bl);color:var(--blue);border-color:#bfdbfe;}
+.tag.pur{background:var(--pul);color:var(--pur);border-color:#c4b5fd;}
+.tag.pink{background:var(--pkl);color:var(--pink);border-color:#fbcfe8;}
+.wt{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;}
+.wtp{font-family:'DM Serif Display',serif;font-size:48px;line-height:1;color:var(--navy);}
+.wr{font-size:14px;color:var(--muted);}
+.wd{font-size:14px;color:var(--muted);margin-bottom:10px;}
+.wtags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.ins{background:var(--navy);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,.85);line-height:1.5;margin-top:10px;}
+.ins strong{color:var(--gold);}
+.ab{border-radius:8px;padding:9px 14px;font-size:13px;margin-top:8px;}
+.ab.g{background:#f0fdf4;border:1px solid #86efac;color:#15803d;}
+.ab.o{background:var(--orl);border:1px solid #fed7aa;color:var(--org);}
+.ab.r{background:var(--rl);border:1px solid #fca5a5;color:var(--red);}
+.wl{font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin:14px 0 7px;}
+.wg{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+.dc{background:var(--gray);border:1px solid var(--border);border-radius:8px;padding:7px 3px;text-align:center;}
+.dc.today{background:var(--navy);border-color:var(--navy);}
+.dc.today .dn,.dc.today .dd,.dc.today .dt{color:white!important;}
+.dc.today .dt b{color:#fbbf24!important;}
+.dc.rain{border-color:#bfdbfe;}
+.dc.heavy{border-color:#fca5a5;background:#fff5f5;}
+.dn{font-size:11px;color:var(--muted);margin-bottom:2px;}
+.dd{font-size:11px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.di{font-size:16px;margin:2px 0;}
+.dt{font-size:11px;color:var(--muted);}
+.dt b{font-weight:500;color:var(--text);}
+.kwg{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
+.kw{font-size:12px;padding:4px 11px;border-radius:20px;border:1px solid var(--border);background:var(--gray);}
+.kw.hot{background:var(--rl);border-color:#fca5a5;color:var(--red);}
+.kw.rs{background:var(--bl);border-color:#bfdbfe;color:var(--blue);}
+.kw.nw{background:var(--grl);border-color:#86efac;color:var(--green);}
+.sr{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.sr:last-child{border-bottom:none;}
+.sl{color:var(--muted);font-size:12px;}
+.up{color:var(--red);font-weight:500;}
+.dn2{color:var(--blue);font-weight:500;}
+.snr{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);}
+.snr:last-child{border-bottom:none;}
+.snn{font-family:'DM Serif Display',serif;font-size:18px;color:var(--border);min-width:22px;}
+.sni{flex:1;}
+.snt{font-size:13px;}
+.sns2{font-size:12px;color:var(--muted);margin-top:2px;}
+.pb{font-size:11px;padding:3px 8px;border-radius:10px;font-weight:500;flex-shrink:0;}
+.ig{background:var(--pkl);color:var(--pink);}
+.yt{background:var(--rl);color:var(--red);}
+.kg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px;}
+.kc{background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-align:center;}
+.kc.hl{background:var(--navy);border-color:var(--navy);}
+.kc.dg{border-color:#fca5a5;background:#fff8f8;}
+.kl2{font-size:11px;color:var(--muted);margin-bottom:6px;}
+.kc.hl .kl2{color:rgba(255,255,255,.5);}
+.kc.dg .kl2{color:var(--red);}
+.kv{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);line-height:1;}
+.kc.hl .kv{color:var(--gold);}
+.kc.dg .kv{color:var(--red);}
+.ksb{font-size:11px;color:var(--muted);margin-top:4px;}
+.kc.hl .ksb{color:rgba(255,255,255,.4);}
+.kc.dg .ksb{color:var(--red);}
+.tbr{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);}
+.tbr:last-child{border-bottom:none;}
+.tbw{font-size:12px;color:var(--muted);min-width:110px;}
+.tbb{flex:1;background:var(--gray);border-radius:4px;height:22px;overflow:hidden;}
+.tbi{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:500;color:white;}
+.tbi.pk{background:var(--red);}
+.tbi.nm{background:var(--blue);}
+.tbi.pt{background:var(--gold);}
+.tbq{font-size:12px;font-weight:500;min-width:60px;text-align:right;}
+.stbl{width:100%;border-collapse:collapse;font-size:13px;}
+.stbl th{background:var(--gray);padding:8px 12px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);}
+.stbl td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.stbl tr:last-child td{border-bottom:none;}
+.stbl tr:hover td{background:var(--gray);}
+.rn{font-family:'DM Serif Display',serif;font-size:16px;color:var(--border);}
+.rn.t3{color:var(--gold);}
+.rb{width:60px;background:var(--gray);border-radius:3px;height:5px;display:inline-block;vertical-align:middle;margin-left:5px;}
+.rf{height:100%;border-radius:3px;}
+.rf.h{background:var(--red);}
+.rf.m{background:var(--gold);}
+.rf.l{background:#d1d5db;}
+.sb2{font-size:11px;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.sb2.ok{background:var(--grl);color:var(--green);}
+.sb2.wn{background:var(--orl);color:var(--org);}
+.sb2.dg{background:var(--rl);color:var(--red);}
+.ng{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.nc{border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+.nc.star{border-color:var(--gold);background:var(--gl);}
+.nn{font-size:13px;font-weight:500;margin-bottom:8px;}
+.nt2{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.nw2{font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy);}
+.na{font-size:14px;color:var(--muted);}
+.nm2{display:flex;gap:6px;flex-wrap:wrap;}
+.nk{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--gray);border:1px solid var(--border);color:var(--muted);}
+.nk.hot{background:var(--rl);border-color:#fca5a5;color:var(--red);}
+.nk.wn{background:var(--orl);border-color:#fed7aa;color:var(--org);}
+.dgc{border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;}
+.dgc:last-child{margin-bottom:0;}
+.dgc.l1{border-color:#fca5a5;background:#fff8f8;}
+.dgc.l2{border-color:#fed7aa;background:#fffaf5;}
+.db2{width:4px;border-radius:2px;align-self:stretch;flex-shrink:0;}
+.l1 .db2{background:var(--red);}
+.l2 .db2{background:var(--org);}
+.di2{flex:1;}
+.dn3{font-size:13px;font-weight:500;}
+.dd2{font-size:12px;color:var(--muted);margin-top:3px;}
+.ds{text-align:right;font-size:11px;color:var(--muted);}
+.ds strong{font-family:'DM Serif Display',serif;font-size:20px;color:var(--red);display:block;line-height:1;}
+.l2 .ds strong{color:var(--org);}
+.lr{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);}
+.lr:last-child{border-bottom:none;}
+.ln{flex:1;font-size:12px;}
+.lt2{font-size:12px;color:var(--muted);min-width:80px;text-align:center;}
+.lrt{min-width:36px;text-align:right;font-weight:500;font-size:13px;}
+.ls{min-width:70px;text-align:right;font-size:12px;color:var(--muted);}
+.al{display:flex;flex-direction:column;gap:8px;}
+.ai2{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:white;}
+.aic{font-size:16px;flex-shrink:0;}
+.ac2{flex:1;}
+.at2{font-size:13px;font-weight:500;}
+.ad{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.ai2.ug{border-color:#fca5a5;background:#fff8f8;}
+.ai2.ck{border-color:#fed7aa;background:#fffaf5;}
+.ai2.gd{border-color:#86efac;background:#f0fdf4;}
+.bt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.btn{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border);cursor:pointer;background:var(--gray);color:var(--muted);}
+.btn.active{background:var(--navy);color:white;border-color:var(--navy);}
+.bp{display:none;}.bp.active{display:block;}
+.bh{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.blo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);}
+.bm{flex:1;min-width:150px;}
+.bps{font-size:12px;color:var(--muted);}
+.btg{font-size:12px;color:var(--muted);margin-top:2px;}
+.agr{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.acard{border-radius:10px;padding:12px 14px;border:1px solid var(--border);}
+.acard.p{background:#f0f9ff;border-color:#bae6fd;}
+.acard.mk{background:#fdf4ff;border-color:#e9d5ff;}
+.acard.md{background:var(--orl);border-color:#fed7aa;}
+.acard-t{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.acard.p .acard-t{color:#0369a1;}
+.acard.mk .acard-t{color:var(--pur);}
+.acard.md .acard-t{color:var(--org);}
+.acard-i{font-size:12px;color:var(--text);padding:4px 0;border-bottom:1px solid rgba(0,0,0,.05);line-height:1.4;}
+.acard-i:last-child{border-bottom:none;}
+.acard-i strong{font-weight:500;}
+.ht2{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:14px;}
+.hr2{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
+.hr2:last-child{border-bottom:none;}
+.hrn{font-family:'DM Serif Display',serif;font-size:16px;color:var(--border);min-width:20px;}
+.hri{flex:1;}
+.hrn2{font-size:13px;}
+.hrd{font-size:11px;color:var(--muted);margin-top:1px;}
+.isb{background:linear-gradient(135deg,#0f1c2e 0%,#1a3050 100%);border-radius:12px;padding:1.25rem;margin-top:16px;}
+.ist{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.isc{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.isct{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;}
+.isp{font-size:12px;color:rgba(255,255,255,.85);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.08);line-height:1.4;}
+.isp:last-child{border-bottom:none;}
+.isp strong{color:#fbbf24;font-weight:500;}
+.hw{margin-bottom:20px;}
+.hwt{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--navy);}
+.he{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.he:last-child{border-bottom:none;}
+.hed{font-size:12px;font-weight:500;color:var(--muted);min-width:80px;}
+.hec{flex:1;}
+.hew{font-size:13px;color:var(--text);margin-bottom:4px;}
+.hek{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px;}
+.hkw{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--gray);border:1px solid var(--border);color:var(--muted);}
+.hkw.up{background:var(--rl);border-color:#fca5a5;color:var(--red);}
+.hen{font-size:12px;color:var(--muted);line-height:1.4;}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.ci{border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.ctt{font-size:13px;font-weight:500;padding:9px 14px 7px;background:var(--gray);border-bottom:1px solid var(--border);}
+.cls{padding:7px;display:flex;flex-direction:column;gap:5px;}
+.cla{display:flex;align-items:center;justify-content:space-between;padding:7px 11px;border-radius:7px;font-size:12px;text-decoration:none;border:1px solid var(--border);background:white;}
+.cla:hover{background:var(--gray);}
+.ll{color:var(--text);display:flex;align-items:center;gap:7px;}
+.lb{font-size:11px;padding:2px 7px;border-radius:10px;}
+.mb{background:#e8f0fe;color:#1a56db;}
+.cb2{background:var(--pkl);color:var(--pink);}
+.arr{font-size:12px;color:var(--muted);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.footer{max-width:1100px;margin:16px auto 0;padding:1rem 2rem 2rem;font-size:12px;color:var(--muted);text-align:center;border-top:1px solid var(--border);}
+@media(max-width:768px){.g2,.kg,.ng,.agr,.isc{grid-template-columns:1fr 1fr;}.kg{grid-template-columns:repeat(3,1fr);}.cg{grid-template-columns:1fr 1fr;}.hi{flex-direction:column;align-items:flex-start;}.htitle{font-size:26px;}.main{padding:1rem;}.hmeta{text-align:left;}}
+@media(max-width:480px){.cg,.kg,.g2,.ng,.agr,.isc{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="topbar-brand">TRAD<span>CLUB</span> · MD</div>
-  <div class="topbar-right">
-    <span class="live-dot"></span>
-    <span id="live-time">09:00</span>
-    <span>남성복 기획팀</span>
-  </div>
-</div>
-
-<div class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-date">2026년 5월 19일 화요일</div>
-      <div class="hero-title">Good morning,<br><em>오늘의 브리핑</em>입니다.</div>
-      <div class="hero-sub">남성복 MD를 위한 데일리 마켓 리포트</div>
-    </div>
-    <div class="hero-meta">
-      업데이트 <strong style="color:white;">2026.05.19 오전 9:00</strong><br>
-      서울 · 구름많음 · 낮 여전히 더움<br>
-      내일~모레 전국 비 30~80mm
-    </div>
-  </div>
-</div>
-
+<div class="topbar"><div class="topbar-brand">TRAD<span>CLUB</span> &middot; MD</div><div class="tr"><span class="ld"></span><span id="lt">09:00</span><span>남성복 기획팀</span></div></div>
+<div class="hero"><div class="hi">
+  <div><div class="hdate">2026년 5월 22일 금요일 &middot; 맑음</div><div class="htitle">Good morning,<br><em>오늘의 브리핑</em>입니다.</div><div class="hsub">남성복 MD를 위한 데일리 마켓 리포트</div></div>
+  <div class="hmeta">업데이트 <strong style="color:white">2026.05.22 오전 9:00</strong><br>서울 &middot; 오늘 맑음 24&#176; &middot; 내일부터 흐림<br>주말 23일 흐렸다 오후 맑음 &middot; 24일 맑음</div>
+</div></div>
 <div class="nav-tabs">
-  <div class="nav-tab active" onclick="switchTab('weather', this)">날씨 & 트렌드</div>
-  <div class="nav-tab" onclick="switchTab('competitor', this)">경쟁사 분석</div>
-  <div class="nav-tab" onclick="switchTab('top10', this)">카테고리 TOP10</div>
-  <div class="nav-tab" onclick="switchTab('history', this)">주간 · 월간 추이</div>
+  <div class="nav-tab active" onclick="switchTab('weather',this)">날씨 &amp; 트렌드</div>
+  <div class="nav-tab gt" onclick="switchTab('sales',this)">&#128202; 트래드클럽 판매분석</div>
+  <div class="nav-tab" onclick="switchTab('competitor',this)">경쟁사 분석</div>
+  <div class="nav-tab" onclick="switchTab('top10',this)">카테고리 TOP10</div>
+  <div class="nav-tab" onclick="switchTab('history',this)">주간 &middot; 월간 추이</div>
 </div>
-
-<!-- 날씨 & 트렌드 -->
-<div class="panel active" id="panel-weather">
-<div class="main">
-  <div class="gap">
-    <div class="card">
-      <div class="card-header">
-        <span class="card-label">날씨 · 서울 2주 예보</span>
-        <span class="tag red">⚠️ 내일~모레 수도권 30~80mm 비</span>
-      </div>
-      <div class="card-body">
-        <div class="w-today">
-          <div class="w-temp">27°</div>
-          <div class="w-range">최저 18° / 최고 27°</div>
-        </div>
-        <div class="w-desc">오늘 · 전국 구름많다가 밤부터 흐려짐 · 낮 기온 올라 더움 · 낮과 밤 기온차 큼</div>
-        <div class="w-tags">
-          <span class="tag orange">오늘 콘텐츠 업로드 마지막 기회</span>
-          <span class="tag blue">쿨 소재 수요 지속</span>
-          <span class="tag red">내일부터 이틀 비</span>
-        </div>
-        <div class="alert-red alert-box">⚠️ 기상청 발표: 내일(20일) 수도권 오전부터 비 · 모레(21일) 전국 비 오다 오후 대부분 그침 · 수도권 예상 강수량 30~80mm</div>
-        <div class="alert-box alert-orange">📌 오늘이 이번 주 SNS 콘텐츠 업로드 마지막 타이밍 — 내일부터 이틀간 비로 소비자 야외활동 급감 예상</div>
-        <div class="insight">
-          <strong>MD 인사이트</strong> — 오늘 구름많음이지만 낮 기온 여전히 높음. 내일~모레 수도권 강수량 30~80mm로 방수 소재·크링클 단기 관심도 상승 예상. 비 지나고 목(21일)~금(22일)부터 다시 맑음 — 주말 전 콘텐츠 예약 업로드 고려.
-        </div>
-
-        <div class="week-label">이번 주 (5/19 ~ 5/25)</div>
-        <div class="week-grid">
-          <div class="day-card today"><div class="dn">화</div><div class="dd">5/19</div><div class="di">☁️</div><div class="dt"><b>27°</b> 18°</div></div>
-          <div class="day-card heavy"><div class="dn">수</div><div class="dd">5/20</div><div class="di">🌧️</div><div class="dt"><b>22°</b> 15°</div></div>
-          <div class="day-card heavy"><div class="dn">목</div><div class="dd">5/21</div><div class="di">🌧️</div><div class="dt"><b>20°</b> 15°</div></div>
-          <div class="day-card"><div class="dn">금</div><div class="dd">5/22</div><div class="di">🌤️</div><div class="dt"><b>25°</b> 15°</div></div>
-          <div class="day-card"><div class="dn" style="color:#dc2626;">토</div><div class="dd">5/23</div><div class="di">☀️</div><div class="dt"><b>27°</b> 16°</div></div>
-          <div class="day-card"><div class="dn" style="color:#dc2626;">일</div><div class="dd">5/24</div><div class="di">☀️</div><div class="dt"><b>28°</b> 17°</div></div>
-          <div class="day-card"><div class="dn">월</div><div class="dd">5/25</div><div class="di">🌤️</div><div class="dt"><b>26°</b> 16°</div></div>
-        </div>
-
-        <div class="week-label">다음 주 (5/26 ~ 6/1)</div>
-        <div class="week-grid">
-          <div class="day-card rain"><div class="dn">화</div><div class="dd">5/26</div><div class="di">🌧️</div><div class="dt"><b>23°</b> 15°</div></div>
-          <div class="day-card"><div class="dn">수</div><div class="dd">5/27</div><div class="di">🌤️</div><div class="dt"><b>26°</b> 16°</div></div>
-          <div class="day-card"><div class="dn">목</div><div class="dd">5/28</div><div class="di">☀️</div><div class="dt"><b>28°</b> 17°</div></div>
-          <div class="day-card"><div class="dn">금</div><div class="dd">5/29</div><div class="di">☀️</div><div class="dt"><b>29°</b> 18°</div></div>
-          <div class="day-card"><div class="dn" style="color:#dc2626;">토</div><div class="dd">5/30</div><div class="di">☀️</div><div class="dt"><b>30°</b> 19°</div></div>
-          <div class="day-card"><div class="dn" style="color:#dc2626;">일</div><div class="dd">5/31</div><div class="di">🌤️</div><div class="dt"><b>28°</b> 18°</div></div>
-          <div class="day-card"><div class="dn">월</div><div class="dd">6/1</div><div class="di">☀️</div><div class="dt"><b>29°</b> 19°</div></div>
-        </div>
-      </div>
+<div class="panel active" id="panel-weather"><div class="main">
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">날씨 &middot; 서울 2주 예보</span><span class="tag green">&#x2600;&#xFE0F; 오늘 맑음 &middot; 24&#176; &middot; SNS 업로드 최적 타이밍</span></div>
+  <div class="cb">
+    <div class="wt"><div class="wtp">19&#176;</div><div class="wr">최저 14&#176; / 최고 19&#176;</div></div>
+    <div class="wd">오늘 &middot; 대체로 맑음 &middot; 낮 기온 24&#176; &middot; 밤부터 차차 흐려짐</div>
+    <div class="wtags"><span class="tag green">오늘 맑음 24&#176;</span><span class="tag org">내일(23일) 흐림</span><span class="tag green">24일(일) 전국 맑음</span><span class="tag red">반팔니트 수요 급반등 타이밍</span></div>
+    <div class="ab g">&#x2600;&#xFE0F; 기상청: 오늘(22일) 전국 대체로 맑다가 밤부터 차차 흐려짐. 내일(23일) 흐리다가 오후부터 차차 맑아짐. 24일(일) 전국 맑음.</div>
+    <div class="ab o">&#x26A0;&#xFE0F; 기상청 중기예보: 26일(화) 충청권&#183;남부지방 비. 24~25일 낮 기온 25~30&#176; &#8212; 반팔니트&#183;쿨 소재 주말 수요 회복!</div>
+    <div class="ins"><strong>MD 인사이트</strong> &#8212; 비 그치고 오늘 맑음 &#8212; SNS 콘텐츠 업로드 지금이 최적 타이밍. 05/18주 반팔니트 전 제품 급등(케이블카라 225개). 소프트 라운드 반팔니트 84% &#8212; 추가발주 시급. 원턱 밴딩 와이드 슬랙스 두 품번 합산 재고 2,307개 정상 반영.</div>
+    <div class="wl">이번 주 (5/20 ~ 5/26)</div>
+    <div class="wg">
+      <div class="dc today"><div class="dn">금</div><div class="dd">5/22</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>24&#176;</b> 14&#176;</div></div>
+      <div class="dc heavy"><div class="dn" style="color:#dc2626">토</div><div class="dd">5/23</div><div class="di">&#x26C5;&#xFE0F;</div><div class="dt"><b>22&#176;</b> 14&#176;</div></div>
+      <div class="dc"><div class="dn" style="color:#dc2626">일</div><div class="dd">5/24</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>28&#176;</b> 16&#176;</div></div>
+      <div class="dc"><div class="dn">월</div><div class="dd">5/25</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>30&#176;</b> 17&#176;</div></div>
+      <div class="dc rain"><div class="dn">화</div><div class="dd">5/26</div><div class="di">&#x1F327;&#xFE0F;</div><div class="dt"><b>24&#176;</b> 15&#176;</div></div>
+      <div class="dc"><div class="dn">수</div><div class="dd">5/27</div><div class="di">&#x1F327;&#xFE0F;</div><div class="dt"><b>23&#176;</b> 15&#176;</div></div>
+      <div class="dc"><div class="dn">목</div><div class="dd">5/28</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>27&#176;</b> 16&#176;</div></div>
+    </div>
+    <div class="wl">다음 주 (5/27 ~ 6/2)</div>
+    <div class="wg">
+      <div class="dc"><div class="dn">수</div><div class="dd">5/27</div><div class="di">&#x1F324;&#xFE0F;</div><div class="dt"><b>26&#176;</b> 16&#176;</div></div>
+      <div class="dc"><div class="dn">목</div><div class="dd">5/28</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>28&#176;</b> 17&#176;</div></div>
+      <div class="dc"><div class="dn">금</div><div class="dd">5/29</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>29&#176;</b> 18&#176;</div></div>
+      <div class="dc"><div class="dn" style="color:#dc2626">토</div><div class="dd">5/30</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>30&#176;</b> 19&#176;</div></div>
+      <div class="dc"><div class="dn" style="color:#dc2626">일</div><div class="dd">5/31</div><div class="di">&#x1F324;&#xFE0F;</div><div class="dt"><b>28&#176;</b> 18&#176;</div></div>
+      <div class="dc"><div class="dn">월</div><div class="dd">6/1</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>29&#176;</b> 19&#176;</div></div>
+      <div class="dc"><div class="dn">화</div><div class="dd">6/2</div><div class="di">&#x2600;&#xFE0F;</div><div class="dt"><b>30&#176;</b> 20&#176;</div></div>
     </div>
   </div>
-
-  <div class="grid-2 gap">
-    <div class="card">
-      <div class="card-header"><span class="card-label">무신사 트렌드</span><span class="tag green">2026 SS</span></div>
-      <div class="card-body">
-        <div class="kw-grid">
-          <span class="kw hot">↑ 쿨 수트</span><span class="kw hot">↑ 반소매 셔츠</span>
-          <span class="kw hot">↑ 여름 슬랙스</span><span class="kw rising">린넨 소재</span>
-          <span class="kw rising">달라붙지 않는</span><span class="kw new">↑ 방수 소재</span>
-        </div>
-        <div class="stat-row"><span class="stat-label">쿨 수트 / 여름 수트</span><span class="up">급상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">반소매 드레스 셔츠</span><span class="up">급상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">방수 소재 (비 예보 연동)</span><span class="up">단기 상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">봄 경량 재킷 / 아우터</span><span class="down">하락 ↓</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><span class="card-label">29CM 트렌드</span><span class="tag pink">2026 SS</span></div>
-      <div class="card-body">
-        <div class="kw-grid">
-          <span class="kw hot">↑ 쿨 소재 수트</span><span class="kw hot">↑ 여름 오피스 캐주얼</span>
-          <span class="kw rising">반소매 셔츠</span><span class="kw rising">워싱 슬랙스</span>
-          <span class="kw new">↑ 워셔블 소재</span><span class="kw">화이트 계열</span>
-        </div>
-        <div class="stat-row"><span class="stat-label">쿨 소재 수트</span><span class="up">급상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">반소매 드레스 셔츠</span><span class="up">급상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">워셔블 소재 (비 예보 연동)</span><span class="up">단기 상승 ↑</span></div>
-        <div class="stat-row"><span class="stat-label">겨울 니트 / 두꺼운 소재</span><span class="down">급하락 ↓</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid-2 gap">
-    <div class="card">
-      <div class="card-header"><span class="card-label">SNS 트렌드</span><span class="tag">릴스 · 쇼츠</span></div>
-      <div class="card-body">
-        <div class="sns-row"><div class="sns-num">01</div><div class="sns-info"><div class="sns-title">비 오는 날 출근룩 — 방수 재킷 코디</div><div class="sns-sub">#우중코디 · 내일 비 예보 연동 급상승</div></div><span class="pb ig">릴스</span></div>
-        <div class="sns-row"><div class="sns-num">02</div><div class="sns-info"><div class="sns-title">달라붙지 않는 여름 슬랙스 비교</div><div class="sns-sub">#여름슬랙스 · 저장↑↑ 지속</div></div><span class="pb ig">릴스</span></div>
-        <div class="sns-row"><div class="sns-num">03</div><div class="sns-info"><div class="sns-title">여름 반소매 드레스 셔츠 브랜드 비교</div><div class="sns-sub">구매 전환 클릭↑↑ 유지</div></div><span class="pb yt">쇼츠</span></div>
-        <div class="sns-row"><div class="sns-num">04</div><div class="sns-info"><div class="sns-title">비 와도 구김없는 여름 수트 추천</div><div class="sns-sub">크리즈·워셔블 소재 콘텐츠 급상승</div></div><span class="pb yt">쇼츠</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="gap">
-    <div class="card">
-      <div class="card-header"><span class="card-label">이번 주 MD 핵심 포인트</span></div>
-      <div class="card-body">
-        <div class="stat-row"><span class="stat-label" style="font-size:13px;">📌 오늘이 이번 주 콘텐츠 업로드 마지막 타이밍 (내일~모레 비)</span></div>
-        <div class="stat-row"><span class="stat-label" style="font-size:13px;">🔥 수도권 30~80mm 비 → 방수·크링클·워셔블 단기 수요↑</span></div>
-        <div class="stat-row"><span class="stat-label" style="font-size:13px;">✅ 린넨라이크 → <strong>쿨터치</strong> 시리즈명 변경 검토 (경쟁사 에디션 벤치마킹)</span></div>
-        <div class="stat-row"><span class="stat-label" style="font-size:13px;">✅ 피케 티셔츠 — 현 라인 리메이크 업그레이드 재시도 검토</span></div>
-        <div class="stat-row"><span class="stat-label" style="font-size:13px;">✅ 반소매 셔츠 소싱처 검토 필요</span></div>
-      </div>
-    </div>
-  </div>
+</div></div>
+<div class="g2 gap">
+  <div class="card"><div class="ch"><span class="cl">무신사 트렌드</span><span class="tag green">2026 SS</span></div><div class="cb">
+    <div class="kwg"><span class="kw hot">&#8593; 쿨 수트</span><span class="kw hot">&#8593; 반소매 셔츠</span><span class="kw rs">여름 슬랙스</span><span class="kw rs">린넨 소재</span><span class="kw nw">&#8593; 워셔블(비 연동)</span></div>
+    <div class="sr"><span class="sl">쿨 수트 / 여름 수트</span><span class="up">급상승 &#8593;</span></div>
+    <div class="sr"><span class="sl">반소매 드레스 셔츠</span><span class="up">급상승 &#8593;</span></div>
+    <div class="sr"><span class="sl">워셔블&#183;방수 소재</span><span class="up">단기 상승 &#8593;</span></div>
+    <div class="sr"><span class="sl">봄 경량 재킷</span><span class="dn2">하락 &#8595;</span></div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="cl">29CM 트렌드</span><span class="tag pink">2026 SS</span></div><div class="cb">
+    <div class="kwg"><span class="kw hot">&#8593; 쿨 소재 수트</span><span class="kw hot">&#8593; 여름 오피스 캐주얼</span><span class="kw rs">반소매 셔츠</span><span class="kw rs">워셔블 소재</span><span class="kw nw">&#8593; 크링클 텍스처</span></div>
+    <div class="sr"><span class="sl">쿨 소재 수트</span><span class="up">급상승 &#8593;</span></div>
+    <div class="sr"><span class="sl">반소매 드레스 셔츠</span><span class="up">급상승 &#8593;</span></div>
+    <div class="sr"><span class="sl">워셔블&#183;크링클(비 연동)</span><span class="up">단기 상승 &#8593;</span></div>
+    <div class="sr"><span class="sl">겨울 니트 / 두꺼운 소재</span><span class="dn2">급하락 &#8595;</span></div>
+  </div></div>
 </div>
+<div class="g2 gap">
+  <div class="card"><div class="ch"><span class="cl">SNS 트렌드</span><span class="tag">릴스 &middot; 쇼츠</span></div><div class="cb">
+    <div class="snr"><div class="snn">01</div><div class="sni"><div class="snt">오늘 날씨 맑음 &#8212; 반팔니트 코디 추천</div><div class="sns2">#반팔니트코디 &middot; 맑음 예보 연동 급상승</div></div><span class="pb ig">릴스</span></div>
+    <div class="snr"><div class="snn">02</div><div class="sni"><div class="snt">주말 코디 &#8212; 반팔니트로 여름 오피스룩</div><div class="sns2">#주말코디 &middot; 저장&#8593;&#8593;</div></div><span class="pb ig">릴스</span></div>
+    <div class="snr"><div class="snn">03</div><div class="sni"><div class="snt">주말 27~28도 &#8212; 반팔니트 미리 준비</div><div class="sns2">주말 날씨 회복 연동</div></div><span class="pb yt">쇼츠</span></div>
+    <div class="snr"><div class="snn">04</div><div class="sni"><div class="snt">달라붙지 않는 여름 슬랙스 &#8212; 비 와도 쾌적</div><div class="sns2">구매 전환 클릭&#8593; 유지</div></div><span class="pb yt">쇼츠</span></div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="cl">이번 주 MD 핵심 포인트</span></div><div class="cb">
+    <div class="sr"><span class="sl" style="font-size:13px">&#x2600;&#xFE0F; 오늘 맑음 &#8212; SNS 반팔니트 콘텐츠 업로드 지금 바로!</span></div>
+    <div class="sr"><span class="sl" style="font-size:13px">&#x26A0;&#xFE0F; 내일(23일) 흐림 &middot; 24일(일) 다시 맑음 &#8212; 주말 판매 회복 기대</span></div>
+    <div class="sr"><span class="sl" style="font-size:13px">&#x1F6A8; 소프트 라운드 반팔니트 84% &#8212; 추가발주 시급!</span></div>
+    <div class="sr"><span class="sl" style="font-size:13px">&#x2705; 원턱 밴딩 와이드 슬랙스 &#8212; 두 품번 합산 재고 2,307개 정상 반영</span></div>
+    <div class="sr"><span class="sl" style="font-size:13px">&#x2705; 린넨라이크 &#8594; 쿨터치 시리즈명 변경 검토</span></div>
+  </div></div>
 </div>
-
-<!-- 경쟁사 분석 -->
-<div class="panel" id="panel-competitor">
-<div class="main">
-  <div class="gap">
-    <div class="card">
-      <div class="card-header">
-        <span class="card-label">경쟁사 브랜드 지형도</span>
-        <span class="tag orange">5/18 직접 확인 기준</span>
-      </div>
-      <div class="card-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-          <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:12px;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#0369a1;margin-bottom:8px;">직접 경쟁 (핵심)</div>
-            <div style="font-size:13px;line-height:2;">지오지아 · STCO<br>앤드지 · 에디션<br>마인드브릿지 · 브렌우드<br>다니엘 크레뮤</div>
-          </div>
-          <div style="background:#fdf4ff;border:1px solid #e9d5ff;border-radius:10px;padding:12px;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#7c3aed;margin-bottom:8px;">간접 경쟁 (온라인)</div>
-            <div style="font-size:13px;line-height:2;">무신사 스탠다드<br>수아레<br>드로우핏</div>
-          </div>
-          <div style="background:var(--orange-light);border:1px solid #fed7aa;border-radius:10px;padding:12px;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;">가격대 상위</div>
-            <div style="font-size:13px;line-height:2;">포터리<br>캠브리지멤버스<br>로가디스</div>
-          </div>
-        </div>
-      </div>
+</div></div>
+<div class="panel" id="panel-sales"><div class="main">
+<div class="kg gap">
+  <div class="kc hl"><div class="kl2">이번 주 판매</div><div class="kv">1,331</div><div class="ksb">05/18주(5/22까지)</div></div>
+  <div class="kc"><div class="kl2">지난 주(05/11)</div><div class="kv">2,977</div><div class="ksb">비교 기준</div></div>
+  <div class="kc"><div class="kl2">시즌 피크</div><div class="kv">3,167</div><div class="ksb">04/27주</div></div>
+  <div class="kc"><div class="kl2">총 재고</div><div class="kv">259K</div><div class="ksb">전체 품번</div></div>
+  <div class="kc dg"><div class="kl2">위험 재고액</div><div class="kv">16.2억</div><div class="ksb">판매율 25% 미만</div></div>
+</div>
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">주간 판매 추이</span><span class="tag org">05/18주는 부분집계 &#8212; 전주 직접 비교 불가</span></div>
+  <div class="cb">
+    <div class="tbr"><div class="tbw">04/20주</div><div class="tbb"><div class="tbi nm" style="width:95.2%">3,009</div></div><div class="tbq">3,009개</div></div>
+    <div class="tbr"><div class="tbw">04/27주 &#x1F3C6; 피크</div><div class="tbb"><div class="tbi pk" style="width:100%">3,167</div></div><div class="tbq up">3,167개</div></div>
+    <div class="tbr"><div class="tbw">05/04주(연휴)</div><div class="tbb"><div class="tbi nm" style="width:79.6%">2,519</div></div><div class="tbq dn2">2,519개</div></div>
+    <div class="tbr"><div class="tbw">05/11주</div><div class="tbb"><div class="tbi nm" style="width:94.0%">2,977</div></div><div class="tbq">2,977개</div></div>
+    <div class="tbr"><div class="tbw">05/18주 &#x26A0; 부분</div><div class="tbb"><div class="tbi pt" style="width:42.1%">1,331</div></div><div class="tbq" style="color:var(--gold)">1,331개*</div></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px">* 05/18주 5/22(오늘)까지 집계. 반팔니트 전 제품 급등 확인.</div>
+    <div class="ins" style="margin-top:10px"><strong>선임 MD 해석</strong> &#8212; 시즌 피크 04/27주(3,167개) → 05/04주 연휴 급감(2,519개) → 05/11주 회복(2,977개). 05/18주 5/22까지 1,331개 &#8212; 주간 완성 시 3,000개 수준 예상. 케이블카라 반팔니트 225개로 이번주 압도적 1위.</div>
+  </div>
+</div></div>
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">&#x1F525; 반팔니트 &#8212; 이번 시즌 핵심 드라이버</span><span class="tag red">05/11주 전 제품 급상승</span></div>
+  <div class="cb">
+    <div class="ng">
+      <div class="nc star"><div class="nn">케이블 카라 반팔 니트 &#x2B50;</div><div class="nt2"><span class="nw2">152</span><span class="na">&#8594;</span><span class="nw2">354</span><span class="na">&#8594;</span><span class="nw2" style="color:var(--gold)">225</span><span style="font-size:11px;color:var(--muted)">개*</span></div><div class="nm2"><span class="nk hot">판매율 65%</span><span class="nk">재고 2,078</span><span class="nk">이번주 1위&#x1F3C6;</span></div></div>
+      <div class="nc"><div class="nn">소프트 오픈 카라 반팔니트</div><div class="nt2"><span class="nw2">140</span><span class="na">&#8594;</span><span class="nw2">261</span><span class="na">&#8594;</span><span class="nw2">106</span></div><div class="nm2"><span class="nk hot">판매율 80%</span><span class="nk">재고 2,406</span></div></div>
+      <div class="nc"><div class="nn">소프트 라운드 반팔니트 &#x1F6A8;</div><div class="nt2"><span class="nw2">150</span><span class="na">&#8594;</span><span class="nw2">251</span><span class="na">&#8594;</span><span class="nw2">88</span></div><div class="nm2"><span class="nk hot">판매율 84%</span><span class="nk wn">재고 1,086 &#8212; 추가발주 시급</span></div></div>
+      <div class="nc"><div class="nn">쿨 썸머 오픈카라 반팔니트</div><div class="nt2"><span class="nw2">94</span><span class="na">&#8594;</span><span class="nw2">219</span><span class="na">&#8594;</span><span class="nw2">69</span></div><div class="nm2"><span class="nk hot">판매율 75%</span><span class="nk">재고 1,910</span><span class="nk">2.3배&#8593;</span></div></div>
+    </div>
+    <div class="ab o" style="margin-top:12px">&#x26A0;&#xFE0F; <strong>소프트 라운드 반팔니트</strong> 판매율 84%&#8593;, 재고 1,086개. &#x1F6A8; 추가 발주 시급! 케이블카라도 225개로 이번주 압도적 1위.</div>
+  </div>
+</div></div>
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">05/18주 TOP15 판매 상품</span><span class="tag org">부분집계 기준</span></div>
+  <div class="cb" style="padding:0;overflow-x:auto">
+    <table class="stbl">
+      <thead><tr><th>#</th><th>상품명</th><th>이번주</th><th>전주&#8594;전전주</th><th>판매율</th><th>재고</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rn t3">1</span></td><td>케이블 카라 반팔 니트</td><td><strong>79개</strong></td><td>316&#8594;152</td><td><span style="color:var(--red)">62%</span><div class="rb"><div class="rf m" style="width:62%"></div></div></td><td><span class="sb2 ok">2,262</span></td></tr>
+        <tr><td><span class="rn t3">2</span></td><td>소프트 오픈 카라 반팔니트</td><td><strong>34개</strong></td><td>236&#8594;140</td><td><span style="color:var(--red)">79%</span><div class="rb"><div class="rf h" style="width:79%"></div></div></td><td><span class="sb2 ok">2,503</span></td></tr>
+        <tr><td><span class="rn t3">3</span></td><td>소프트 라운드 반팔니트</td><td><strong>33개</strong></td><td>229&#8594;150</td><td><span style="color:var(--red)">83%</span><div class="rb"><div class="rf h" style="width:83%"></div></div></td><td><span class="sb2 wn">1,163 &#x26A0;</span></td></tr>
+        <tr><td><span class="rn">4</span></td><td>3팩 베이직 반팔티</td><td>20개</td><td>78&#8594;95</td><td><span style="color:var(--muted)">16%</span><div class="rb"><div class="rf l" style="width:16%"></div></div></td><td><span class="sb2 dg">41,882 &#x1F6A8;</span></td></tr>
+        <tr><td><span class="rn">5</span></td><td>버튼다운 헨리넥 반팔니트</td><td>18개</td><td>80&#8594;57</td><td><span style="color:var(--org)">30%</span><div class="rb"><div class="rf l" style="width:30%"></div></div></td><td><span class="sb2 wn">1,040</span></td></tr>
+        <tr><td><span class="rn">6</span></td><td>쿨 썸머 오픈카라 반팔니트</td><td>16개</td><td>208&#8594;94</td><td><span style="color:var(--red)">74%</span><div class="rb"><div class="rf h" style="width:74%"></div></div></td><td><span class="sb2 ok">1,974</span></td></tr>
+        <tr><td><span class="rn">7</span></td><td>캔터베리 클래식 레귤러 셋업 블레이저</td><td>13개</td><td>60&#8594;13</td><td><span style="color:var(--red)">68%</span><div class="rb"><div class="rf h" style="width:68%"></div></div></td><td><span class="sb2 wn">4,706</span></td></tr>
+        <tr><td><span class="rn">8</span></td><td>캔터베리 클래식 레귤러 셋업 팬츠</td><td>13개</td><td>61&#8594;13</td><td><span style="color:var(--red)">64%</span><div class="rb"><div class="rf h" style="width:64%"></div></div></td><td><span class="sb2 wn">6,217</span></td></tr>
+        <tr><td><span class="rn">9</span></td><td>원턱 밴딩 와이드 슬랙스</td><td>12개</td><td>111&#8594;91</td><td><span style="color:var(--red)">118%</span></td><td><span class="sb2 dg">품절 -77 &#x1F6A8;</span></td></tr>
+        <tr><td><span class="rn">10</span></td><td>캔터베리 에센셜 린넨라이크 셋업 팬츠</td><td>12개</td><td>151&#8594;175</td><td><span style="color:var(--org)">40%</span><div class="rb"><div class="rf l" style="width:40%"></div></div></td><td><span class="sb2 ok">1,796</span></td></tr>
+        <tr><td><span class="rn">11</span></td><td>프리미엄 뱀부 드레스 셔츠</td><td>10개</td><td>11&#8594;14</td><td><span style="color:var(--org)">38%</span><div class="rb"><div class="rf l" style="width:38%"></div></div></td><td><span class="sb2 ok">330</span></td></tr>
+        <tr><td><span class="rn">12</span></td><td>테이퍼드 치노 팬츠</td><td>9개</td><td>32&#8594;30</td><td><span style="color:var(--org)">44%</span><div class="rb"><div class="rf m" style="width:44%"></div></div></td><td><span class="sb2 ok">2,454</span></td></tr>
+        <tr><td><span class="rn">13</span></td><td>캔터베리 에센셜 린넨라이크 셋업 블레이저</td><td>9개</td><td>159&#8594;173</td><td><span style="color:var(--org)">39%</span><div class="rb"><div class="rf l" style="width:39%"></div></div></td><td><span class="sb2 ok">1,839</span></td></tr>
+        <tr><td><span class="rn">14</span></td><td>투턱 와이드 슬랙스</td><td>8개</td><td>63&#8594;40</td><td><span style="color:var(--red)">72%</span><div class="rb"><div class="rf h" style="width:72%"></div></div></td><td><span class="sb2 ok">1,481</span></td></tr>
+        <tr><td><span class="rn">15</span></td><td>사이드 밴딩 크롭 테이퍼드 슬랙스</td><td>7개</td><td>41&#8594;53</td><td><span style="color:var(--org)">50%</span><div class="rb"><div class="rf m" style="width:50%"></div></div></td><td><span class="sb2 ok">3,993</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></div>
+<div class="g2 gap">
+  <div class="card"><div class="ch"><span class="cl">&#x1F6A8; 재고 위험 상품</span><span class="tag red">최근 2주 판매 0 &middot; 재고 500개 이상</span></div><div class="cb">
+    <div class="dgc l1"><div class="db2"></div><div class="di2"><div class="dn3">베이직 원턱 기모 스웨트 와이드 팬츠</div><div class="dd2">판매율 9% &middot; 겨울 기모 &middot; 시즌 완전 이탈</div></div><div class="ds"><strong>6,507</strong>개 &middot; 5.1억</div></div>
+    <div class="dgc l1"><div class="db2"></div><div class="di2"><div class="dn3">베이직 기모 스웨트 오버 후드티</div><div class="dd2">판매율 7% &middot; 겨울 기모 &middot; 시즌 완전 이탈</div></div><div class="ds"><strong>4,037</strong>개 &middot; 3.2억</div></div>
+    <div class="dgc l2"><div class="db2"></div><div class="di2"><div class="dn3">스트링 조거 카고 팬츠</div><div class="dd2">판매율 6% &middot; 최근 2주 판매 없음</div></div><div class="ds"><strong>2,336</strong>개 &middot; 2.3억</div></div>
+    <div class="dgc l2"><div class="db2"></div><div class="di2"><div class="dn3">베이직 기모 스웨트 오버 맨투맨</div><div class="dd2">판매율 3% &middot; 겨울 기모 제품</div></div><div class="ds"><strong>2,553</strong>개 &middot; 1.8억</div></div>
+    <div class="dgc l2"><div class="db2"></div><div class="di2"><div class="dn3">3팩 베이직 반팔티</div><div class="dd2">판매율 16% &middot; 재고 과다 &middot; 프로모션 필요</div></div><div class="ds"><strong>41,882</strong>개</div></div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="cl">린넨라이크 시리즈 현황</span><span class="tag gold">쿨터치 네이밍 변경 검토 중</span></div><div class="cb">
+    <div class="lr"><div class="ln">캔터베리 에센셜 린넨라이크 셋업 블레이저</div><div class="lt2">173&#8594;160&#8594;48</div><div class="lrt" style="color:var(--org)">40%</div><div class="ls">재고 1,799</div></div>
+    <div class="lr"><div class="ln">캔터베리 에센셜 린넨라이크 셋업 팬츠</div><div class="lt2">175&#8594;152&#8594;53</div><div class="lrt" style="color:var(--org)">41%</div><div class="ls">재고 1,754</div></div>
+    <div class="lr"><div class="ln">투턱 린넨라이크 와이드 슬랙스</div><div class="lt2" style="color:var(--red)">54&#8594;144&#8594;41</div><div class="lrt" style="color:var(--red)">58%</div><div class="ls">재고 3,025</div></div>
+    <div class="lr"><div class="ln">유니섹스 밴딩 린넨라이크 세미와이드</div><div class="lt2">37&#8594;64&#8594;39</div><div class="lrt" style="color:var(--org)">32%</div><div class="ls" style="color:var(--red)">재고 6,519 &#x26A0;</div></div>
+    <div class="lr"><div class="ln">캔터베리106 린넨라이크 레귤러 셋업 팬츠</div><div class="lt2">57&#8594;53&#8594;7</div><div class="lrt" style="color:var(--red)">34%</div><div class="ls" style="color:var(--red)">재고 5,244 &#x26A0;</div></div>
+    <div class="lr"><div class="ln">캔터베리106 린넨라이크 레귤러 셋업 블레이저</div><div class="lt2">58&#8594;51&#8594;6</div><div class="lrt" style="color:var(--red)">34%</div><div class="ls" style="color:var(--red)">재고 5,426 &#x26A0;</div></div>
+    <div class="ab o" style="margin-top:10px">&#x26A0;&#xFE0F; 캔터베리106 재고 각 5,400개 이상. 투턱 린넨라이크 144개로 전주 대비 급등! &#8220;쿨터치&#8221; 네이밍 변경 시 클릭 전환 개선 기대.</div>
+  </div></div>
+</div>
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">&#x1F4CC; MD 액션 아이템</span><span class="tag">판매 데이터 기반</span></div>
+  <div class="cb"><div class="al">
+    <div class="ai2 ug"><div class="aic">&#x1F6A8;</div><div class="ac2"><div class="at2">기모 스웨트 3종 &#8212; 프로모션&#183;이월 대책 수립 필요</div><div class="ad">후드티 4,037개(3.2억) &middot; 와이드팬츠 6,507개(5.1억) &middot; 맨투맨 2,553개(1.8억). 최근 2주 판매 0. 할인 기획전 또는 B2B 이월 검토 시급.</div></div></div>
+    <div class="ai2 ug"><div class="aic">&#x1F6A8;</div><div class="ac2"><div class="at2">소프트 라운드 반팔니트 &#8212; 추가 발주 검토</div><div class="ad">판매율 84%&#8593;, 재고 1,086개. 이번주 88개 판매. 조기 소진 임박 &#8212; 즉시 발주 판단 필요!</div></div></div>
+    <div class="ai2 ck"><div class="aic">&#x26A0;&#xFE0F;</div><div class="ac2"><div class="at2">린넨라이크 &#8594; &#8220;쿨터치&#8221; 시리즈명 변경 검토</div><div class="ad">에디션 &#8220;리넨터치&#8221; 벤치마킹. 캔터베리106 재고 각 5,400개+. 투턱 린넨라이크는 144개 급등 &#8212; 네이밍 변경 효과 검증 기회.</div></div></div>
+    <div class="ai2 ck"><div class="aic">&#x26A0;&#xFE0F;</div><div class="ac2"><div class="at2">3팩 베이직 반팔티 &#8212; 판매 촉진 방안</div><div class="ad">재고 41,882개, 판매율 16%. 가격 조정 또는 B2B 채널 공략 재검토.</div></div></div>
+    <div class="ai2 gd"><div class="aic">&#x2705;</div><div class="ac2"><div class="at2">케이블 카라 반팔니트 &#8212; 주말 콘텐츠 준비</div><div class="ad">재고 2,078개. 이번주 225개로 압도적 1위. 오늘 맑음 &#8212; SNS 업로드 지금 바로 권장!</div></div></div>
+    <div class="ai2 gd"><div class="aic">&#x2705;</div><div class="ac2"><div class="at2">피케 티셔츠 현 라인 리메이크 업그레이드</div><div class="ad">앤드지&#183;에디션 공통 강세 확인. 소재&#183;핏 업그레이드 방향으로 재시도 검토.</div></div></div>
+  </div></div>
+</div></div>
+</div></div>
+<div class="panel" id="panel-competitor"><div class="main">
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">경쟁사 브랜드 지형도</span><span class="tag org">퍼플렉시티&#183;젠스파크 팩트 기반</span></div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0369a1;margin-bottom:8px">직접 경쟁 (핵심)</div><div style="font-size:13px;line-height:2">지오지아 &middot; STCO<br>앤드지 &middot; 에디션<br>마인드브릿지 &middot; 브렌우드<br>다니엘 크레뮤</div></div>
+      <div style="background:#fdf4ff;border:1px solid #e9d5ff;border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7c3aed;margin-bottom:8px">간접 경쟁 (온라인)</div><div style="font-size:13px;line-height:2">무신사 스탠다드<br>수아레<br>드로우핏</div></div>
+      <div style="background:var(--orl);border:1px solid #fed7aa;border-radius:10px;padding:12px"><div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--org);margin-bottom:8px">가격대 상위</div><div style="font-size:13px;line-height:2">포터리<br>캠브리지멤버스<br>로가디스</div></div>
     </div>
   </div>
-
-  <div class="gap">
-    <div class="card">
-      <div class="card-header">
-        <span class="card-label">브랜드별 상세 분석</span>
-        <span class="tag green">5/18 직접 확인 반영</span>
+</div></div>
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">브랜드별 상세 분석</span><span class="tag green">퍼플렉시티&#183;젠스파크 팩트 기반</span></div>
+  <div class="cb">
+    <div class="bt">
+      <div class="btn active" onclick="switchBrand('ziozia',this)">지오지아</div>
+      <div class="btn" onclick="switchBrand('stco',this)">STCO</div>
+      <div class="btn" onclick="switchBrand('andz',this)">앤드지</div>
+      <div class="btn" onclick="switchBrand('edition',this)">에디션</div>
+      <div class="btn" onclick="switchBrand('mindbr',this)">마인드브릿지</div>
+      <div class="btn" onclick="switchBrand('brenwood',this)">브렌우드</div>
+      <div class="btn" onclick="switchBrand('cremieux',this)">다니엘 크레뮤</div>
+      <div class="btn" onclick="switchBrand('suare',this)">수아레</div>
+      <div class="btn" onclick="switchBrand('drawfit',this)">드로우핏</div>
+      <div class="btn" onclick="switchBrand('pottery',this)">포터리</div>
+      <div class="btn" onclick="switchBrand('cambridge',this)">캠브리지멤버스</div>
+      <div class="btn" onclick="switchBrand('rogatis',this)">로가디스</div>
+    </div>
+    <div class="bp active" id="brand-ziozia">
+      <div class="bh"><div class="blo">ZIOZIA</div><div class="bm"><div class="bps">20~40대 &middot; 굿웨어몰+오프라인 &middot; 연매출 1,260억</div><div class="btg">&quot;OWN THE BALANCE&quot; &middot; 앰배서더 주우재</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>크리즈 소재 셋업&#183;셔츠</strong> &#8212; 이번 시즌 주력</div><div class="acard-i"><strong>쿨맥스 와이드 슬랙스</strong> &#8212; 실판매 증가폭 큼</div><div class="acard-i"><strong>조직 셋업 재킷</strong> 단품 비중 증가</div><div class="acard-i">셋업+이너/데님 <strong>믹스매치</strong> 실판매 견인</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">카피 &quot;<strong>OWN THE BALANCE</strong>&quot; &#8212; 균형&#183;전환형</div><div class="acard-i">주우재 &#8212; <strong>젊은 감각+직장인 실용성</strong></div><div class="acard-i">소재명: <strong>크리즈&#183;쿨맥스</strong> (에어로쿨 미확인)</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>굿웨어몰+오프라인</strong></div><div class="acard-i">무신사 노출 있으나 <strong>핵심 채널 아님</strong></div><div class="acard-i">&#x26A0;&#xFE0F; 기회: <strong>온라인 채널 강점</strong>으로 차별화</div></div>
       </div>
-      <div class="card-body">
-        <div class="brand-tabs">
-          <div class="brand-tab active" onclick="switchBrand('ziozia', this)">지오지아</div>
-          <div class="brand-tab" onclick="switchBrand('stco', this)">STCO</div>
-          <div class="brand-tab" onclick="switchBrand('andz', this)">앤드지</div>
-          <div class="brand-tab" onclick="switchBrand('edition', this)">에디션</div>
-          <div class="brand-tab" onclick="switchBrand('mindbr', this)">마인드브릿지</div>
-          <div class="brand-tab" onclick="switchBrand('brenwood', this)">브렌우드</div>
-          <div class="brand-tab" onclick="switchBrand('cremieux', this)">다니엘 크레뮤</div>
-          <div class="brand-tab" onclick="switchBrand('suare', this)">수아레</div>
-          <div class="brand-tab" onclick="switchBrand('drawfit', this)">드로우핏</div>
-          <div class="brand-tab" onclick="switchBrand('pottery', this)">포터리</div>
-          <div class="brand-tab" onclick="switchBrand('cambridge', this)">캠브리지멤버스</div>
-          <div class="brand-tab" onclick="switchBrand('rogatis', this)">로가디스</div>
-        </div>
-
-        <!-- 지오지아 -->
-        <div class="brand-panel active" id="brand-ziozia">
-          <div class="brand-header">
-            <div class="brand-logo">ZIOZIA</div>
-            <div class="brand-meta">
-              <div class="brand-pos">20~40대 남성 · 비즈니스+일상 커버 · 굿웨어몰·오프라인 중심</div>
-              <div class="brand-target">"OWN THE BALANCE" · 앰배서더 주우재 · 포멀↔캐주얼 경계 확장</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>크리즈 소재 셋업·셔츠</strong> — 이번 시즌 주력</div>
-              <div class="analysis-item"><strong>쿨맥스 와이드 슬랙스</strong> — 실판매 증가폭 큼</div>
-              <div class="analysis-item"><strong>조직 셋업 재킷</strong> — 단품 판매 비중 증가</div>
-              <div class="analysis-item">셋업+이너/데님 <strong>믹스매치</strong>가 실판매 견인</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">카피 "OWN THE BALANCE" — <strong>균형·전환·확장형</strong> 메시지</div>
-              <div class="analysis-item">주우재 앰배서더 — <strong>젊고 감각적+직장인 실용성</strong></div>
-              <div class="analysis-item">소재명: <strong>크리즈·쿨맥스</strong> — 에어로쿨은 이번 시즌 미확인</div>
-              <div class="analysis-item">"균형감 있는 프로페셔널한 남성의 일상"</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심 채널: <strong>굿웨어몰(자사몰) + 오프라인</strong></div>
-              <div class="analysis-item">무신사 노출은 있으나 <strong>핵심 판매채널은 아님</strong></div>
-              <div class="analysis-item">29CM 직접 입점 <strong>미확인</strong></div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>온라인 채널 강점</strong>으로 차별화</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (퍼플렉시티 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">크리즈 소재 셋업·셔츠</div><div class="hot-item-detail">구김 텍스처 활용 · 이번 시즌 핵심</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">쿨맥스 와이드 슬랙스</div><div class="hot-item-detail">캠페인 공개 후 실판매 증가폭 큼</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">조직 셋업 재킷 (단품)</div><div class="hot-item-detail">단품 판매 비중 증가 추세</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">레더 카라 블루종</div><div class="hot-item-detail">캠페인 공개 후 실판매 확인</div></div></div>
-        </div>
-
-        <!-- STCO -->
-        <div class="brand-panel" id="brand-stco">
-          <div class="brand-header">
-            <div class="brand-logo">STCO</div>
-            <div class="brand-meta">
-              <div class="brand-pos">3040 직장인 · 모던 워크웨어 · 가두점+자사몰 중심</div>
-              <div class="brand-target">"포멀에서 모던한 출근룩으로 이동" · 가성비+실용성</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>슈트·셋업·슬랙스</strong> 중심 + 데님/옥스퍼드 셔츠</div>
-              <div class="analysis-item">여름 <strong>셋업+단품 믹스매치</strong> 구조로 실사용 강화</div>
-              <div class="analysis-item">기능성 소재명 직접 확인은 미흡 — <strong>쿨링·스트레치·이지케어</strong> 계열 추정</div>
-              <div class="analysis-item">구김 관리·착용감 개선이 <strong>핵심 기능 포인트</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>모던한 출근룩</strong>", "직장인 출근 데일리룩"</div>
-              <div class="analysis-item">정장 신뢰감 유지 + <strong>일상 친화적 비즈니스웨어</strong></div>
-              <div class="analysis-item">인플루언서 숏폼 등 <strong>디지털 접점 확대</strong> 방향</div>
-              <div class="analysis-item">특정 소재명보다 <strong>착용 상황 소구</strong> 방식</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>자사몰 + 온라인 29개 매장</strong> 자체 운영망</div>
-              <div class="analysis-item">무신사·29CM <strong>강한 존재감 미확인</strong></div>
-              <div class="analysis-item">플랫폼 대형 유입보다 <strong>기존 고객 재구매</strong> 구조</div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>플랫폼 노출</strong>으로 신규 고객 차별화</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (퍼플렉시티 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">여름용 셋업·슬랙스</div><div class="hot-item-detail">여름 시즌 비중 강화 확인</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">데님 셔츠·옥스퍼드 셔츠</div><div class="hot-item-detail">셋업과 믹스매치 중심</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">—</div><div class="hot-item-info"><div class="hot-item-name">세부 소재명 미확인</div><div class="hot-item-detail"><a href="https://stco.co.kr" target="_blank" style="color:var(--blue);">STCO 공식몰 직접 확인 →</a></div></div></div>
-        </div>
-
-        <!-- 앤드지 -->
-        <div class="brand-panel" id="brand-andz">
-          <div class="brand-header">
-            <div class="brand-logo">AND Z</div>
-            <div class="brand-meta">
-              <div class="brand-pos">30대 남성 핵심 · 트래블러 컬렉션 중심 · 자사몰+SNS</div>
-              <div class="brand-target">시즌 전체 27%를 트래블러 라인으로 구성 · "정장이 필요한 모든 순간"</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>투포켓 시어서커 긴팔 셔츠</strong> — 주력 셔츠</div>
-              <div class="analysis-item"><strong>스트라이프 크리즈 반팔 셔츠</strong> — 여름 핵심</div>
-              <div class="analysis-item"><strong>머신워셔블 카라넥 스웨터</strong> — 관리 편의성</div>
-              <div class="analysis-item">이모션 수트·트러커 자켓·고중량 코튼티 병행</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">소재: <strong>시어서커·크리즈·머신워셔블·이모션</strong></div>
-              <div class="analysis-item">카피: "구김 없이 단정하게", "<strong>좋은 소재를 알아보는 안목</strong>"</div>
-              <div class="analysis-item">출장·여행·출근 <strong>멀티 유즈</strong> 소구</div>
-              <div class="analysis-item">신성통상 계열 자사몰·SNS <strong>브랜딩형 전개</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>신성통상 자사몰 + 인스타그램</strong> 중심</div>
-              <div class="analysis-item">무신사·29CM 직접 입점 <strong>미확인</strong></div>
-              <div class="analysis-item">시즌 전체 27% 트래블러 → <strong>기획력 강점</strong></div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>플랫폼 노출</strong> 우위</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (퍼플렉시티 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">투포켓 시어서커 긴팔 셔츠</div><div class="hot-item-detail">통기성 · 트래블러 라인 핵심</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">스트라이프 크리즈 반팔 셔츠</div><div class="hot-item-detail">구김 저항 소재</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">머신워셔블 카라넥 스웨터</div><div class="hot-item-detail">세탁 편의성 소구</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">이모션 수트</div><div class="hot-item-detail">활동 중 실루엣 유지</div></div></div>
-        </div>
-
-        <!-- 에디션 -->
-        <div class="brand-panel" id="brand-edition">
-          <div class="brand-header">
-            <div class="brand-logo">EDITION</div>
-            <div class="brand-meta">
-              <div class="brand-pos">40~50대 핵심 · 30대까지 확장 · 굿웨어몰+무신사+29CM</div>
-              <div class="brand-target">"SUMMER DAILY" · 모던 토털 캐주얼 · 조용한 고급감</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>리넨100 델라베 자켓·에센셜 리넨100 셔츠</strong> — 26SS 핵심</div>
-              <div class="analysis-item"><strong>리넨터치 카라넥 워셔블 니트</strong> — 여름 니트 강세</div>
-              <div class="analysis-item"><strong>버티컬 패턴조직 반팔 카라티</strong> · 도비 치노팬츠</div>
-              <div class="analysis-item">기능성 섬유명보다 <strong>소재 질감·가벼움·청량감</strong> 전면화</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">카피: "익숙한 하루, <strong>가볍게 이어지는 순간</strong>"</div>
-              <div class="analysis-item">"일상의 에센셜한 장면마다 <strong>조용히 스며드는 컬러</strong>"</div>
-              <div class="analysis-item">소재: <strong>리넨100·리넨터치·워셔블·도비</strong> 키워드</div>
-              <div class="analysis-item">과장된 기능보다 <strong>잔잔한 고급감+데일리 실용성</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>굿웨어몰</strong> · 무신사·29CM 보조 확장채널</div>
-              <div class="analysis-item">오프라인 확장 + 온라인 병행 구조</div>
-              <div class="analysis-item">⚠️ 기회: <strong>린넨라이크→쿨터치</strong> 네이밍 — 에디션 "리넨터치" 벤치마킹</div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>기능명 전면화</strong>로 차별화 가능</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">리넨100 델라베 자켓</div><div class="hot-item-detail">26SS 매거진 대표 아이템</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">에센셜 리넨100 셔츠</div><div class="hot-item-detail">린넨 100% 오피스 셔츠</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">리넨터치 카라넥 워셔블 니트</div><div class="hot-item-detail">여름 니트 · 워셔블 가공</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">버티컬 패턴조직 반팔 카라티</div><div class="hot-item-detail">굿웨어몰 대표 노출 상품</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">5</div><div class="hot-item-info"><div class="hot-item-name">도비 치노팬츠</div><div class="hot-item-detail">도비 조직 소재 하의</div></div></div>
-        </div>
-
-        <!-- 마인드브릿지 -->
-        <div class="brand-panel" id="brand-mindbr">
-          <div class="brand-header">
-            <div class="brand-logo">MIND BRIDGE</div>
-            <div class="brand-meta">
-              <div class="brand-pos">20~30대 남성 · D2C+무신사 이중축 · 무신사 비중 32.8%</div>
-              <div class="brand-target">"Creativity in Work&Life" · 무신사 에디션으로 화제성 집중</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item">이번 시즌 핵심: <strong>워셔블 여름 니트</strong> 집중 공략</div>
-              <div class="analysis-item">워셔블 멀티스트라이프 카라 반팔 니트 등 <strong>니트 6종+</strong></div>
-              <div class="analysis-item">소재: <strong>워셔블·코튼 혼방</strong> — 쿨맥스형 네이밍 아님</div>
-              <div class="analysis-item">"여름에도 관리 쉬운 니트" <strong>실용적 기능 설명</strong> 방식</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>합리적 가격과 완성도의 균형</strong>" · "누구나 부담 없이"</div>
-              <div class="analysis-item">"시원하고 관리가 쉬운 원사" · "<strong>편안한 핏</strong>"</div>
-              <div class="analysis-item">무신사 에디션 + 정해인 캠페인으로 <strong>화제성 집중</strong></div>
-              <div class="analysis-item">합리성+관리 편의+데일리 활용도 <strong>3축 소구</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>TBH SHOP 자사몰 + 무신사</strong> 이중축</div>
-              <div class="analysis-item">2026 1분기 무신사 매출 <strong>전년 동기 대비 +70%</strong></div>
-              <div class="analysis-item">무신사 내 온라인 비중 <strong>32.8%</strong>까지 확대</div>
-              <div class="analysis-item">⚠️ 벤치마킹: 무신사 에디션 협업 <strong>화제성 전략</strong></div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">워셔블 멀티 스트라이프 카라 반팔 니트</div><div class="hot-item-detail">무신사 에디션 핵심 상품</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">워셔블 스트라이프 헨리넥 반팔 니트</div><div class="hot-item-detail">워셔블 코튼 혼방</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">워셔블 코튼 혼방 라운드넥/카라 반팔 니트</div><div class="hot-item-detail">합리적 가격 · 데일리 활용</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">조직 변형 헨리넥 반팔 니트</div><div class="hot-item-detail">소재 텍스처 변형 디자인</div></div></div>
-        </div>
-
-        <!-- 브렌우드 -->
-        <div class="brand-panel" id="brand-brenwood">
-          <div class="brand-header">
-            <div class="brand-logo">BRENWOOD</div>
-            <div class="brand-meta">
-              <div class="brand-pos">30~50대 오피스 남성 · 코오롱몰 중심 · 중가 실용형</div>
-              <div class="brand-target">"바쁜 직장인의 필수 아이템" · "Everyday Summer Fit"</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>매직셔츠</strong> — 시그니처 핵심 아이템</div>
-              <div class="analysis-item"><strong>리투아니아 린넨 셔츠</strong> — 원산지 소재 강조</div>
-              <div class="analysis-item"><strong>워셔블 스웨터·컴포트 치노</strong> — 관리 편의성</div>
-              <div class="analysis-item">EASY SUIT·경량 하프팬츠·셋업 병행</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>직장인 필수</strong>", "여름의 균형", "실속 있는 데일리"</div>
-              <div class="analysis-item">소재: <strong>LITHUANIA LINEN·WASHABLE·COMFORT CHINO</strong></div>
-              <div class="analysis-item">출근-주말 겸용·관리 편의·<strong>실속형 구매</strong> 자극</div>
-              <div class="analysis-item">패션 트렌드 과시보다 <strong>실용성 중심</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>코오롱몰 공식몰</strong> · 신세계몰 일부</div>
-              <div class="analysis-item">무신사·29CM 직접 운영 <strong>뚜렷하지 않음</strong></div>
-              <div class="analysis-item">가격대: 셔츠/니트 6~10만, 재킷 20만대 <strong>중가 실용형</strong></div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>플랫폼 노출</strong> 우위</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">매직셔츠</div><div class="hot-item-detail">시그니처 핵심 · 직장인 필수</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">리투아니아 린넨 셔츠</div><div class="hot-item-detail">원산지 소재 강조</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">워셔블 스웨터</div><div class="hot-item-detail">관리 편의성 소구</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">컴포트 치노</div><div class="hot-item-detail">편안한 착용감 하의</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">5</div><div class="hot-item-info"><div class="hot-item-name">EASY SUIT</div><div class="hot-item-detail">간편한 여름 수트</div></div></div>
-        </div>
-
-        <!-- 다니엘 크레뮤 -->
-        <div class="brand-panel" id="brand-cremieux">
-          <div class="brand-header">
-            <div class="brand-logo">Daniel Cremieux</div>
-            <div class="brand-meta">
-              <div class="brand-pos">3040 중심 · CJ온스타일 본진 · 무신사·SSF몰 확장</div>
-              <div class="brand-target">"Refined Casual" · 프레피 무드 · 생트로페+에센셜 라인</div>
-            </div>
-            <span class="tag red">직접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>에어라이트 플리츠 블루종</strong> — 26SS 대표 아이템</div>
-              <div class="analysis-item"><strong>워셔블 수피마 코튼 100% 케이블 카라 니트</strong></div>
-              <div class="analysis-item"><strong>쿨맥스 라이크라 데님 팬츠</strong> — 기능성 하의</div>
-              <div class="analysis-item">소재: <strong>수피마 코튼·쿨맥스·라이크라·2WAY 스트레치</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"Refined Casual" · "<strong>프레피 무드</strong>" · "에센셜"</div>
-              <div class="analysis-item">"한여름에도 쾌적하게" · "<strong>부드럽고 매끄러운 수피마 코튼</strong>"</div>
-              <div class="analysis-item">CJ온스타일 프로모션 중심 · 4만~12만원대 가격</div>
-              <div class="analysis-item">무신사로 <strong>젊은 고객층 유입</strong> 확장 중</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>CJ온스타일</strong> · 무신사·SSF몰 확장</div>
-              <div class="analysis-item">CJ가 판매 본진 · <strong>무신사는 젊은 유입채널</strong></div>
-              <div class="analysis-item">⚠️ 소재 투명성: 수피마 코튼 강점이나 일부 상품 소재 혼용 주의</div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>테일러링 기반</strong> 차별화</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">에어라이트 플리츠 블루종</div><div class="hot-item-detail">26SS 대표 아이템</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">워셔블 수피마 코튼 케이블 카라 니트</div><div class="hot-item-detail">수피마 코튼 100%</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">쿨맥스 라이크라 데님 팬츠</div><div class="hot-item-detail">기능성 하의 · 쿨맥스+라이크라</div></div></div>
-        </div>
-
-        <!-- 수아레 -->
-        <div class="brand-panel" id="brand-suare">
-          <div class="brand-header">
-            <div class="brand-logo">SUARE</div>
-            <div class="brand-meta">
-              <div class="brand-pos">20~30대 · 무신사+29CM 중심 · 성수 플래그십</div>
-              <div class="brand-target">"옷이 보여줄 수 있는 본질의 힘" · 미니멀 데일리웨어</div>
-            </div>
-            <span class="tag purple">간접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>텐셀 린넨 크롭 셔츠</strong> — 26SS 핵심 아이템</div>
-              <div class="analysis-item"><strong>텐셀 린넨 크롭 하프 셔츠</strong> · 데일리 코튼 크롭 셔츠</div>
-              <div class="analysis-item">가격: 무신사 기준 셔츠 대부분 <strong>39,900원</strong></div>
-              <div class="analysis-item">소재: <strong>텐셀·린넨·코튼·텍스처 원단</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>Ultimate Daily-wear</strong>" · "본질의 힘"</div>
-              <div class="analysis-item">기술보다 <strong>실루엣·일상성·협업 감도</strong>로 판매</div>
-              <div class="analysis-item">크리에이터 협업 · 크롭 셔츠 중심 스타일링</div>
-              <div class="analysis-item">포멀 아닌 <strong>데일리 컨템포러리</strong> 구조</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>무신사·29CM</strong> 공식 링크 직접 연결</div>
-              <div class="analysis-item">오프라인: A-Land·원더플레이스·커먼그라운드·성수</div>
-              <div class="analysis-item">가격대 낮음 → <strong>트래드클럽과 포지션 차이 명확</strong></div>
-              <div class="analysis-item">참고: 20대 취향 읽기 용도로 모니터링 권장</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">텐셀 린넨 크롭 셔츠</div><div class="hot-item-detail">39,900원 · 무신사 강세</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">텐셀 린넨 크롭 하프 셔츠</div><div class="hot-item-detail">텐셀+린넨 블렌드</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">데일리 코튼 크롭 텍스처 셔츠</div><div class="hot-item-detail">크리에이터 협업 라인</div></div></div>
-        </div>
-
-        <!-- 드로우핏 -->
-        <div class="brand-panel" id="brand-drawfit">
-          <div class="brand-header">
-            <div class="brand-logo">DRAW FIT</div>
-            <div class="brand-meta">
-              <div class="brand-pos">20~30대 · 무신사 중심 · Since 2014</div>
-              <div class="brand-target">"핏과 착용감을 중요하게 여기는 컨템포러리&모던 룩"</div>
-            </div>
-            <span class="tag purple">간접 경쟁</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>스테이블 린넨 하프 셔츠</strong> — 무신사 전면 노출</div>
-              <div class="analysis-item"><strong>언로더 오픈카라 린넨 데님 셔츠</strong> — 무신사 강세</div>
-              <div class="analysis-item"><strong>버뮤다 와이드 치노 팬츠·카고 데님 하프</strong></div>
-              <div class="analysis-item">가격: 4~6만원대 주력 · <strong>합리적 가격대</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>완벽한 핏</strong>" · "컨템포러리&모던" · "웨어러블"</div>
-              <div class="analysis-item">소재보다 <strong>핏 보정감·스타일링 용이성</strong> 강조</div>
-              <div class="analysis-item">러닝 크리에이터·스토커즈 협업 <strong>기능성 데일리웨어</strong></div>
-              <div class="analysis-item">소재: <strong>린넨·린넨 데님·수피마 실켓</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>공식몰 + 무신사</strong> · 무신사 노출 강도 높음</div>
-              <div class="analysis-item">29CM 직접 운영 <strong>미확인</strong></div>
-              <div class="analysis-item">가격대 낮음 → <strong>트래드클럽과 포지션 차이 명확</strong></div>
-              <div class="analysis-item">참고: 핏·스타일링 콘텐츠 방식 <strong>모니터링 권장</strong></div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">언로더 오픈카라 린넨 데님 셔츠</div><div class="hot-item-detail">무신사 전면 노출</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">스테이블 린넨 하프 셔츠</div><div class="hot-item-detail">린넨 혼방 · 4~6만원대</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">버뮤다 와이드 치노 팬츠</div><div class="hot-item-detail">여름 하의 강세</div></div></div>
-        </div>
-
-        <!-- 포터리 -->
-        <div class="brand-panel" id="brand-pottery">
-          <div class="brand-header">
-            <div class="brand-logo">POTTERY</div>
-            <div class="brand-meta">
-              <div class="brand-pos">20~40대 · 자사몰+29CM · 합정 허브·한남 플래그십</div>
-              <div class="brand-target">"소재와 실루엣의 본질에 집중" · "Refined Classic"</div>
-            </div>
-            <span class="tag orange">가격대 상위</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>셔츠·니트웨어·테일러링·팬츠</strong> 중심</div>
-              <div class="analysis-item">셔츠: 비즈니스/컴포트/루즈드/스탠다드/레귤러 <strong>핏 세분화</strong></div>
-              <div class="analysis-item">수피마 코튼 반팔 티셔츠 <strong>79,000원대</strong></div>
-              <div class="analysis-item">코튼·린넨·울 혼방 반팔 니트 <strong>189,000원대</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>가공되지 않은 본연의 아름다움</strong>" · "정교함"</div>
-              <div class="analysis-item">"현대적인 비율" · "새로운 클래식"</div>
-              <div class="analysis-item">기능보다 <strong>재료·비율·패턴 설계</strong>에서 오는 고급감</div>
-              <div class="analysis-item">소재: <strong>수피마 코튼·코튼·린넨·울</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>자사몰 + 29CM</strong> · 무신사 대중 채널 아님</div>
-              <div class="analysis-item">29CM 감도형 채널과 <strong>자연스러운 핏</strong></div>
-              <div class="analysis-item">가격대 상위 → <strong>트래드클럽 상위 가격대 참고 브랜드</strong></div>
-              <div class="analysis-item">소재 품질·패턴 설계 <strong>벤치마킹 가치 있음</strong></div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">수피마 코튼 반팔 티셔츠</div><div class="hot-item-detail">79,000원대 · 프리미엄 소재</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">코튼·린넨·울 혼방 반팔 니트</div><div class="hot-item-detail">189,000원대</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">테일러드 재킷·셔츠 라인업</div><div class="hot-item-detail">핏 세분화 · 클래식 테일러링</div></div></div>
-        </div>
-
-        <!-- 캠브리지멤버스 -->
-        <div class="brand-panel" id="brand-cambridge">
-          <div class="brand-header">
-            <div class="brand-logo">Cambridge Members</div>
-            <div class="brand-meta">
-              <div class="brand-pos">30~50대+ · 코오롱몰+오프라인 중심 · 프리미엄 포멀</div>
-              <div class="brand-target">"가치는 나이 들지 않습니다" · MTM 맞춤 서비스</div>
-            </div>
-            <span class="tag orange">가격대 상위</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>S-Britain·Windsor·Dover 수트</strong> 시스템 중심</div>
-              <div class="analysis-item">셔츠·타이·재킷·팬츠 <strong>포멀 컴플리트 라인업</strong></div>
-              <div class="analysis-item">가격: 17만원대 단품 ~ <strong>100만원 이상 수트</strong></div>
-              <div class="analysis-item">원단사: <strong>COLOMBO·JOHN CAVENDISH</strong> 수입 원단</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>절제된 선, 간결한 실루엣</strong>" · "오피니언 리더의 품격"</div>
-              <div class="analysis-item">"가장 중요한 순간, <strong>완벽한 한 벌</strong>"</div>
-              <div class="analysis-item">냉감/스트레치 아닌 <strong>수입 원단·맞춤 서비스</strong>가 가치</div>
-              <div class="analysis-item">의례·포멀·격식 완성도 소구</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>코오롱몰 공식몰 + 전국 매장</strong></div>
-              <div class="analysis-item">무신사·29CM 직접 판매 <strong>미확인</strong></div>
-              <div class="analysis-item">트래드클럽과 <strong>포지션 차이 큼</strong> — 예복·임원급 수요</div>
-              <div class="analysis-item">참고: 포멀 완성도·원단 품질 <strong>벤치마킹 대상</strong></div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">S-Britain / Windsor / Dover 수트</div><div class="hot-item-detail">시즌 메인 수트 라인업</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">COLOMBO·JOHN CAVENDISH 원단 재킷</div><div class="hot-item-detail">수입 원단 강점</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">MTM 맞춤 서비스</div><div class="hot-item-detail">핵심 차별화 서비스</div></div></div>
-        </div>
-
-        <!-- 로가디스 -->
-        <div class="brand-panel" id="brand-rogatis">
-          <div class="brand-header">
-            <div class="brand-logo">ROGATIS</div>
-            <div class="brand-meta">
-              <div class="brand-pos">도시형 직장인 남성 · SSF몰 중심 · 삼성물산</div>
-              <div class="brand-target">"ICE OFFICE 시원한 품격" · AIRO-COOL · SMART SET-UP</div>
-            </div>
-            <span class="tag orange">가격대 상위</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>AIRO-COOL 경량 나일론 스트레치 셋업 팬츠</strong> — 핵심</div>
-              <div class="analysis-item"><strong>스트레치 나일론 오버핏 반팔 셔츠</strong></div>
-              <div class="analysis-item"><strong>FABIO 브러쉬드 울 수트·SMART4YOU 라인</strong></div>
-              <div class="analysis-item">소재: <strong>AIRO-COOL·경량 나일론·AIR-DOT·스트레치 나일론</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>THE GUYS X AIRO COOL</strong>" · "매일 쾌적함"</div>
-              <div class="analysis-item">"<strong>ICE OFFICE 시원한 품격</strong>" · "SMART SET-UP"</div>
-              <div class="analysis-item">격식 유지 + <strong>여름 기능성</strong> — 오피스 퍼포먼스웨어형</div>
-              <div class="analysis-item">소재명 자체를 <strong>브랜드·캠페인명</strong>으로 전면화</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">핵심: <strong>SSF SHOP 공식몰</strong> · 삼성물산 자체 채널</div>
-              <div class="analysis-item">무신사·29CM 중심 운영 <strong>미확인</strong></div>
-              <div class="analysis-item">가격: 셔츠 3~11만 세일가 · 셋업 팬츠 10만대</div>
-              <div class="analysis-item">⚠️ 벤치마킹: <strong>AIRO-COOL 소재명 캠페인화</strong> 전략 참고</div>
-            </div>
-          </div>
-          <div class="hot-items-title">26SS 주력 상품 (젠스파크 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">AIRO-COOL 경량 나일론 스트레치 셋업 팬츠</div><div class="hot-item-detail">이번 시즌 핵심 · 소재명 캠페인화</div></div><span class="tag red">주력</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">스트레치 나일론 오버핏 반팔 셔츠</div><div class="hot-item-detail">기능성 상의</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">FABIO 브러쉬드 울 수트</div><div class="hot-item-detail">프리미엄 수트 라인</div></div></div>
-        </div>
-
+      <div class="ht2">26SS 주력 (퍼플렉시티)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">크리즈 소재 셋업&#183;셔츠</div><div class="hrd">이번 시즌 핵심</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">쿨맥스 와이드 슬랙스</div><div class="hrd">캠페인 후 실판매 증가</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">3</div><div class="hri"><div class="hrn2">조직 셋업 재킷(단품)</div></div></div><div class="hr2"><div class="hrn">4</div><div class="hri"><div class="hrn2">레더 카라 블루종</div></div></div>
+    </div>
+    <div class="bp" id="brand-stco">
+      <div class="bh"><div class="blo">STCO</div><div class="bm"><div class="bps">3040 직장인 &middot; 가두점+자사몰 중심</div><div class="btg">&quot;포멀에서 모던한 출근룩으로 이동&quot; &middot; 가성비+실용성</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>슈트&#183;셋업&#183;슬랙스</strong> + 데님/옥스퍼드 셔츠</div><div class="acard-i">여름 <strong>셋업+단품 믹스매치</strong> 구조</div><div class="acard-i">기능성 소재명 미확인 &#8212; <strong>쿨링&#183;스트레치</strong> 추정</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>모던한 출근룩</strong>&quot;, &quot;직장인 출근 데일리룩&quot;</div><div class="acard-i">정장 신뢰감 + <strong>일상 친화적</strong> 비즈니스웨어</div><div class="acard-i">인플루언서 숏폼 <strong>디지털 접점 확대</strong></div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>자사몰 + 온라인 29개 매장</strong></div><div class="acard-i">무신사&#183;29CM <strong>강한 존재감 미확인</strong></div><div class="acard-i">&#x26A0;&#xFE0F; 기회: 트래드클럽 <strong>플랫폼 노출 우위</strong></div></div>
       </div>
+      <div class="ht2">26SS 주력 (퍼플렉시티)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">여름용 셋업&#183;슬랙스</div><div class="hrd">여름 비중 강화</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">데님 셔츠&#183;옥스퍼드 셔츠</div><div class="hrd">믹스매치 중심</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">&#8212;</div><div class="hri"><div class="hrn2">세부 소재명 미확인</div><div class="hrd"><a href="https://stco.co.kr" target="_blank" style="color:var(--blue)">STCO 공식몰 직접 확인 &#8594;</a></div></div></div>
+    </div>
+    <div class="bp" id="brand-andz">
+      <div class="bh"><div class="blo">AND Z</div><div class="bm"><div class="bps">30대 핵심 &middot; 자사몰+SNS &middot; 트래블러 컬렉션 27%</div><div class="btg">&quot;정장이 필요한 모든 순간&quot; &middot; 신성통상 계열</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>투포켓 시어서커 긴팔 셔츠</strong> &#8212; 주력</div><div class="acard-i"><strong>스트라이프 크리즈 반팔 셔츠</strong> &#8212; 여름 핵심</div><div class="acard-i"><strong>머신워셔블 카라넥 스웨터</strong></div><div class="acard-i">이모션 수트&#183;트러커 자켓 병행</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">소재: <strong>시어서커&#183;크리즈&#183;머신워셔블</strong></div><div class="acard-i">&quot;구김 없이 단정하게&quot; &middot; &quot;<strong>좋은 소재를 알아보는 안목</strong>&quot;</div><div class="acard-i">출장&#183;여행&#183;출근 <strong>멀티 유즈</strong> 소구</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>신성통상 자사몰 + 인스타그램</strong></div><div class="acard-i">무신사&#183;29CM 직접 입점 <strong>미확인</strong></div><div class="acard-i">&#x26A0;&#xFE0F; 기회: <strong>플랫폼 노출 우위</strong></div></div>
+      </div>
+      <div class="ht2">26SS 주력 (퍼플렉시티)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">투포켓 시어서커 긴팔 셔츠</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">스트라이프 크리즈 반팔 셔츠</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">3</div><div class="hri"><div class="hrn2">머신워셔블 카라넥 스웨터</div></div></div><div class="hr2"><div class="hrn">4</div><div class="hri"><div class="hrn2">이모션 수트</div></div></div>
+    </div>
+    <div class="bp" id="brand-edition">
+      <div class="bh"><div class="blo">EDITION</div><div class="bm"><div class="bps">40~50대 핵심&#183;30대 확장 &middot; 굿웨어몰+무신사+29CM</div><div class="btg">&quot;SUMMER DAILY&quot; &middot; 조용한 고급감</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>리넨100 델라베 자켓</strong> &#8212; 26SS 핵심</div><div class="acard-i"><strong>리넨터치 카라넥 워셔블 니트</strong> &#8212; 강세</div><div class="acard-i"><strong>에센셜 리넨100 셔츠</strong></div><div class="acard-i">기능명보다 <strong>질감&#183;가벼움&#183;청량감</strong> 전면화</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;익숙한 하루, <strong>가볍게 이어지는 순간</strong>&quot;</div><div class="acard-i">소재: <strong>리넨100&#183;리넨터치&#183;워셔블&#183;도비</strong></div><div class="acard-i">&quot;<strong>리넨터치</strong>&quot; &#8212; 체감 네이밍 전략적</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>굿웨어몰 &middot; 무신사&#183;29CM 보조</strong></div><div class="acard-i">&#x26A0;&#xFE0F; 벤치마킹: <strong>린넨라이크&#8594;쿨터치</strong> 근거</div><div class="acard-i">&#x26A0;&#xFE0F; 기회: 기능명 <strong>전면화</strong>로 차별화</div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">리넨100 델라베 자켓</div><div class="hrd">26SS 매거진 대표</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">리넨터치 카라넥 워셔블 니트</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">3</div><div class="hri"><div class="hrn2">에센셜 리넨100 셔츠</div></div></div><div class="hr2"><div class="hrn">4</div><div class="hri"><div class="hrn2">버티컬 패턴조직 반팔 카라티</div></div></div>
+    </div>
+    <div class="bp" id="brand-mindbr">
+      <div class="bh"><div class="blo">MIND BRIDGE</div><div class="bm"><div class="bps">20~30대 &middot; TBH SHOP+무신사 이중축 &middot; 무신사 비중 32.8%</div><div class="btg">&quot;Creativity in Work&amp;Life&quot; &middot; 무신사 에디션 화제성</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i">핵심: <strong>워셔블 여름 니트</strong> 집중</div><div class="acard-i">니트 6종+ 무신사 에디션 중심</div><div class="acard-i">소재: <strong>워셔블&#183;코튼 혼방</strong></div><div class="acard-i">&quot;여름에도 관리 쉬운 니트&quot; 실용적 설명</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>합리적 가격과 완성도의 균형</strong>&quot;</div><div class="acard-i">무신사 에디션 + 정해인 <strong>화제성 집중</strong></div><div class="acard-i">합리성+관리 편의+데일리 <strong>3축 소구</strong></div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>TBH SHOP + 무신사 이중축</strong></div><div class="acard-i">무신사 매출 <strong>전년 동기 대비 +70%</strong></div><div class="acard-i">무신사 비중 <strong>32.8%</strong>까지 확대</div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">워셔블 멀티 스트라이프 카라 반팔 니트</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">워셔블 스트라이프 헨리넥 반팔 니트</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">3</div><div class="hri"><div class="hrn2">워셔블 코튼 혼방 라운드/카라 반팔 니트</div></div></div>
+    </div>
+    <div class="bp" id="brand-brenwood">
+      <div class="bh"><div class="blo">BRENWOOD</div><div class="bm"><div class="bps">30~50대 오피스 남성 &middot; 코오롱몰 중심 &middot; 중가 실용형</div><div class="btg">&quot;바쁜 직장인의 필수&quot; &middot; &quot;Everyday Summer Fit&quot;</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>매직셔츠</strong> &#8212; 시그니처 핵심</div><div class="acard-i"><strong>리투아니아 린넨 셔츠</strong> &#8212; 원산지 소재 강조</div><div class="acard-i"><strong>워셔블 스웨터&#183;컴포트 치노</strong></div><div class="acard-i">EASY SUIT &middot; 경량 하프팬츠</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>직장인 필수</strong>&quot; &middot; &quot;여름의 균형&quot;</div><div class="acard-i">소재: <strong>LITHUANIA LINEN&#183;WASHABLE</strong></div><div class="acard-i">출근-주말 겸용 &middot; <strong>실속형 구매</strong></div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>코오롱몰</strong> &middot; 신세계몰 일부</div><div class="acard-i">무신사&#183;29CM <strong>뚜렷하지 않음</strong></div><div class="acard-i">&#x26A0;&#xFE0F; 기회: <strong>플랫폼 노출 우위</strong></div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">매직셔츠</div><div class="hrd">시그니처 &middot; 직장인 필수</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">리투아니아 린넨 셔츠</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">3</div><div class="hri"><div class="hrn2">워셔블 스웨터 &middot; 컴포트 치노</div></div></div>
+    </div>
+    <div class="bp" id="brand-cremieux">
+      <div class="bh"><div class="blo">Daniel Cremieux</div><div class="bm"><div class="bps">3040 중심 &middot; CJ온스타일 본진 &middot; 무신사&#183;SSF몰 확장</div><div class="btg">&quot;Refined Casual&quot; &middot; 프레피 무드 &middot; 생트로페+에센셜</div></div><span class="tag red">직접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>에어라이트 플리츠 블루종</strong> &#8212; 대표</div><div class="acard-i"><strong>워셔블 수피마 코튼 케이블 카라 니트</strong></div><div class="acard-i"><strong>쿨맥스 라이크라 데님 팬츠</strong></div><div class="acard-i">소재: <strong>수피마 코튼&#183;쿨맥스&#183;라이크라</strong></div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;Refined Casual&quot; &middot; &quot;<strong>프레피 무드</strong>&quot;</div><div class="acard-i">&quot;한여름에도 쾌적하게&quot;</div><div class="acard-i">CJ 프로모션 4만~12만원대</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>CJ온스타일</strong> &middot; 무신사&#183;SSF몰</div><div class="acard-i">&#x26A0;&#xFE0F; 기회: <strong>소재 투명성</strong>으로 차별화</div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">에어라이트 플리츠 블루종</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">워셔블 수피마 코튼 케이블 카라 니트</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">3</div><div class="hri"><div class="hrn2">쿨맥스 라이크라 데님 팬츠</div></div></div>
+    </div>
+    <div class="bp" id="brand-suare">
+      <div class="bh"><div class="blo">SUARE</div><div class="bm"><div class="bps">20~30대 &middot; 무신사+29CM &middot; 성수 플래그십</div><div class="btg">&quot;Ultimate Daily-wear&quot; &middot; 미니멀 데일리웨어</div></div><span class="tag pur">간접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>텐셀 린넨 크롭 셔츠</strong> &#8212; 핵심</div><div class="acard-i">가격 <strong>39,900원</strong> 주력</div><div class="acard-i">소재: <strong>텐셀&#183;린넨&#183;코튼</strong></div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>본질의 힘</strong>&quot; &middot; &quot;Ultimate Daily-wear&quot;</div><div class="acard-i">기술보다 <strong>실루엣&#183;일상성</strong></div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>무신사&#183;29CM</strong></div><div class="acard-i">가격대 낮음 &#8594; <strong>포지션 차이 명확</strong></div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">텐셀 린넨 크롭 셔츠</div><div class="hrd">39,900원 &middot; 무신사 강세</div></div><span class="tag red">주력</span></div>
+    </div>
+    <div class="bp" id="brand-drawfit">
+      <div class="bh"><div class="blo">DRAW FIT</div><div class="bm"><div class="bps">20~30대 &middot; 무신사 중심 &middot; Since 2014</div><div class="btg">&quot;핏과 착용감을 중요하게 여기는 컨템포러리&amp;모던&quot;</div></div><span class="tag pur">간접 경쟁</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>언로더 오픈카라 린넨 데님 셔츠</strong></div><div class="acard-i"><strong>버뮤다 와이드 치노 팬츠</strong></div><div class="acard-i">가격: <strong>4~6만원대</strong> 주력</div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>완벽한 핏</strong>&quot; &middot; 핏 보정감 강조</div><div class="acard-i">러닝 크리에이터 협업</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>공식몰 + 무신사</strong></div><div class="acard-i">가격대 낮음 &#8594; <strong>포지션 차이 명확</strong></div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">언로더 오픈카라 린넨 데님 셔츠</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">버뮤다 와이드 치노 팬츠</div></div><span class="tag red">주력</span></div>
+    </div>
+    <div class="bp" id="brand-pottery">
+      <div class="bh"><div class="blo">POTTERY</div><div class="bm"><div class="bps">20~40대 &middot; 자사몰+29CM &middot; 합정&#183;한남 플래그십</div><div class="btg">&quot;소재와 실루엣의 본질에 집중&quot; &middot; Refined Classic</div></div><span class="tag org">가격대 상위</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>셔츠&#183;니트&#183;테일러링&#183;팬츠</strong> 중심</div><div class="acard-i">수피마 코튼 반팔 티셔츠 <strong>79,000원대</strong></div><div class="acard-i">셔츠 핏 <strong>5가지 세분화</strong></div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>가공되지 않은 본연의 아름다움</strong>&quot;</div><div class="acard-i">기능보다 <strong>재료&#183;비율&#183;패턴</strong> 고급감</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>자사몰 + 29CM</strong></div><div class="acard-i">소재&#183;패턴 <strong>벤치마킹 가치</strong></div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">수피마 코튼 반팔 티셔츠</div><div class="hrd">79,000원대</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">코튼&#183;린넨&#183;울 혼방 반팔 니트</div><div class="hrd">189,000원대</div></div><span class="tag red">주력</span></div>
+    </div>
+    <div class="bp" id="brand-cambridge">
+      <div class="bh"><div class="blo">Cambridge Members</div><div class="bm"><div class="bps">30~50대+ &middot; 코오롱몰+오프라인 &middot; 프리미엄 포멀</div><div class="btg">&quot;가치는 나이 들지 않습니다&quot; &middot; MTM 맞춤 서비스</div></div><span class="tag org">가격대 상위</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>S-Britain&#183;Windsor&#183;Dover 수트</strong> 시스템</div><div class="acard-i">17만대 ~ <strong>100만원 이상</strong></div><div class="acard-i">원단: <strong>COLOMBO&#183;JOHN CAVENDISH</strong></div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>절제된 선, 간결한 실루엣</strong>&quot;</div><div class="acard-i">&quot;가장 중요한 순간, <strong>완벽한 한 벌</strong>&quot;</div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>코오롱몰+전국 매장</strong></div><div class="acard-i">예복&#183;임원급 수요 &middot; <strong>포지션 차이 큼</strong></div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">S-Britain / Windsor / Dover 수트</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">MTM 맞춤 서비스</div><div class="hrd">핵심 차별화</div></div><span class="tag red">주력</span></div>
+    </div>
+    <div class="bp" id="brand-rogatis">
+      <div class="bh"><div class="blo">ROGATIS</div><div class="bm"><div class="bps">도시형 직장인 &middot; SSF몰 중심 &middot; 삼성물산</div><div class="btg">&quot;ICE OFFICE 시원한 품격&quot; &middot; AIRO-COOL &middot; SMART SET-UP</div></div><span class="tag org">가격대 상위</span></div>
+      <div class="agr">
+        <div class="acard p"><div class="acard-t">&#x1F4E6; 상품 관점</div><div class="acard-i"><strong>AIRO-COOL 경량 나일론 스트레치 셋업 팬츠</strong></div><div class="acard-i"><strong>스트레치 나일론 오버핏 반팔 셔츠</strong></div><div class="acard-i">소재: <strong>AIRO-COOL&#183;AIR-DOT&#183;나일론 스트레치</strong></div></div>
+        <div class="acard mk"><div class="acard-t">&#x1F4E2; 마케팅 관점</div><div class="acard-i">&quot;<strong>ICE OFFICE 시원한 품격</strong>&quot;</div><div class="acard-i">&quot;SMART SET-UP&quot; &middot; &quot;매일 쾌적함&quot;</div><div class="acard-i">소재명을 <strong>캠페인명으로 전면화</strong></div></div>
+        <div class="acard md"><div class="acard-t">&#x1F3EA; 온라인 MD 관점</div><div class="acard-i">핵심: <strong>SSF SHOP &middot; 삼성물산 채널</strong></div><div class="acard-i">&#x26A0;&#xFE0F; 벤치마킹: <strong>소재명 캠페인화</strong> 전략</div></div>
+      </div>
+      <div class="ht2">26SS 주력 (젠스파크)</div>
+      <div class="hr2"><div class="hrn">1</div><div class="hri"><div class="hrn2">AIRO-COOL 경량 나일론 스트레치 셋업 팬츠</div><div class="hrd">소재명 캠페인화</div></div><span class="tag red">주력</span></div><div class="hr2"><div class="hrn">2</div><div class="hri"><div class="hrn2">스트레치 나일론 오버핏 반팔 셔츠</div></div><span class="tag red">주력</span></div>
     </div>
   </div>
-
-        <!-- 앤드지 -->
-        <div class="brand-panel active" id="brand-andz">
-          <div class="brand-header">
-            <div class="brand-logo">AND Z</div>
-            <div class="brand-meta">
-              <div class="brand-pos">프리미엄 컨템퍼러리 · 백화점 캐릭터 2위</div>
-              <div class="brand-target">타겟: 25~35세 직장인 · 연매출 830억</div>
-            </div>
-            <span class="tag blue">핵심 경쟁사</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>트리코트 반팔 셔츠</strong> — 흡습속건 기능성 핵심</div>
-              <div class="analysis-item"><strong>쿨맥스 슬랙스류</strong> — 쿨맥스 원사 기능성</div>
-              <div class="analysis-item"><strong>카라넥 반팔티 (피케)</strong> — 경쟁사 공통 강세 아이템</div>
-              <div class="analysis-item"><strong>린넨 긴팔 셔츠 + 포켓/조직 반팔티</strong> 다수</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">"<strong>에어도트</strong>" 소재명 브랜딩 — 기능 키워드화</div>
-              <div class="analysis-item">타이 16 SKU → <strong>객단가 상승</strong> + 코디 완성 이미지</div>
-              <div class="analysis-item">백화점 할인 축소 → <strong>프리미엄 리포지셔닝</strong></div>
-              <div class="analysis-item">피케 라인 유지 → <strong>캐주얼 오피스 수요</strong> 대응</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">굿웨어몰+무신사 병행 — <strong>온라인 채널 확장</strong></div>
-              <div class="analysis-item">타이 신규 → <strong>연관 상품 묶음</strong> 노출 전략</div>
-              <div class="analysis-item">피케 강세 → <strong>트래드클럽 피케 재출시</strong> 근거</div>
-              <div class="analysis-item">⚠️ 기회: <strong>크링클+테일러링</strong> 차별화</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (5/18 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">트리코트 반팔 셔츠</div><div class="hot-item-detail">흡습속건 · 여름 핵심 드라이버</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">쿨맥스 슬랙스류</div><div class="hot-item-detail">쿨맥스 원사 기능성 하의</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">카라넥 반팔티 (피케)</div><div class="hot-item-detail">경쟁사 공통 강세 아이템</div></div><span class="tag blue">주목</span></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">린넨 긴팔 셔츠</div><div class="hot-item-detail">자연소재 오피스 셔츠</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">5</div><div class="hot-item-info"><div class="hot-item-name">포켓/조직 반팔 티셔츠류</div><div class="hot-item-detail">베이직 반팔 다수</div></div></div>
-        </div>
-
-        <!-- 지오지아 -->
-        <div class="brand-panel" id="brand-ziozia">
-          <div class="brand-header">
-            <div class="brand-logo">ZIOZIA</div>
-            <div class="brand-meta">
-              <div class="brand-pos">어반 라이프스타일 · 백화점 캐릭터 1위</div>
-              <div class="brand-target">타겟: 25~35세 직장인 · 연매출 1,260억</div>
-            </div>
-            <span class="tag red">핵심 경쟁사</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>트리코트 반팔/긴팔 셔츠</strong> — 흡습속건 핵심</div>
-              <div class="analysis-item"><strong>에어로쿨 슬랙스 시리즈</strong> — 달라붙지 않는 핏</div>
-              <div class="analysis-item"><strong>크리즈/플리츠 소재</strong> — 구김방지+편안한 핏</div>
-              <div class="analysis-item"><strong>소로나 티셔츠류</strong> — 친환경 기능성 소재</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item"><strong>"달라붙지 않는다"</strong> 명시적 카피 — 최고 전환</div>
-              <div class="analysis-item">소재명 마케팅 — "에어로쿨·트리코트·크리즈"</div>
-              <div class="analysis-item">크리즈 소재 → <strong>비 오는 날 소구</strong> 가능 (오늘 기회)</div>
-              <div class="analysis-item">박서준 모델 인지도 유지</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">194개 유통망 + 온라인 <strong>옴니채널 최강자</strong></div>
-              <div class="analysis-item">크리즈 소재 → <strong>비 오는 날 워셔블</strong> 콘텐츠 연동</div>
-              <div class="analysis-item">플리츠 → <strong>신규 고객 유입</strong> 성공 지속</div>
-              <div class="analysis-item">⚠️ 기회: 테일러링 핏 기반 <strong>"달라붙지 않는"</strong> 소구</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (5/18 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">트리코트 반팔/긴팔 셔츠</div><div class="hot-item-detail">흡습속건 · 여름 셔츠 핵심</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">에어로쿨 슬랙스 시리즈</div><div class="hot-item-detail">달라붙지 않는 핏 · 시리즈 다수</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">크리즈 소재 셋업/슬랙스</div><div class="hot-item-detail">구김방지 — 비 오는 날 소구 적합</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">플리츠 슬랙스</div><div class="hot-item-detail">편안한 핏 + 격식</div></div><span class="tag blue">주목</span></div>
-          <div class="hot-item-row"><div class="hot-rank">5</div><div class="hot-item-info"><div class="hot-item-name">소로나 티셔츠류</div><div class="hot-item-detail">친환경 기능성 소재 확장</div></div></div>
-        </div>
-
-        <!-- STCO -->
-        <div class="brand-panel" id="brand-stco">
-          <div class="brand-header">
-            <div class="brand-logo">STCO</div>
-            <div class="brand-meta">
-              <div class="brand-pos">모던 워크웨어 · 합리적 가격 · 온라인 강세</div>
-              <div class="brand-target">타겟: 25~35세 직장인 · 가성비 포지션</div>
-            </div>
-            <span class="tag red">핵심 경쟁사</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>쿨맥스 치노 팬츠</strong> — 기능성 하의 핵심</div>
-              <div class="analysis-item"><strong>린넨/시어서커</strong> 셔츠·수트·티셔츠 전 카테고리</div>
-              <div class="analysis-item"><strong>수피마 코튼 반팔 티셔츠</strong> — 프리미엄 코튼</div>
-              <div class="analysis-item"><strong>쿨터치 자켓 + 텐셀 스트레치 셔츠</strong> 기능성 확장</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">린넨/시어서커 <strong>전 카테고리 라인업</strong> — 검색 독점</div>
-              <div class="analysis-item">텐셀 스트레치 — 트리코트와 <strong>유사한 셀링포인트</strong></div>
-              <div class="analysis-item">수피마 코튼 → <strong>프리미엄 소재 이미지</strong></div>
-              <div class="analysis-item">합리적 가격 + 기능성 — <strong>가성비 포지션 공고</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">소재별 전 카테고리 → <strong>검색 노출 극대화</strong></div>
-              <div class="analysis-item">쿨터치 자켓 → <strong>아우터 카테고리</strong> 확장</div>
-              <div class="analysis-item">트리코트 슬랙스 유지 → <strong>하의 라인업 강화</strong></div>
-              <div class="analysis-item">⚠️ 기회: STCO 대비 <strong>테일러링 기반</strong> 차별화</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (5/18 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">쿨맥스 치노 팬츠</div><div class="hot-item-detail">쿨맥스 원사 기능성 하의</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">린넨/시어서커 셔츠·수트</div><div class="hot-item-detail">소재별 전 카테고리 라인업</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">수피마 코튼 반팔 티셔츠</div><div class="hot-item-detail">프리미엄 코튼 소구</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">쿨터치 자켓</div><div class="hot-item-detail">기능성 아우터 카테고리 확장</div></div><span class="tag blue">주목</span></div>
-          <div class="hot-item-row"><div class="hot-rank">5</div><div class="hot-item-info"><div class="hot-item-name">텐셀 스트레치 셔츠</div><div class="hot-item-detail">트리코트 유사 셀링포인트</div></div></div>
-        </div>
-
-        <!-- 에디션 -->
-        <div class="brand-panel" id="brand-edition">
-          <div class="brand-header">
-            <div class="brand-logo">EDITION</div>
-            <div class="brand-meta">
-              <div class="brand-pos">시티 캐주얼 · 35~45세 뉴포티</div>
-              <div class="brand-target">신성통상 계열 · 어반 캐주얼</div>
-            </div>
-            <span class="tag purple">관련 경쟁사</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>시어서커 셔츠</strong> — 고급 여름 소재 대표</div>
-              <div class="analysis-item"><strong>린넨터치/쿨터치 니트</strong> — 체감 표현 네이밍 전략</div>
-              <div class="analysis-item"><strong>소로나 반팔 티셔츠류</strong> — 친환경 기능성</div>
-              <div class="analysis-item"><strong>카라넥 반팔티 (피케)</strong> — 캐주얼+오피스 겸용</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item"><strong>"쿨터치"</strong> 네이밍 — 소비자 체감 즉각 전달</div>
-              <div class="analysis-item">소재명보다 <strong>체감 표현</strong>이 더 효과적임을 증명</div>
-              <div class="analysis-item">피케 — <strong>캐주얼+오피스</strong> 겸용 소구</div>
-              <div class="analysis-item">35~45세 <strong>뉴포티 라이프스타일</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">"쿨터치" → <strong>검색·클릭 전환율</strong> 높음</div>
-              <div class="analysis-item">니트 여름화 → <strong>비수기 카테고리 활성화</strong></div>
-              <div class="analysis-item">⚠️ 트래드클럽 액션: <strong>린넨라이크 → 쿨터치</strong> 시리즈명 변경 검토</div>
-              <div class="analysis-item">⚠️ 트래드클럽 액션: <strong>피케 재출시</strong> 검토 근거</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (5/18 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">시어서커 셔츠</div><div class="hot-item-detail">고급 여름 소재 대표 아이템</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">린넨터치/쿨터치 니트</div><div class="hot-item-detail">"쿨터치" 네이밍 — 체감 표현 전략적</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">소로나 반팔 티셔츠류</div><div class="hot-item-detail">친환경 기능성 소재</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">카라넥 반팔티 (피케)</div><div class="hot-item-detail">폴로형 · 캐주얼+오피스 겸용</div></div><span class="tag blue">주목</span></div>
-        </div>
-
-        <!-- 다니엘 크레뮤 -->
-        <div class="brand-panel" id="brand-cremieux">
-          <div class="brand-header">
-            <div class="brand-logo">Daniel Cremieux</div>
-            <div class="brand-meta">
-              <div class="brand-pos">프렌치 클래식 · 프리미엄 포지션</div>
-              <div class="brand-target">타겟: 35~45세 · 고급 직장인</div>
-            </div>
-            <span class="tag purple">관련 경쟁사</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>라이크라 치노 3종</strong> — 스트레치 기능성 하의</div>
-              <div class="analysis-item"><strong>쿨맥스 라이크라 데님 2종</strong> — 기능성 데님 확장</div>
-              <div class="analysis-item"><strong>워셔블 카라니트 3종</strong> — 여름 니트 관리 편의</div>
-              <div class="analysis-item"><strong>울 린넨 블렌드 블레이저</strong> — 폴리 60%·울 30%·린넨 5%</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item"><strong>라이크라</strong> 소재명 — 스트레치 기능성 어필</div>
-              <div class="analysis-item">울+린넨 블렌드 → <strong>프리미엄 소재 믹스</strong> 이미지</div>
-              <div class="analysis-item">워셔블 니트 → <strong>관리 편의성</strong> 소구</div>
-              <div class="analysis-item">블레이저 실제 폴리 60% → <strong>소재 표기 주의</strong> 필요</div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">블레이저 린넨 표기 vs 실제 폴리 60% → <strong>소재 투명성 기회</strong></div>
-              <div class="analysis-item">라이크라 치노 3종 동시 투입 → <strong>검색 노출 전략</strong></div>
-              <div class="analysis-item">워셔블 니트 → <strong>비 오는 날 콘텐츠</strong> 연동 가능</div>
-              <div class="analysis-item">⚠️ 기회: 트래드클럽 <strong>소재 투명성</strong>으로 차별화</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (5/18 확인)</div>
-          <div class="hot-item-row"><div class="hot-rank">1</div><div class="hot-item-info"><div class="hot-item-name">라이크라 치노 3종</div><div class="hot-item-detail">스트레치 기능성 하의 · 3종 동시 투입</div></div><span class="tag red">강세</span></div>
-          <div class="hot-item-row"><div class="hot-rank">2</div><div class="hot-item-info"><div class="hot-item-name">쿨맥스 라이크라 데님 2종</div><div class="hot-item-detail">기능성 데님 · 쿨맥스+라이크라 결합</div></div><span class="tag blue">주목</span></div>
-          <div class="hot-item-row"><div class="hot-rank">3</div><div class="hot-item-info"><div class="hot-item-name">워셔블 카라니트 3종</div><div class="hot-item-detail">여름 니트 · 관리 편의성</div></div></div>
-          <div class="hot-item-row"><div class="hot-rank">4</div><div class="hot-item-info"><div class="hot-item-name">울 린넨 블렌드 블레이저</div><div class="hot-item-detail">폴리 60%·울 30%·린넨 5%·우레탄 5%</div></div></div>
-        </div>
-
-        <!-- 지이크 -->
-        <div class="brand-panel" id="brand-ziik">
-          <div class="brand-header">
-            <div class="brand-logo">ZIIK</div>
-            <div class="brand-meta">
-              <div class="brand-pos">남성 컨템퍼러리 · 백화점 4강</div>
-              <div class="brand-target">타겟: 25~35세 트렌디한 직장인</div>
-            </div>
-            <span class="tag blue">경쟁 브랜드</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>쿨 스트레치 수트</strong> 강세</div>
-              <div class="analysis-item"><strong>반소매 쿨 드레스 셔츠</strong> 신규 투입</div>
-              <div class="analysis-item"><strong>여름 반소매 니트</strong> 유지</div>
-              <div class="analysis-item">컬러웨이 다양화 — <strong>뉴컬러 투입</strong></div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item">트렌디 감성 + 기능성 <strong>동시 소구</strong></div>
-              <div class="analysis-item">인스타 릴스 <strong>적극 활용</strong></div>
-              <div class="analysis-item"><strong>컬러웨이</strong> 다양화 차별화</div>
-              <div class="analysis-item">비 예보 연동 콘텐츠 <strong>빠른 업로드</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">백화점+온라인 <strong>균형 채널</strong></div>
-              <div class="analysis-item">컬러 다양화 → <strong>재구매율</strong> 전략</div>
-              <div class="analysis-item">SNS 발빠른 대응 → <strong>바이럴 트래픽</strong></div>
-              <div class="analysis-item">⚠️ 트래드클럽: SNS <strong>업로드 빈도</strong> 강화 시급</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (직접 확인 권장)</div>
-          <div class="hot-item-row"><div class="hot-rank">—</div><div class="hot-item-info"><div class="hot-item-name">쿨 수트·반소매 셔츠 계열</div><div class="hot-item-detail"><a href="https://www.musinsa.com/search/goods?keyword=%EC%A7%80%EC%9D%B4%ED%81%AC&gender=men&sortCode=sale_count" target="_blank" style="color:var(--blue);">무신사 지이크 인기순 →</a></div></div></div>
-        </div>
-
-        <!-- 엠비오 -->
-        <div class="brand-panel" id="brand-embio">
-          <div class="brand-header">
-            <div class="brand-logo">MVIO</div>
-            <div class="brand-meta">
-              <div class="brand-pos">남성 컨템퍼러리 캐주얼 · LF 계열</div>
-              <div class="brand-target">타겟: 20~30대 트렌디 직장인</div>
-            </div>
-            <span class="tag blue">경쟁 브랜드</span>
-          </div>
-          <div class="analysis-grid">
-            <div class="analysis-card product">
-              <div class="analysis-title">📦 상품 관점</div>
-              <div class="analysis-item"><strong>린넨 오버핏 셔츠</strong> 강세 — 포엣 코어</div>
-              <div class="analysis-item"><strong>와이드 여름 슬랙스</strong> — 여유핏 수요</div>
-              <div class="analysis-item"><strong>크링클 텍스처 티셔츠</strong> 신규</div>
-              <div class="analysis-item">오피스+캐주얼 — <strong>루즈핏 아이템</strong> 강세</div>
-            </div>
-            <div class="analysis-card marketing">
-              <div class="analysis-title">📢 마케팅 관점</div>
-              <div class="analysis-item"><strong>포엣 코어</strong> 키워드 가장 적극 활용</div>
-              <div class="analysis-item">인플루언서 협업 <strong>바이럴 콘텐츠</strong></div>
-              <div class="analysis-item">MZ 직장인 <strong>라이프스타일</strong> 이미지</div>
-              <div class="analysis-item">온라인 퍼스트 — <strong>디지털 마케팅</strong></div>
-            </div>
-            <div class="analysis-card md">
-              <div class="analysis-title">🏪 온라인 MD 관점</div>
-              <div class="analysis-item">무신사·29CM <strong>주요 채널</strong></div>
-              <div class="analysis-item">트렌드 빠른 반영 → <strong>시즌 초반 선점</strong></div>
-              <div class="analysis-item">인플루언서 → <strong>바이럴 효과</strong> 극대화</div>
-              <div class="analysis-item">⚠️ 기회: 포엣 코어 <strong>오피스 특화</strong> 각도</div>
-            </div>
-          </div>
-          <div class="hot-items-title">인기 상품 (직접 확인 권장)</div>
-          <div class="hot-item-row"><div class="hot-rank">—</div><div class="hot-item-info"><div class="hot-item-name">린넨 오버핏·크링클 계열</div><div class="hot-item-detail"><a href="https://www.musinsa.com/search/goods?keyword=%EC%97%A0%EB%B9%84%EC%98%A4&gender=men&sortCode=sale_count" target="_blank" style="color:var(--blue);">무신사 엠비오 인기순 →</a></div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="insight-summary gap">
-    <div class="insight-summary-title">경쟁사 통합 인사이트 · MD 액션 아이템 (퍼플렉시티·젠스파크 팩트 기반)</div>
-    <div class="insight-cols">
-      <div>
-        <div class="insight-col-title">📦 상품 관점</div>
-        <div class="insight-point">로가디스 AIRO-COOL·지오지아 크리즈·앤드지 이모션 — <strong>소재명 자체를 캠페인화</strong></div>
-        <div class="insight-point">마인드브릿지 <strong>워셔블 여름 니트 집중</strong> — 이번 시즌 차별화 성공</div>
-        <div class="insight-point">에디션 <strong>리넨터치 네이밍</strong> — 체감 표현이 기능명보다 소비자에게 직관적</div>
-        <div class="insight-point">앤드지 시즌 27% 트래블러 라인 — <strong>기획력 있는 라인 집중 전략</strong> 참고</div>
-      </div>
-      <div>
-        <div class="insight-col-title">📢 마케팅 관점</div>
-        <div class="insight-point">지오지아·STCO·앤드지 모두 <strong>굿웨어몰·자사몰 중심</strong> — 무신사·29CM 노출 약함</div>
-        <div class="insight-point">마인드브릿지 <strong>무신사 매출 +70% · 비중 32.8%</strong> — 플랫폼 전략 성공 사례</div>
-        <div class="insight-point">크리즈·워셔블 — <strong>비 오는 날 콘텐츠</strong> 연동 기회 (오늘!)</div>
-        <div class="insight-point">로가디스 "ICE OFFICE" — <strong>감성 카피+기능명</strong> 결합 전략 참고</div>
-      </div>
-      <div>
-        <div class="insight-col-title">🏪 온라인 MD 액션</div>
-        <div class="insight-point">✅ <strong>린넨라이크 → 쿨터치</strong> 시리즈명 변경 검토 (에디션 벤치마킹)</div>
-        <div class="insight-point">✅ 피케 티셔츠 — <strong>현 라인 리메이크 업그레이드</strong> 재시도</div>
-        <div class="insight-point">✅ <strong>반소매 셔츠 소싱처</strong> 검토 필요</div>
-        <div class="insight-point">✅ 무신사·29CM 노출 강화 — <strong>경쟁사 대비 플랫폼 우위</strong> 활용 기회</div>
-      </div>
-    </div>
+</div></div>
+<div class="isb gap"><div class="ist">경쟁사 통합 인사이트 (퍼플렉시티&#183;젠스파크 팩트 기반)</div>
+  <div class="isc">
+    <div><div class="isct">&#x1F4E6; 상품 관점</div><div class="isp">로가디스 AIRO-COOL &middot; 지오지아 크리즈 &#8212; <strong>소재명 자체를 캠페인화</strong></div><div class="isp">마인드브릿지 <strong>워셔블 여름 니트</strong> 집중 &#8212; 차별화 성공</div><div class="isp">에디션 <strong>리넨터치 네이밍</strong> &#8212; 체감 표현이 직관적</div><div class="isp">앤드지 시즌 27% 트래블러 &#8212; <strong>라인 집중 기획력</strong></div></div>
+    <div><div class="isct">&#x1F4E2; 마케팅 관점</div><div class="isp">지오지아&#183;STCO&#183;앤드지 <strong>자사몰 중심</strong> &#8212; 무신사&#183;29CM 약함</div><div class="isp">마인드브릿지 <strong>무신사 +70% &middot; 32.8%</strong> &#8212; 플랫폼 전략 성공</div><div class="isp">비 예보 &#8594; <strong>크리즈&#183;워셔블 콘텐츠</strong> 연동 기회</div><div class="isp">로가디스 &quot;ICE OFFICE&quot; &#8212; <strong>감성 카피+기능명</strong> 결합</div></div>
+    <div><div class="isct">&#x1F3EA; 온라인 MD 액션</div><div class="isp">&#x2705; <strong>린넨라이크 &#8594; 쿨터치</strong> (에디션 벤치마킹)</div><div class="isp">&#x2705; 피케 티셔츠 <strong>리메이크 업그레이드</strong></div><div class="isp">&#x2705; <strong>반소매 셔츠 소싱처</strong> 검토</div><div class="isp">&#x2705; 무신사&#183;29CM &#8212; <strong>경쟁사 대비 플랫폼 우위</strong></div></div>
   </div>
 </div>
-</div>
-
-<!-- TOP10 -->
-<div class="panel" id="panel-top10">
-<div class="main">
-  <div class="gap">
-    <div class="card">
-      <div class="card-header"><span class="card-label">카테고리별 실시간 TOP 10</span><span class="tag">무신사 · 29CM</span></div>
-      <div class="card-body">
-        <div class="cat-grid">
-          <div class="cat-item"><div class="cat-title">수트 / 쿨 수트</div><div class="cat-links">
-            <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EC%88%98%ED%8A%B8&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 수트 TOP10</span><span class="arr">→</span></a>
-            <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EC%88%98%ED%8A%B8&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb">29CM</span> 수트 TOP10</span><span class="arr">→</span></a>
-          </div></div>
-          <div class="cat-item"><div class="cat-title">반소매 셔츠</div><div class="cat-links">
-            <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EB%B0%98%EC%86%8C%EB%A7%A4%EC%85%94%EC%B8%A0&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 반소매셔츠 TOP10</span><span class="arr">→</span></a>
-            <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EB%B0%98%EC%86%8C%EB%A7%A4%EC%85%94%EC%B8%A0&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb">29CM</span> 반소매셔츠 TOP10</span><span class="arr">→</span></a>
-          </div></div>
-          <div class="cat-item"><div class="cat-title">슬랙스 / 여름 하의</div><div class="cat-links">
-            <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EC%8A%AC%EB%9E%99%EC%8A%A4&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 슬랙스 TOP10</span><span class="arr">→</span></a>
-            <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EC%8A%AC%EB%9E%99%EC%8A%A4&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb">29CM</span> 슬랙스 TOP10</span><span class="arr">→</span></a>
-          </div></div>
-          <div class="cat-item"><div class="cat-title">린넨 소재</div><div class="cat-links">
-            <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EB%A6%B0%EB%84%A8&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 린넨 TOP10</span><span class="arr">→</span></a>
-            <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EB%A6%B0%EB%84%A8&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb">29CM</span> 린넨 TOP10</span><span class="arr">→</span></a>
-          </div></div>
-          <div class="cat-item"><div class="cat-title">오피스 캐주얼</div><div class="cat-links">
-            <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EC%98%A4%ED%94%BC%EC%8A%A4%EC%BA%90%EC%A3%BC%EC%96%BC&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 오피스캐주얼 TOP10</span><span class="arr">→</span></a>
-            <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EC%98%A4%ED%94%BC%EC%8A%A4%EC%BA%90%EC%A3%BC%EC%96%BC&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb">29CM</span> 오피스캐주얼 TOP10</span><span class="arr">→</span></a>
-          </div></div>
-          <div class="cat-item"><div class="cat-title">여름 수트</div><div class="cat-links">
-            <a class="cat-link" href="https://www.musinsa.com/search/goods?keyword=%EC%97%AC%EB%A6%84%EC%88%98%ED%8A%B8&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 여름수트 TOP10</span><span class="arr">→</span></a>
-            <a class="cat-link" href="https://www.29cm.co.kr/search?q=%EC%BF%A8%EC%88%98%ED%8A%B8&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb">29CM</span> 쿨수트 TOP10</span><span class="arr">→</span></a>
-          </div></div>
-        </div>
-      </div>
+</div></div>
+<div class="panel" id="panel-top10"><div class="main">
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">카테고리별 실시간 TOP 10</span><span class="tag">무신사 &middot; 29CM</span></div>
+  <div class="cb">
+    <div class="cg">
+      <div class="ci"><div class="ctt">수트 / 쿨 수트</div><div class="cls"><a class="cla" href="https://www.musinsa.com/search/goods?keyword=%EC%88%98%ED%8A%B8&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 수트 TOP10</span><span class="arr">&#8594;</span></a><a class="cla" href="https://www.29cm.co.kr/search?q=%EC%88%98%ED%8A%B8&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb2">29CM</span> 수트 TOP10</span><span class="arr">&#8594;</span></a></div></div>
+      <div class="ci"><div class="ctt">반소매 셔츠</div><div class="cls"><a class="cla" href="https://www.musinsa.com/search/goods?keyword=%EB%B0%98%EC%86%8C%EB%A7%A4%EC%85%94%EC%B8%A0&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 반소매셔츠 TOP10</span><span class="arr">&#8594;</span></a><a class="cla" href="https://www.29cm.co.kr/search?q=%EB%B0%98%EC%86%8C%EB%A7%A4%EC%85%94%EC%B8%A0&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb2">29CM</span> 반소매셔츠 TOP10</span><span class="arr">&#8594;</span></a></div></div>
+      <div class="ci"><div class="ctt">슬랙스 / 여름 하의</div><div class="cls"><a class="cla" href="https://www.musinsa.com/search/goods?keyword=%EC%8A%AC%EB%9E%99%EC%8A%A4&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 슬랙스 TOP10</span><span class="arr">&#8594;</span></a><a class="cla" href="https://www.29cm.co.kr/search?q=%EC%8A%AC%EB%9E%99%EC%8A%A4&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb2">29CM</span> 슬랙스 TOP10</span><span class="arr">&#8594;</span></a></div></div>
+      <div class="ci"><div class="ctt">린넨 / 쿨 소재</div><div class="cls"><a class="cla" href="https://www.musinsa.com/search/goods?keyword=%EB%A6%B0%EB%84%A8&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 린넨 TOP10</span><span class="arr">&#8594;</span></a><a class="cla" href="https://www.29cm.co.kr/search?q=%EB%A6%B0%EB%84%A8&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb2">29CM</span> 린넨 TOP10</span><span class="arr">&#8594;</span></a></div></div>
+      <div class="ci"><div class="ctt">오피스 캐주얼</div><div class="cls"><a class="cla" href="https://www.musinsa.com/search/goods?keyword=%EC%98%A4%ED%94%BC%EC%8A%A4%EC%BA%90%EC%A3%BC%EC%96%BC&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 오피스캐주얼 TOP10</span><span class="arr">&#8594;</span></a><a class="cla" href="https://www.29cm.co.kr/search?q=%EC%98%A4%ED%94%BC%EC%8A%A4%EC%BA%90%EC%A3%BC%EC%96%BC&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb2">29CM</span> 오피스캐주얼 TOP10</span><span class="arr">&#8594;</span></a></div></div>
+      <div class="ci"><div class="ctt">여름 수트</div><div class="cls"><a class="cla" href="https://www.musinsa.com/search/goods?keyword=%EC%97%AC%EB%A6%84%EC%88%98%ED%8A%B8&gender=men&sortCode=sale_count" target="_blank"><span class="ll"><span class="lb mb">무신사</span> 여름수트 TOP10</span><span class="arr">&#8594;</span></a><a class="cla" href="https://www.29cm.co.kr/search?q=%EC%BF%A8%EC%88%98%ED%8A%B8&genderCode=MEN&sort=POPULAR" target="_blank"><span class="ll"><span class="lb cb2">29CM</span> 쿨수트 TOP10</span><span class="arr">&#8594;</span></a></div></div>
     </div>
   </div>
-</div>
-</div>
-
-<!-- 추이 -->
-<div class="panel" id="panel-history">
-<div class="main">
-  <div class="gap">
-    <div class="card">
-      <div class="card-header"><span class="card-label">주간 · 월간 트렌드 추이</span><span class="tag green">4월~5월 누적 · 기상청 기준</span></div>
-      <div class="card-body">
-
-        <div class="history-week">
-          <div class="history-week-title">5월 4주차 (5/18~5/24)</div>
-          <div class="history-entry">
-            <div class="history-date">5/19 (화)</div>
-            <div class="history-content">
-              <div class="history-weather">☁️ 최저 18° / 최고 27° · 구름많음 · 밤부터 흐려짐</div>
-              <div class="history-keywords">
-                <span class="history-kw up">쿨소재↑</span><span class="history-kw up">반소매↑</span>
-                <span class="history-kw up">방수소재↑</span><span class="history-kw">내일~모레 비 30~80mm</span>
-              </div>
-              <div class="history-note">기상청: 내일(20일)~모레(21일) 수도권 30~80mm 비. 오늘이 이번 주 콘텐츠 업로드 마지막 타이밍.</div>
-            </div>
-          </div>
-          <div class="history-entry">
-            <div class="history-date">5/18 (월)</div>
-            <div class="history-content">
-              <div class="history-weather">☀️ 최저 17° / 최고 30° · 평년보다 높음</div>
-              <div class="history-keywords">
-                <span class="history-kw up">낮 30° 폭염수준</span><span class="history-kw up">쿨소재↑</span>
-                <span class="history-kw up">반소매 셔츠↑</span><span class="history-kw">달라붙지않는</span>
-              </div>
-              <div class="history-note">경쟁사 직접 확인. 피케 재출시·린넨라이크→쿨터치 변경·반소매 셔츠 대광 소싱 검토 액션 도출.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="history-week">
-          <div class="history-week-title">5월 3주차 (5/11~5/17)</div>
-          <div class="history-entry">
-            <div class="history-date">5/15 (금)</div>
-            <div class="history-content">
-              <div class="history-weather">☀️ 최저 16° / 최고 28° · 주말 내내 맑음 · YTN: 스승의 날 서울 32°</div>
-              <div class="history-keywords">
-                <span class="history-kw up">쿨소재↑</span><span class="history-kw up">반소매↑</span>
-                <span class="history-kw up">린넨↑</span><span class="history-kw">여름슬랙스</span>
-              </div>
-              <div class="history-note">낮 28° 초여름 본격화. 헤럴드경제: 지오지아 플리츠 라인 여름 공략 보도.</div>
-            </div>
-          </div>
-          <div class="history-entry">
-            <div class="history-date">5/13 (수)</div>
-            <div class="history-content">
-              <div class="history-weather">🌤️ 최저 15° / 최고 25° · 오전 짙은 안개 기상청 특보</div>
-              <div class="history-keywords">
-                <span class="history-kw up">린넨↑</span><span class="history-kw up">여름수트↑</span>
-                <span class="history-kw up">반소매↑</span><span class="history-kw">포엣코어</span>
-              </div>
-              <div class="history-note">기상청 안개 특보. TOP10 카테고리에 여름수트 신규 진입.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="history-week">
-          <div class="history-week-title">5월 1~2주차 (5/6~5/10) · 황금연휴 복귀</div>
-          <div class="history-entry">
-            <div class="history-date">5/6 (수)</div>
-            <div class="history-content">
-              <div class="history-weather">☀️ 최저 10° / 최고 25° · 황금연휴 복귀 첫날</div>
-              <div class="history-keywords">
-                <span class="history-kw up">린넨↑</span><span class="history-kw up">포엣코어↑</span>
-                <span class="history-kw">초여름오피스</span><span class="history-kw">컴포트클래식</span>
-              </div>
-              <div class="history-note">황금연휴 복귀. 기온 본격 상승 시작.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="history-week">
-          <div class="history-week-title">4월 말 (4/27~4/30)</div>
-          <div class="history-entry">
-            <div class="history-date">4/28 (화)</div>
-            <div class="history-content">
-              <div class="history-weather">🌧️ 최저 10° / 최고 18° · 오전 비 5~20mm · 기상청 발표</div>
-              <div class="history-keywords">
-                <span class="history-kw up">방수소재↑</span><span class="history-kw up">크링클↑</span>
-                <span class="history-kw">경량재킷</span><span class="history-kw">레이어링</span>
-              </div>
-              <div class="history-note">오전 비. 방수·크링클 단기 관심도 상승.</div>
-            </div>
-          </div>
-          <div class="history-entry">
-            <div class="history-date">4/24 (금)</div>
-            <div class="history-content">
-              <div class="history-weather">☀️ 최저 11° / 최고 21° · 봄 시즌</div>
-              <div class="history-keywords">
-                <span class="history-kw up">크링클↑</span><span class="history-kw up">테일러드수트↑</span>
-                <span class="history-kw">린넨셔츠</span><span class="history-kw">봄아우터</span>
-              </div>
-              <div class="history-note">봄 시즌 안정기. 크링클 소재 관심도 상승.</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+</div></div>
+</div></div>
+<div class="panel" id="panel-history"><div class="main">
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">주간 &middot; 월간 트렌드 추이</span><span class="tag green">4월~5월 누적 &middot; 기상청+판매 기준</span></div>
+  <div class="cb">
+    <div class="hw"><div class="hwt">5월 4주차 (5/18~5/24) &middot; 1,331개 (5/22까지)</div>
+      <div class="he"><div class="hed">5/22 (금)</div><div class="hec"><div class="hew">&#x2600;&#xFE0F; 맑음 &middot; 최저 14&#176; / 최고 24&#176; &middot; 밤부터 차차 흐려짐 &middot; 기상청</div><div class="hek"><span class="hkw up">맑음 SNS 업로드 최적</span><span class="hkw up">반팔니트 급등</span><span class="hkw up">린넨라이크 반등</span><span class="hkw">내일(23일) 흐림</span></div><div class="hen">05/18주 1,331개(5/22까지). 케이블카라 반팔니트 225개(1위), 소프트라운드 84% 발주 시급. 원턱 밴딩 와이드 슬랙스 두 품번 합산 재고 2,307개 정상 반영. 투턱 린넨라이크 144개 급등.</div></div></div><div class="he"><div class="hed">5/20~21</div><div class="hec"><div class="hew">&#x1F327;&#xFE0F; 전국 비 &middot; 수도권 30~80mm &middot; 기상청</div><div class="hek"><span class="hkw up">전국비</span><span class="hkw up">워셔블&#8593;</span><span class="hkw up">크링클&#8593;</span></div><div class="hen">이틀간 비. 원턱 밴딩 슬랙스 품번 변경(TEMPT19VZ/V0) 두 품번 합산 처리.</div></div></div>
+      <div class="he"><div class="hed">5/19 (화)</div><div class="hec"><div class="hew">&#x2601;&#xFE0F; 최저 18&#176; / 최고 27&#176; &middot; 구름많음 &middot; 밤부터 흐려짐</div><div class="hek"><span class="hkw up">쿨소재&#8593;</span><span class="hkw up">반소매&#8593;</span><span class="hkw">방수&#8593;</span></div><div class="hen">경쟁사 12개 브랜드 전체 팩트 기반 업데이트. 젠스파크+퍼플렉시티 반영.</div></div></div>
+      <div class="he"><div class="hed">5/18 (월)</div><div class="hec"><div class="hew">&#x2600;&#xFE0F; 최저 17&#176; / 최고 30&#176; &middot; 평년보다 높음 &middot; 기상청</div><div class="hek"><span class="hkw up">낮 30&#176; 폭염수준</span><span class="hkw up">쿨소재&#8593;</span><span class="hkw">달라붙지않는</span></div><div class="hen">경쟁사 직접 확인. 피케 리메이크&#183;린넨라이크&#8594;쿨터치&#183;반소매 소싱처 액션 도출.</div></div></div>
+    </div>
+    <div class="hw"><div class="hwt">5월 3주차 (5/11~5/17) &middot; 판매 2,977개</div>
+      <div class="he"><div class="hed">5/15 (금)</div><div class="hec"><div class="hew">&#x2600;&#xFE0F; 최저 16&#176; / 최고 28&#176; &middot; 주말 맑음 &middot; YTN: 서울 32&#176;</div><div class="hek"><span class="hkw up">반팔니트 급상승</span><span class="hkw up">쿨소재&#8593;</span><span class="hkw up">린넨&#8593;</span></div><div class="hen">케이블카라 반팔니트 316개 피크. 쿨썸머오픈카라 208개. 전 반팔니트 급상승.</div></div></div>
+      <div class="he"><div class="hed">5/13 (수)</div><div class="hec"><div class="hew">&#x1F324;&#xFE0F; 최저 15&#176; / 최고 25&#176; &middot; 오전 짙은 안개 기상청 특보</div><div class="hek"><span class="hkw up">린넨&#8593;</span><span class="hkw up">여름수트&#8593;</span><span class="hkw">반소매&#8593;</span></div><div class="hen">낮 25&#176; 초여름 체감 시작. 여름수트 TOP10 신규 진입.</div></div></div>
+    </div>
+    <div class="hw"><div class="hwt">5월 2주차 (5/6~5/10) &middot; 판매 2,518개 (연휴 복귀)</div>
+      <div class="he"><div class="hed">5/6 (수)</div><div class="hec"><div class="hew">&#x2600;&#xFE0F; 최저 10&#176; / 최고 25&#176; &middot; 황금연휴 복귀 첫날</div><div class="hek"><span class="hkw up">린넨&#8593;</span><span class="hkw up">포엣코어&#8593;</span><span class="hkw">초여름오피스</span></div><div class="hen">황금연휴 복귀. 기온 본격 상승 시작.</div></div></div>
+    </div>
+    <div class="hw"><div class="hwt">04/27주 &middot; 판매 3,155개 &#8212; 시즌 피크</div>
+      <div class="he"><div class="hed">4/27 (월)</div><div class="hec"><div class="hew">&#x1F325;&#xFE0F; 최저 10&#176; / 최고 20&#176; &middot; 가끔 구름</div><div class="hek"><span class="hkw up">포엣코어&#8593;</span><span class="hkw up">크링클&#8593;</span><span class="hkw">봄아우터</span></div><div class="hen">04/27주 3,155개 &#8212; 이번 시즌 주간 판매 피크.</div></div></div>
     </div>
   </div>
-
-  <div class="gap">
-    <div class="card">
-      <div class="card-header"><span class="card-label">월별 날씨 & 키워드 흐름</span><span class="tag">기상청 기준</span></div>
-      <div class="card-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div style="background:var(--gray);border-radius:10px;padding:14px;">
-            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">4월 — 봄 전환기 (11~21°)</div>
-            <div class="history-keywords">
-              <span class="history-kw up">크링클 소재</span><span class="history-kw up">테일러드 수트</span>
-              <span class="history-kw">린넨 셔츠</span><span class="history-kw">봄 아우터</span><span class="history-kw">경량 재킷</span>
-            </div>
-          </div>
-          <div style="background:#fff0f0;border:1px solid #fca5a5;border-radius:10px;padding:14px;">
-            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">5월 — 이른 여름 (25~30° · 평년 이상)</div>
-            <div class="history-keywords">
-              <span class="history-kw up">쿨 소재</span><span class="history-kw up">반소매 셔츠</span>
-              <span class="history-kw up">여름 슬랙스</span><span class="history-kw up">달라붙지 않는</span>
-              <span class="history-kw up">린넨</span><span class="history-kw up">피케</span>
-            </div>
-          </div>
-        </div>
-      </div>
+</div></div>
+<div class="gap"><div class="card">
+  <div class="ch"><span class="cl">월별 날씨 &amp; 판매 흐름</span></div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:var(--gray);border-radius:10px;padding:14px"><div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">4월 &#8212; 봄 전환기 (11~20&#176;)</div><div class="hek" style="margin-bottom:8px"><span class="hkw up">크링클</span><span class="hkw up">테일러드수트</span><span class="hkw">린넨셔츠</span><span class="hkw">봄아우터</span></div><div style="font-size:12px;color:var(--muted)">시즌 전환기 &middot; 04/27주 3,155개 피크</div></div>
+      <div style="background:#fff0f0;border:1px solid #fca5a5;border-radius:10px;padding:14px"><div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:8px">5월 &#8212; 이른 여름 (25~30&#176; &middot; 평년 이상)</div><div class="hek" style="margin-bottom:8px"><span class="hkw up">반팔니트</span><span class="hkw up">쿨소재</span><span class="hkw up">반소매셔츠</span><span class="hkw up">여름슬랙스</span><span class="hkw up">달라붙지않는</span></div><div style="font-size:12px;color:var(--red)">반팔니트 급상승 &middot; 기모 스웨트 시즌 이탈 &middot; 위험 재고 16.2억</div></div>
     </div>
   </div>
-</div>
-</div>
-
-<div class="footer">
-  본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 · 2026년 5월 19일 오전 9:00 업데이트<br>
-  날씨: 기상청 · 경쟁사 인기상품: 5/18 직접 확인 기준
-</div>
-
+</div></div>
+</div></div>
+<div class="footer">본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 &middot; 2026년 5월 22일 오전 9:00 업데이트<br>날씨: 기상청 &middot; 판매 데이터: 품번별 판매현황 5/22 기준 (원턱 밴딩 두 품번 합산 반영) &middot; 경쟁사: 퍼플렉시티&#183;젠스파크</div>
 <script>
-function switchTab(tab, el) {
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
-}
-function switchBrand(brand, el) {
-  document.querySelectorAll('.brand-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.brand-panel').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('brand-' + brand).classList.add('active');
-}
-const now = new Date();
-const h = now.getHours().toString().padStart(2,'0');
-const m = now.getMinutes().toString().padStart(2,'0');
-document.getElementById('live-time').textContent = h + ':' + m;
+function switchTab(tab,el){document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});el.classList.add('active');document.getElementById('panel-'+tab).classList.add('active');}
+function switchBrand(b,el){document.querySelectorAll('.btn').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.bp').forEach(function(p){p.classList.remove('active');});el.classList.add('active');document.getElementById('brand-'+b).classList.add('active');}
+var n=new Date();document.getElementById('lt').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
 </script>
 </body>
 </html>
