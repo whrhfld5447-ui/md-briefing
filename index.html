@@ -234,6 +234,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray);color:var(--text);}
 <div class="nav-tabs">
   <div class="nav-tab active" onclick="switchTab('weather',this)">날씨 &amp; 트렌드</div>
   <div class="nav-tab gt" onclick="switchTab('sales',this)">&#128202; 트래드클럽 판매분석</div>
+  <div class="nav-tab" onclick="switchTab('overview',this)">트래드클럽 종합분석</div>
   <div class="nav-tab" onclick="switchTab('competitor',this)">경쟁사 분석</div>
   <div class="nav-tab" onclick="switchTab('top10',this)">카테고리 TOP10</div>
   <div class="nav-tab" onclick="switchTab('history',this)">주간 &middot; 월간 추이</div>
@@ -427,6 +428,284 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray);color:var(--text);}
   </div></div>
 </div></div>
 </div></div>
+<div class="panel" id="panel-overview">
+<div class="hero"><div class="hi">
+  <div><div class="hdate">2026년 5월 28일</div>
+  <div class="htitle">트래드클럽 <em>종합분석</em></div>
+  <div class="hsub">신규 디렉터 온보딩 · 브랜드 현황 스냅샷</div></div>
+</div></div>
+
+<div class="main">
+
+<!-- ① 핵심 지표 -->
+<div class="gap">
+<div class="card">
+  <div class="ch"><span class="cl">핵심 지표 요약</span></div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div style="background:#fff7ed;border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#c2410c;margin-bottom:6px;font-weight:500">5월 매출 달성율</div>
+        <div style="font-size:28px;font-weight:500;color:#c2410c">47%</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px">실적 5.6억 / 목표 12.1억 (5/28 기준)</div>
+      </div>
+      <div style="background:#fee2e2;border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#dc2626;margin-bottom:6px;font-weight:500">위험 재고 원가</div>
+        <div style="font-size:28px;font-weight:500;color:#dc2626">24.5억</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px">판매율 30% 미만 전체 원가 AMT</div>
+      </div>
+      <div style="background:#dbeafe;border-radius:10px;padding:14px 16px">
+        <div style="font-size:11px;color:#1d4ed8;margin-bottom:6px;font-weight:500">저성과 SKU 비율</div>
+        <div style="font-size:28px;font-weight:500;color:#1d4ed8">55%</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px">판매율 30% 미만 262개 / 전체 481개</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ② 재고 현황 요약 -->
+<div class="gap">
+<div class="card">
+  <div class="ch"><span class="cl">재고 현황 요약</span></div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+      <div style="background:var(--gray);border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:500">270,673</div><div style="font-size:11px;color:var(--muted);margin-top:3px">전체 실재고 (pcs)</div>
+      </div>
+      <div style="background:var(--gray);border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:500">42.3억</div><div style="font-size:11px;color:var(--muted);margin-top:3px">재고 원가</div>
+      </div>
+      <div style="background:var(--gray);border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:500">481개</div><div style="font-size:11px;color:var(--muted);margin-top:3px">총 SKU 수</div>
+      </div>
+      <div style="background:var(--gray);border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:500">53개</div><div style="font-size:11px;color:var(--muted);margin-top:3px">캐리오버 아이템</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ③ 재고 구조 분석 -->
+<div class="gap">
+<div class="card">
+  <div class="ch"><span class="cl">재고 구조 분석</span>
+    <span style="font-size:11px;color:var(--muted)">전체 재고는 수트/슬랙스류 최대 비중 — 그러나 처치곤란 원가 1위는 티셔츠(3팩)</span>
+  </div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px">전체 재고 카테고리별 원가 비중</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;font-size:11px;color:var(--muted)">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#2563eb;display:inline-block"></span>수트/슬랙스류 51%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#dc2626;display:inline-block"></span>티셔츠 12%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#16a34a;display:inline-block"></span>팬츠 10%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#d97706;display:inline-block"></span>스웨트 8%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#9ca3af;display:inline-block"></span>기타 19%</span>
+        </div>
+        <div style="position:relative;height:200px"><canvas id="ov-cat1" role="img" aria-label="전체 재고 카테고리별 원가 비중">수트/슬랙스 51%, 티셔츠 12%, 팬츠 10%, 스웨트 8%, 기타 19%</canvas></div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px">처치곤란 재고(판매율 30% 미만) 카테고리별 원가 비중</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;font-size:11px;color:var(--muted)">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#dc2626;display:inline-block"></span>티셔츠 22.7%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#d97706;display:inline-block"></span>스웨트 17.6%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#16a34a;display:inline-block"></span>팬츠 17.2%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#2563eb;display:inline-block"></span>수트/셋업 11.2%</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#9ca3af;display:inline-block"></span>기타 31.3%</span>
+        </div>
+        <div style="position:relative;height:200px"><canvas id="ov-cat2" role="img" aria-label="처치곤란 재고 카테고리별 원가 비중">티셔츠 22.7%, 스웨트 17.6%, 팬츠 17.2%, 수트/셋업 11.2%, 기타 31.3%</canvas></div>
+      </div>
+    </div>
+    <div style="background:#eff6ff;border-left:3px solid #2563eb;padding:9px 12px;margin-top:12px;font-size:12px;color:#1e40af">
+      💡 전체 재고의 절반 이상이 수트/슬랙스류이지만, 처치곤란 원가 1위는 <strong>티셔츠(3팩 반팔티 4.23억)</strong> — 단일 SKU 대규모 발주 리스크.
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ④ 매출 현황 -->
+<div class="gap">
+<div class="card">
+  <div class="ch"><span class="cl">매출 현황 (2026년)</span></div>
+  <div class="cb">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;font-size:11px;color:var(--muted)">
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#d1d5db;display:inline-block"></span>월 목표</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#2563eb;display:inline-block"></span>실적 (1~4월 확정)</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;border-radius:2px;background:#93c5fd;display:inline-block"></span>5월 진행중</span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="ov-sales" role="img" aria-label="2026년 월별 매출 목표 대비 실적">1월 124%, 2월 64%, 3월 59%, 4월 56%, 5월 47% 진행중</canvas></div>
+    <div style="font-size:11px;color:var(--muted);text-align:right;margin-top:6px">5월 기준일 5/28 · 연간 목표 127.8억 · 연간 달성율 22.5% · 반품율 19~29%</div>
+  </div>
+</div>
+</div>
+
+<!-- ⑤ 최근 4주 판매 TOP10 -->
+<div class="gap">
+<div class="card">
+  <div class="ch">
+    <span class="cl">최근 4주 판매 TOP 10</span>
+    <span style="font-size:11px;color:var(--muted)">3팩 제외 · 원턱 밴딩 와이드 슬랙스 V0+VZ 합산</span>
+  </div>
+  <div class="cb" style="padding:0">
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border)">
+          <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:400;color:var(--muted);width:4%">#</th>
+          <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:400;color:var(--muted);width:38%">품명</th>
+          <th style="padding:8px 14px;text-align:right;font-size:11px;font-weight:400;color:var(--muted);width:10%">4주 판매</th>
+          <th style="padding:8px 14px;text-align:right;font-size:11px;font-weight:400;color:var(--muted);width:8%">재고</th>
+          <th style="padding:8px 14px;font-size:11px;font-weight:400;color:var(--muted);width:28%">판매율</th>
+          <th style="padding:8px 14px;text-align:center;font-size:11px;font-weight:400;color:var(--muted);width:12%">구분</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">1</td><td style="padding:9px 14px">케이블 카라 반팔 니트</td><td style="padding:9px 14px;text-align:right;font-weight:500">1,191</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">1,764</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:70%;height:100%;background:#16a34a;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">70%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">2</td><td style="padding:9px 14px">캔터베리 에센셜 린넨라이크 셋업수트 팬츠</td><td style="padding:9px 14px;text-align:right;font-weight:500">939</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">1,599</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:47%;height:100%;background:#d97706;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">47%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">3</td><td style="padding:9px 14px">캔터베리 에센셜 린넨라이크 셋업수트 블레이저</td><td style="padding:9px 14px;text-align:right;font-weight:500">924</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">1,641</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:45%;height:100%;background:#d97706;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">45%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">4</td><td style="padding:9px 14px">소프트 라운드 반팔니트</td><td style="padding:9px 14px;text-align:right;font-weight:500">839</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">909</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:86%;height:100%;background:#16a34a;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">86%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">5</td><td style="padding:9px 14px">소프트 오픈 카라 반팔니트</td><td style="padding:9px 14px;text-align:right;font-weight:500">825</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">2,217</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:81%;height:100%;background:#16a34a;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">81%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">6</td><td style="padding:9px 14px">쿨 썸머 오픈카라 반팔니트</td><td style="padding:9px 14px;text-align:right;font-weight:500">618</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">1,769</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:76%;height:100%;background:#16a34a;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">76%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">7</td><td style="padding:9px 14px">원턱 밴딩 와이드 슬랙스 (V0+VZ 합산)</td><td style="padding:9px 14px;text-align:right;font-weight:500">454</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">2,237</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:45%;height:100%;background:#d97706;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">45%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">8</td><td style="padding:9px 14px">투턱 와이드 슬랙스</td><td style="padding:9px 14px;text-align:right;font-weight:500">416</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">1,283</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:73%;height:100%;background:#16a34a;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">73%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px;color:var(--muted);font-size:12px">9</td><td style="padding:9px 14px">캔터베리 클래식 레귤러 셋업수트 팬츠</td><td style="padding:9px 14px;text-align:right;font-weight:500">392</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">5,882</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:64%;height:100%;background:#2563eb;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">64%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+        <tr><td style="padding:9px 14px;color:var(--muted);font-size:12px">10</td><td style="padding:9px 14px">캔터베리 클래식 레귤러 셋업수트 블레이저</td><td style="padding:9px 14px;text-align:right;font-weight:500">383</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">4,503</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:68%;height:100%;background:#2563eb;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">68%</span></div></td><td style="padding:9px 14px;text-align:center"><span class="tag" style="background:#dcfce7;color:#166534;border:none;font-size:11px">캐리</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ⑥ 26SS 신제품 -->
+<div class="gap">
+<div class="card">
+  <div class="ch">
+    <span class="cl">26SS 신제품 현황</span>
+    <span style="font-size:11px;color:var(--muted)">품번 2번째 F · 3번째 S/M 기준 · 4개 SKU</span>
+  </div>
+  <div class="cb" style="padding:0">
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border)">
+          <th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:400;color:var(--muted);width:38%">품명</th>
+          <th style="padding:8px 14px;text-align:right;font-size:11px;font-weight:400;color:var(--muted);width:10%">입고</th>
+          <th style="padding:8px 14px;text-align:right;font-size:11px;font-weight:400;color:var(--muted);width:10%">재고</th>
+          <th style="padding:8px 14px;font-size:11px;font-weight:400;color:var(--muted);width:28%">판매율</th>
+          <th style="padding:8px 14px;text-align:right;font-size:11px;font-weight:400;color:var(--muted);width:8%">4주</th>
+          <th style="padding:8px 14px;text-align:center;font-size:11px;font-weight:400;color:var(--muted);width:6%">상태</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px">캔터베리 에센셜 레귤러 셋업수트 블레이저</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">2,997</td><td style="padding:9px 14px;text-align:right;font-weight:500">1,420</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:51%;height:100%;background:#2563eb;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">51%</span></div></td><td style="padding:9px 14px;text-align:right;font-weight:500">277</td><td style="padding:9px 14px;text-align:center"><span class="tag" style="font-size:11px">관찰</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px">캔터베리 에센셜 레귤러 셋업수트 팬츠</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">2,997</td><td style="padding:9px 14px;text-align:right;font-weight:500">1,389</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:52%;height:100%;background:#2563eb;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">52%</span></div></td><td style="padding:9px 14px;text-align:right;font-weight:500">273</td><td style="padding:9px 14px;text-align:center"><span class="tag" style="font-size:11px">관찰</span></td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 14px">버튼다운 헨리넥 반팔니트</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">1,494</td><td style="padding:9px 14px;text-align:right;font-weight:500">955</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:36%;height:100%;background:#d97706;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">36%</span></div></td><td style="padding:9px 14px;text-align:right;font-weight:500">282</td><td style="padding:9px 14px;text-align:center"><span class="tag red" style="font-size:11px">주의</span></td></tr>
+        <tr><td style="padding:9px 14px">린넨라이크 긴팔 셔츠</td><td style="padding:9px 14px;text-align:right;color:var(--muted);font-size:12px">300</td><td style="padding:9px 14px;text-align:right;font-weight:500">296</td><td style="padding:9px 14px"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:#f3f4f6;border-radius:3px"><div style="width:1%;height:100%;background:#dc2626;border-radius:3px"></div></div><span style="font-size:11px;color:var(--muted);width:32px;text-align:right">1%</span></div></td><td style="padding:9px 14px;text-align:right;font-weight:500">3</td><td style="padding:9px 14px;text-align:center"><span class="tag red" style="font-size:11px;background:#fee2e2;color:#dc2626;border:none">위험</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ⑦ 처치곤란 재고 -->
+<div class="gap">
+<div class="card">
+  <div class="ch">
+    <span class="cl">처치곤란 재고</span>
+    <span style="font-size:11px;color:var(--muted)">재고 500개+ · 판매율 30% 미만 · 73 SKU · 원가 17.8억</span>
+  </div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">1</span><div style="flex:1;min-width:0"><div style="font-size:13px"><span class="tag red" style="font-size:10px;margin-right:4px">최우선</span>3팩 베이직 반팔티</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 41,442 · 판매율 17.2% · 트레이더스 납품 검토중</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">4.23억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">2</span><div style="flex:1;min-width:0"><div style="font-size:13px">베이직 원턱 기모 스웨트 와이드 팬츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 6,507 · 판매율 9.2% · 최근2주 판매 0</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.91억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">3</span><div style="flex:1;min-width:0"><div style="font-size:13px">밴딩 치노 쇼츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 5,594 · 판매율 11.1%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.65억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">4</span><div style="flex:1;min-width:0"><div style="font-size:13px">라이트웨이트 레귤러 치노 팬츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 3,922 · 판매율 19.1%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.63억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">5</span><div style="flex:1;min-width:0"><div style="font-size:13px">베이직 기모 스웨트 오버 후드티</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 4,037 · 판매율 7.3% · 최근2주 판매 0</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.57억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">6</span><div style="flex:1;min-width:0"><div style="font-size:13px">캔터베리 울 레귤러 셋업수트 블레이저</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 1,678 · 판매율 20.0%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.54억</span></div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">7</span><div style="flex:1;min-width:0"><div style="font-size:13px">스트링 조거 카고 팬츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 2,334 · 판매율 5.8%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.44억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">8</span><div style="flex:1;min-width:0"><div style="font-size:13px">레귤러 치노 쇼츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 3,447 · 판매율 13.1%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.43억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">9</span><div style="flex:1;min-width:0"><div style="font-size:13px">투턱 와이드 카고 팬츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 2,255 · 판매율 6.8%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.42억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">10</span><div style="flex:1;min-width:0"><div style="font-size:13px">와이드 데님 팬츠</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 2,391 · 판매율 21.2%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.41억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">11</span><div style="flex:1;min-width:0"><div style="font-size:13px">베이직 기모 스웨트 오버 맨투맨</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 2,553 · 판매율 3.5% · 최근2주 판매 0</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.36억</span></div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:9px 0"><span style="font-size:11px;color:var(--muted);width:16px;flex-shrink:0;text-align:right">12</span><div style="flex:1;min-width:0"><div style="font-size:13px">베이직 스웨트 오버 후드티</div><div style="font-size:11px;color:var(--muted);margin-top:2px">재고 2,637 · 판매율 24.3%</div></div><span style="font-size:13px;font-weight:500;color:#dc2626;flex-shrink:0">0.35억</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ⑧ 캐리오버 -->
+<div class="gap">
+<div class="card">
+  <div class="ch"><span class="cl">캐리오버 아이템</span><span style="font-size:11px;color:var(--muted)">53개 · 판매율 내림차순</span></div>
+  <div class="cb">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리106 레귤러 셋업수트 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">95%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리106 레귤러 셋업수트 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">91%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>해밍턴 빅사이즈 셋업 자켓</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">87%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>히든밴딩 테이퍼드 크롭 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">87%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>투턱 기모 와이드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">85%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>투턱 와이드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">82%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 라운드 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">79%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 클래식 셋업수트 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">79%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>메트로 투웨이 코튼 블루종</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">78%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>원턱 밴딩 와이드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">78%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>해밍턴 빅사이즈 셋업 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">76%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>반집업 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">75%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 폴로 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">75%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 클래식 셋업수트 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">75%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>소프트 오픈 카라 반팔니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">72%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>쿨 썸머 오픈카라 반팔니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">72%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 드레스 셔츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">71%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 폴라넥 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">71%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>사이드 밴딩 크롭 기모 테이퍼드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">71%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리106 린넨라이크 셋업 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">69%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 오버핏 라운드 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">68%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>사이드 밴딩 크롭 테이퍼드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">68%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>소프트 라운드 반팔니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">68%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리106 린넨라이크 셋업 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">68%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>케이블 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">67%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>집업 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">66%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 가디건</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">65%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 하프 폴라넥 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">65%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>헤비웨이트 와이드 치노 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">60%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>브롬튼 옥스포드 셔츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">56%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>밴딩 크롭 린넨 와이드 팬츠 (V0+VZ합산)</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">54%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>투턱 린넨라이크 와이드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">53%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 에센셜 레귤러 셋업수트 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">52%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 에센셜 레귤러 셋업수트 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">51%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>스트레이트 데님 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">51%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>히든밴딩 투턱 와이드 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">51%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 에센셜 린넨라이크 셋업수트 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">47%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>케이블 카라 반팔 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">46%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 에센셜 린넨라이크 셋업수트 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">45%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>테이퍼드 치노 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">42%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 울 셋업수트 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">40%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>캔터베리 울 셋업수트 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">39%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>케이블 라운드 반팔 니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">39%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>브롬튼 스트라이프 옥스포드 셔츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">38%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>구르카 치노 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">36%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>레귤러 치노 팬츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">32%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>오버핏 포플린 반소매 셔츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">32%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>스트라이프 오버핏 더블 셋업 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">31%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>스트라이프 오버핏 더블 셋업 슬랙스</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">31%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>베이직 포플린 셔츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">26%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>빈티지 오버핏 체크 셔츠</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">22%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>우먼 오버핏 블레이저</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">16%</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 8px;background:var(--gray);border-radius:4px"><span>버튼다운 헨리넥 반팔니트</span><span style="color:var(--muted);font-size:11px;flex-shrink:0;margin-left:6px">4%</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!-- /main -->
+
+<!-- Chart.js for overview panel -->
+<!-- overview charts init via switchTab -->
+</div>
+
 <div class="panel" id="panel-competitor"><div class="main">
 <div class="gap"><div class="card">
   <div class="ch"><span class="cl">경쟁사 브랜드 지형도</span><span class="tag org">퍼플렉시티&#183;젠스파크 팩트 기반</span></div>
@@ -633,7 +912,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--gray);color:var(--text);}
 </div></div>
 <div class="footer">본 브리핑은 TRADCLUB 남성복 기획팀 내부용입니다 &middot; 2026년 5월 28일 오전 9:00 업데이트<br>날씨: 기상청 &middot; 판매 데이터: 품번별_일_주_월__판매현황260528.xlsx 기준 &middot; 경쟁사: 퍼플렉시티&#183;젠스파크</div>
 <script>
-function switchTab(tab,el){document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});el.classList.add('active');document.getElementById('panel-'+tab).classList.add('active');}
+function switchTab(tab,el){document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});el.classList.add('active');document.getElementById('panel-'+tab).classList.add('active');if(tab==='overview')initOverviewCharts();}
+var _ovInited=false;
+function initOverviewCharts(){
+  if(_ovInited||typeof Chart==='undefined')return;
+  _ovInited=true;
+  new Chart(document.getElementById('ov-cat1'),{type:'doughnut',data:{labels:['수트/슬랙스류','티셔츠','팬츠','스웨트','기타'],datasets:[{data:[20260,4870,3960,3060,7640],backgroundColor:['#2563eb','#dc2626','#16a34a','#d97706','#9ca3af'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false}}}});
+  new Chart(document.getElementById('ov-cat2'),{type:'doughnut',data:{labels:['티셔츠','스웨트','팬츠','수트/셋업','기타'],datasets:[{data:[563,437,427,277,776],backgroundColor:['#dc2626','#d97706','#16a34a','#2563eb','#9ca3af'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false}}}});
+  new Chart(document.getElementById('ov-sales'),{type:'bar',data:{labels:['1월','2월','3월','4월','5월(진행중)'],datasets:[{label:'월 목표',data:[377700,700000,1221000,1208000,1210000],backgroundColor:'#d1d5db',borderRadius:3,borderSkipped:false},{label:'실적',data:[466936,446406,726486,671054,null],backgroundColor:'#2563eb',borderRadius:3,borderSkipped:false},{label:'5월 진행중',data:[null,null,null,null,562884],backgroundColor:'#93c5fd',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.parsed.y?c.parsed.y.toLocaleString():'-')+'천원';}}}},scales:{x:{grid:{display:false},ticks:{autoSkip:false}},y:{grid:{color:'rgba(0,0,0,0.05)'},ticks:{callback:function(v){return (v/10000).toFixed(0)+'억';}}}}}}); 
+}
 function switchBrand(b,el){document.querySelectorAll('.btn').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.bp').forEach(function(p){p.classList.remove('active');});el.classList.add('active');document.getElementById('brand-'+b).classList.add('active');}
 var n=new Date();document.getElementById('lt').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
 </script>
